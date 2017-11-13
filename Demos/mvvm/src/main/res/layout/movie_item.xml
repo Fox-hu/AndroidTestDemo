@@ -26,12 +26,12 @@
             android:orientation="horizontal" >
 
             <ImageView
-                android:id="@+id/cover"
+                android:layout_margin="8dp"
                 android:layout_width="60dp"
                 android:layout_height="100dp"
-                android:layout_margin="8dp"
-                android:src="@mipmap/cover"
-                app:imageUrl="@{viewModel.imageUrl}" />
+                android:src="@drawable/cover"
+                app:imageUrl="@{viewModel.imageUrl}"
+                android:id="@+id/cover"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"

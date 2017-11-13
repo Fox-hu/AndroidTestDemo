@@ -11,19 +11,27 @@ public class Movie {
     private String alt;
     private String year;
     private String title;
-    private String OriginalTitle;
+    private String original_title;
     private List<String> genres;
     private List<Cast> casts;
     private List<Cast> directors;
-    private Rating raging;
     private Avatars images;
+    private Rating rating;
 
-    public Avatars getImages() {
-        return images;
+    public Rating getRating() {
+        return rating;
     }
 
-    public void setImages(Avatars images) {
-        this.images = images;
+    public class Rating {
+        float average;
+
+        public void setAverage(float average) {
+            this.average = average;
+        }
+
+        public float getAverage() {
+            return average;
+        }
     }
 
     public String getId() {
@@ -58,12 +66,12 @@ public class Movie {
         this.title = title;
     }
 
-    public String getOriginalTitle() {
-        return OriginalTitle;
+    public String getOriginal_title() {
+        return original_title;
     }
 
-    public void setOriginalTitle(String originalTitle) {
-        OriginalTitle = originalTitle;
+    public void setOriginal_title(String original_title) {
+        this.original_title = original_title;
     }
 
     public List<String> getGenres() {
@@ -90,28 +98,15 @@ public class Movie {
         this.directors = directors;
     }
 
-    public Rating getRaging() {
-        return raging;
+    public Avatars getImages() {
+        return images;
     }
 
-    public void setRaging(Rating raging) {
-        this.raging = raging;
+    public void setImages(Avatars images) {
+        this.images = images;
     }
 
-    public class Rating
-    {
-        private float average;
-
-        public float getAverage() {
-            return average;
-        }
-
-        public void setAverage(float average) {
-            this.average = average;
-        }
-    }
-
-    private static class Cast{
+    private class Cast{
         private String id;
         private String name;
         private String alt;
@@ -147,6 +142,11 @@ public class Movie {
 
         public void setAvatars(Avatars avatars) {
             this.avatars = avatars;
+        }
+
+        @Override
+        public String toString() {
+            return "cast.id=" + id + " cast.name=" + name + " | ";
         }
     }
 

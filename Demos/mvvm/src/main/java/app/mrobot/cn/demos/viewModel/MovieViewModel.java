@@ -4,6 +4,9 @@ import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
+import app.mrobot.cn.demos.R;
 import app.mrobot.cn.demos.model.entity.Movie;
 
 /**
@@ -22,11 +25,11 @@ public class MovieViewModel extends BaseObservable {
     }
 
     public float getRating() {
-        return movie.getRaging().getAverage();
+        return movie.getRating().getAverage();
     }
 
     public String getRatingText() {
-        return String.valueOf(movie.getRaging().getAverage());
+        return String.valueOf(movie.getRating().getAverage());
     }
 
     public String getYear() {
@@ -41,9 +44,14 @@ public class MovieViewModel extends BaseObservable {
         return builder.toString();
     }
 
-    @BindingAdapter({"app:imageUrl"})
-    public static void loadImage(ImageView imageView,String url)
-    {
+    public String getImageUrl() {
+        return movie.getImages().getSmall();
+    }
+
+    @BindingAdapter({"imageUrl"})
+    public static void loadImage(ImageView imageView, String url) {
+        Glide.with(imageView.getContext()).load(url).placeholder(R.drawable.cover).error(
+                R.drawable.cover).into(imageView);
 
     }
 }

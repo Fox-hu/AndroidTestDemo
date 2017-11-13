@@ -3,6 +3,7 @@ package app.mrobot.cn.demos.viewModel;
 import android.databinding.ObservableField;
 import android.view.View;
 
+import app.mrobot.cn.demos.model.data.RetrofitHelper;
 import app.mrobot.cn.demos.model.entity.Movie;
 import app.mrobot.cn.demos.view.CompletedListener;
 import app.mrobot.cn.demos.view.MovieAdapter;
@@ -36,25 +37,40 @@ public class ManiViewModel {
         exception = new ObservableField<>();
         contentViewVisibility.set(View.GONE);
         errorLayoutVisibility.set(View.GONE);
-        progressBarVisibility.set(View.GONE);
+        progressBarVisibility.set(View.VISIBLE);
     }
 
-    public void getMovies() {
+    private void getMovies() {
         subscriber = new Subscriber<Movie>() {
             @Override
             public void onCompleted() {
-
+                hideAll();
+                contentViewVisibility.set(View.VISIBLE);
+                completedListener.onCompleted();
             }
 
             @Override
             public void onError(Throwable e) {
-
+                hideAll();
+                errorLayoutVisibility.set(View.VISIBLE);
+                exception.set(e.getMessage());
             }
 
             @Override
             public void onNext(Movie movie) {
-
+                movieAdapter.addItem(movie);
             }
         };
+        RetrofitHelper.get().getMovies(subscriber, 0, 20);
+    }
+
+    public void refreshData() {
+        getMovies();
+    }
+
+    private void hideAll() {
+        contentViewVisibility.set(View.GONE);
+        errorLayoutVisibility.set(View.GONE);
+        progressBarVisibility.set(View.GONE);
     }
 }

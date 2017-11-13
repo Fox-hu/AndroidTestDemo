@@ -15,12 +15,12 @@ import app.mrobot.cn.demos.databinding.MovieFragmentBinding;
 import app.mrobot.cn.demos.viewModel.ManiViewModel;
 
 /**
- *
  * @author admin
  * @date 2017/11/7
  */
 
-public class MovieFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class MovieFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+        CompletedListener {
     private static final String TAG = MovieFragment.class.getSimpleName();
     private ManiViewModel viewModel;
     private MovieFragmentBinding movieFragmentBinding;
@@ -49,11 +49,21 @@ public class MovieFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         movieFragmentBinding.swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent,
                 R.color.colorPrimary, R.color.colorPrimaryDark);
         movieFragmentBinding.swipeRefreshLayout.setOnRefreshListener(this);
+        viewModel = new ManiViewModel(this, movieAdapter);
+        movieFragmentBinding.setViewModel(viewModel);
 
     }
 
     @Override
     public void onRefresh() {
+        movieAdapter.clearItems();
+        viewModel.refreshData();
+    }
 
+    @Override
+    public void onCompleted() {
+        if (movieFragmentBinding.swipeRefreshLayout.isRefreshing()) {
+            movieFragmentBinding.swipeRefreshLayout.setRefreshing(false);
+        }
     }
 }
