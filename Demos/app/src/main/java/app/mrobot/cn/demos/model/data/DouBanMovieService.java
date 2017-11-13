@@ -3,7 +3,7 @@ package app.mrobot.cn.demos.model.data;
 import java.util.List;
 
 import app.mrobot.cn.demos.model.entity.Movie;
-import retrofit2.Response;
+import app.mrobot.cn.demos.model.entity.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
