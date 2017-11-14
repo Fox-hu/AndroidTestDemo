@@ -1,2 +1,0 @@
-# AndroidTestDemo
-Some Android demos
