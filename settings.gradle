@@ -1,1 +1,1 @@
-include ':mvvmrxjavaretrofit2',':mvvmlighttoolkit'
+include ':mvvmrxjavaretrofit2', ':darwabletest'

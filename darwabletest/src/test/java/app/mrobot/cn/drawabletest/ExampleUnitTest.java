@@ -1,4 +1,4 @@
-package app.mrobot.cn.mvvmlighttoolkit;
+package app.mrobot.cn.drawabletest;
 
 import org.junit.Test;
 

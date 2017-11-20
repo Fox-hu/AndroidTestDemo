@@ -8,7 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/mvvmlighttoolkit" />
+            <option value="$PROJECT_DIR$/darwabletest" />
             <option value="$PROJECT_DIR$/mvvmrxjavaretrofit2" />
           </set>
         </option>

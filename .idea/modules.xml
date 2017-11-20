@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidTestDemo.iml" filepath="$PROJECT_DIR$/AndroidTestDemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mvvmlighttoolkit/mvvmlighttoolkit.iml" filepath="$PROJECT_DIR$/mvvmlighttoolkit/mvvmlighttoolkit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/darwabletest/darwabletest.iml" filepath="$PROJECT_DIR$/darwabletest/darwabletest.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvvmrxjavaretrofit2/mvvmrxjavaretrofit2.iml" filepath="$PROJECT_DIR$/mvvmrxjavaretrofit2/mvvmrxjavaretrofit2.iml" />
     </modules>
   </component>

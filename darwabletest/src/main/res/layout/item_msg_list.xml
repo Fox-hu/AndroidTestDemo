@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<app.mrobot.cn.drawabletest.MessageListItem
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/message_itme_background"
+    tools:context="app.mrobot.cn.drawabletest.MainActivity" >
+
+    <ImageView
+        android:id="@+id/id_msg_item_icon"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:duplicateParentState="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        />
+
+    <TextView
+        android:id="@+id/id_msg_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/id_msg_item_icon" />
+</app.mrobot.cn.drawabletest.MessageListItem >
