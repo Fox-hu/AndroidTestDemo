@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle" >
+    <!--
+    solid 指定形状的填充色 只有color一个属性
+    -->
+    <solid android:color="#2f90bd" />
+    <padding
+        android:bottom="12dp"
+        android:left="12dp"
+        android:right="12dp"
+        android:top="12dp" />
+    <!--
+    android:type 渐变的类型
+        linear 线性渐变，默认的渐变类型
+        radial 放射渐变，设置该项时，android:gradientRadius也必须设置
+        sweep 扫描性渐变
+        android:startColor 渐变开始的颜色
+        android:endColor 渐变结束的颜色
+        android:centerColor 渐变中间的颜色
+        android:angle 渐变的角度，线性渐变时才有效，必须是45的倍数，0表示从左到右，90表示从下到上
+        android:centerX 渐变中心的相对X坐标，放射渐变时才有效，在0.0到1.0之间，默认为0.5，表示在正中间
+        android:centerY 渐变中心的相对X坐标，放射渐变时才有效，在0.0到1.0之间，默认为0.5，表示在正中间
+        android:gradientRadius 渐变的半径，只有渐变类型为radial时才使用
+    -->
+    <gradient
+        android:endColor="#000000"
+        android:startColor="#ffffff"
+        android:type="sweep"
+        />
+</shape >
