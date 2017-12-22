@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!--
+        android:top 顶部的偏移量
+        android:bottom 底部的偏移量
+        android:left 左边的偏移量
+        android:right 右边的偏移量
+        如何不设置偏移量，前面的图层就完全挡住了后面的图层，从而也看不到后面的图层效果了
+    -->
+    <item android:state_checked="true" >
+        <layer-list >
+            <item android:color="#e4007f" />
+            <item android:bottom="1dp" android:drawable="@android:color/white" />
+        </layer-list >
+    </item >
+
+    <item >
+        <layer-list >
+            <item android:color="#e4007f" />
+            <item android:bottom="4dp" android:drawable="@android:color/white" />
+        </layer-list >
+    </item >
+</selector >

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- 0到 20显示这个图片-->
+    <item android:drawable="@drawable/bg_oval_with_padding" android:minLevel="0" android:maxLevel="20"></item>
+    <!-- 21到 40显示这个图片-->
+    <item android:drawable="@drawable/bg_oval_with_stroke_only" android:minLevel="21" android:maxLevel="40"></item>
+    <!-- 41到 60显示这个图片-->
+    <item android:drawable="@drawable/bg_oval_with_size" android:minLevel="41" android:maxLevel="60"></item>
+    <!-- 61到100显示这个图片-->
+    <item android:drawable="@drawable/bg_oval_with_stroke_dash" android:minLevel="61" android:maxLevel="100"></item>
+</level-list>
