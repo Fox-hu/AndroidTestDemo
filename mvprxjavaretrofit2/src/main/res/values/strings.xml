@@ -1,3 +1,7 @@
 <resources >
-    <string name="app_name" >MvpTest</string >
+    <string name="app_name" >Mpv_rxjava_mpv</string >
+    <string name="speech" >Speech</string >
+    <string name="navigation" >Navigation</string >
+    <string name="vision" >Vision</string >
+    <string name="navigation_view_header_title" ></string >
 </resources >
