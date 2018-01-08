@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-
+        getFragmentManager().beginTransaction().add(R.id.fragment_content, MovieFragment.get())
+                .commit();
 
     }
 
@@ -63,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
+                break;
+            default:
+                break;
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 }
