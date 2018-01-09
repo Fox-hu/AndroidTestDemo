@@ -6,7 +6,7 @@ import app.mrobot.cn.mvprxjavaretrofit2.view.BaseView;
  * Created by admin on 2018/1/8.
  */
 
-public class BasePresenterImpl<T extends BaseView,V> implements BasePresenter<V> {
+public class BasePresenterImpl<T extends BaseView> implements BasePresenter {
     BaseView baseView;
 
     public BasePresenterImpl(T baseView) {
@@ -14,22 +14,17 @@ public class BasePresenterImpl<T extends BaseView,V> implements BasePresenter<V>
     }
 
     @Override
-    public void performRequest(int requestCode) {
-        baseView.showProgress(0,requestCode);
+    public void performRequest() {
+        baseView.showProgress();
     }
 
     @Override
-    public void requestError(int errorCOde, int requestCode) {
-        baseView.loadError(errorCOde,requestCode);
+    public void requestError(String errorMsg) {
+        baseView.loadError(errorMsg);
     }
 
     @Override
-    public void requestSuccess(V callBack, int requestCode) {
-        baseView.loadSuccess(callBack,requestCode);
-    }
-
-    @Override
-    public void requestComplete(int requestCode) {
-        baseView.hideProgress(requestCode);
+    public void requestComplete() {
+        baseView.loadSuccess();
     }
 }

@@ -4,7 +4,7 @@ package app.mrobot.cn.mvprxjavaretrofit2.view;
  * Created by admin on 2018/1/8.
  */
 
-public interface BaseView<T>{
+public interface BaseView{
     /**
      * 显示toast
      * @param message message to show
@@ -14,28 +14,18 @@ public interface BaseView<T>{
 
     /**
      * 显示进度
-     * @param progress 显示请求进度
-     * @param requestCode 显示请求标识
      */
-    void showProgress(int progress,int requestCode);
+    void showProgress();
 
-    /**
-     * 隐藏进度
-     * @param requestCode
-     */
-    void hideProgress(int requestCode);
 
     /**
      * 显示加载成功
-     * @param loadData
-     * @param requestCode
      */
-    void loadSuccess(T loadData,int requestCode);
+    void loadSuccess();
 
     /**
      * 显示加载失败
-     * @param errorCode 错误标识
-     * @param requestCode 请求标识
+     * @param errorMsg 错误信息
      */
-    void loadError(int errorCode,int requestCode);
+    void loadError(String errorMsg);
 }

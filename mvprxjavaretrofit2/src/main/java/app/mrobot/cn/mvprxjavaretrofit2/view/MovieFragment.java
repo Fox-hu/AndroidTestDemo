@@ -11,9 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import app.mrobot.cn.mvprxjavaretrofit2.R;
-import app.mrobot.cn.mvprxjavaretrofit2.model.entity.Movie;
+
 import app.mrobot.cn.mvprxjavaretrofit2.presenter.MoviePresenter;
 
 /**
@@ -27,6 +28,8 @@ public class MovieFragment extends Fragment implements MovieView,
     private MovieAdapter movieAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar progressBar;
+    private View errorLayout;
+    private TextView errorMsgTv;
 
     public static MovieFragment get() {
         return new MovieFragment();
@@ -47,7 +50,9 @@ public class MovieFragment extends Fragment implements MovieView,
                 R.color.colorPrimaryDark);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        progressBar = (ProgressBar)view.findViewById(R.id.progress_bar);
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        errorLayout = view.findViewById(R.id.error_layout);
+        errorMsgTv = (TextView) view.findViewById(R.id.error_msg_tv);
 
         movieAdapter = new MovieAdapter(getActivity());
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycle_view);
@@ -64,29 +69,31 @@ public class MovieFragment extends Fragment implements MovieView,
     }
 
     @Override
-    public void showProgress(int progress, int requestCode) {
+    public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
+        errorLayout.setVisibility(View.GONE);
         swipeRefreshLayout.setVisibility(View.GONE);
     }
 
     @Override
-    public void hideProgress(int requestCode) {
+    public void loadSuccess() {
         progressBar.setVisibility(View.GONE);
+        errorLayout.setVisibility(View.GONE);
         swipeRefreshLayout.setVisibility(View.VISIBLE);
         if (swipeRefreshLayout.isRefreshing()) {
             swipeRefreshLayout.setRefreshing(false);
         }
-    }
-
-    @Override
-    public void loadSuccess(Movie loadData, int requestCode) {
 
     }
 
     @Override
-    public void loadError(int errorCode, int requestCode) {
-
+    public void loadError(String errorMsg) {
+        progressBar.setVisibility(View.GONE);
+        swipeRefreshLayout.setVisibility(View.GONE);
+        errorLayout.setVisibility(View.VISIBLE);
+        errorMsgTv.setText(errorMsg);
     }
+
 
     @Override
     public void onRefresh() {

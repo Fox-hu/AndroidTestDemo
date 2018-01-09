@@ -10,7 +10,7 @@ import rx.Subscriber;
  * Created by admin on 2018/1/8.
  */
 
-public class MoviePresenter extends BasePresenterImpl<MovieView, Movie> {
+public class MoviePresenter extends BasePresenterImpl<MovieView> {
     private static final String TAG = MoviePresenter.class.getSimpleName();
     private Subscriber<Movie> mSubscriber;
     private MovieModel mMovieModel;
@@ -26,17 +26,22 @@ public class MoviePresenter extends BasePresenterImpl<MovieView, Movie> {
         mSubscriber = new Subscriber<Movie>() {
             @Override
             public void onCompleted() {
-                MoviePresenter.this.requestComplete(0);
+                MoviePresenter.this.requestComplete();
             }
 
             @Override
             public void onError(Throwable e) {
-                MoviePresenter.this.requestError(0, 0);
+                MoviePresenter.this.requestError(e.getMessage());
             }
 
             @Override
             public void onNext(Movie movie) {
                 mMovieAdapter.addItem(movie);
+            }
+
+            @Override
+            public void onStart() {
+                MoviePresenter.this.performRequest();
             }
         };
         mMovieModel.getMovie(mSubscriber, 0, 20);

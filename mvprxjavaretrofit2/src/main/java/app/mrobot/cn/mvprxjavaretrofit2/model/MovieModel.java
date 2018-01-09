@@ -8,13 +8,13 @@ import rx.Subscriber;
  * Created by admin on 2018/1/8.
  */
 
-public class MovieModel extends BaseModel<DoubanRequest> {
+public class MovieModel extends BaseModel {
 
     public MovieModel() {
         super(new DoubanRequest());
     }
 
     public void getMovie(Subscriber<Movie> subscriber, int start, int count) {
-        mBaseUrlRequest.getMovies(subscriber, start, count);
+        ((DoubanRequest) mBaseUrlRequest).getMovies(subscriber, start, count);
     }
 }

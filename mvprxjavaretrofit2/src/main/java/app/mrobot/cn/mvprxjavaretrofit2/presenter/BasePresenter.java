@@ -4,29 +4,20 @@ package app.mrobot.cn.mvprxjavaretrofit2.presenter;
  * Created by admin on 2018/1/8.
  */
 
-public interface BasePresenter<T> {
+public interface BasePresenter{
     /**
      * 请求之前
-     * @param requestCode
      */
-    void performRequest(int requestCode);
+    void performRequest();
 
     /**
      * 请求错误
-     * @param errorCOde
-     * @param requestCode
+     * @param errorMsg
      */
-    void requestError(int errorCOde,int requestCode);
+    void requestError(String errorMsg);
 
     /**
-     * 请求成功回调
-     * @param callBack
-     * @param requestCode
+     * 请求成功后的回调
      */
-    void requestSuccess(T callBack,int requestCode);
-
-    /**
-     * @param requestCode
-     */
-    void requestComplete(int requestCode);
+    void requestComplete();
 }

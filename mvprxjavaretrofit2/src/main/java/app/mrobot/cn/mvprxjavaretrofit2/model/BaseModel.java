@@ -6,11 +6,11 @@ import app.mrobot.cn.mvprxjavaretrofit2.retrofi2.BaseUrlRequest;
  * Created by admin on 2018/1/8.
  */
 
-public abstract class BaseModel<T extends BaseUrlRequest> {
+public abstract class BaseModel{
 
-    T mBaseUrlRequest;
+    BaseUrlRequest mBaseUrlRequest;
 
-    BaseModel(T baseUrlRequest) {
+    BaseModel(BaseUrlRequest baseUrlRequest) {
         mBaseUrlRequest = baseUrlRequest;
     }
 
