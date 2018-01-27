@@ -42,8 +42,8 @@ public class ShapeMainActivity extends AppCompatActivity {
         startActivity(new Intent(this, LayerListActivity.class));
     }
 
-    public void toAnimation(View view) {
-        startActivity(new Intent(this, AnimationActivity.class));
-    }
+//    public void toAnimation(View view) {
+//        startActivity(new Intent(this, AnimationActivity.class));
+//    }
 
 }
