@@ -20,6 +20,7 @@ import java.util.List;
 
 public class NewsFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = NewsFragment.class.getSimpleName();
+    private NewsChannelDao mNewsChannelDao = new NewsChannelDao();
     private List<Fragment> mFragmentList = new ArrayList<>();
     private List<String> mTitleList = new ArrayList<>();
 

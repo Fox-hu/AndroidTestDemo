@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/AndroidTestDemo.iml" filepath="$PROJECT_DIR$/AndroidTestDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/darwabletest/darwabletest.iml" filepath="$PROJECT_DIR$/darwabletest/darwabletest.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvprxjavaretrofit2/mvprxjavaretrofit2.iml" filepath="$PROJECT_DIR$/mvprxjavaretrofit2/mvprxjavaretrofit2.iml" />
-      <module fileurl="file://G:\github\AndroidTestDemo\mvprxjavaretrofit2\mvptest.iml" filepath="G:\github\AndroidTestDemo\mvprxjavaretrofit2\mvptest.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvvmrxjavaretrofit2/mvvmrxjavaretrofit2.iml" filepath="$PROJECT_DIR$/mvvmrxjavaretrofit2/mvvmrxjavaretrofit2.iml" />
       <module fileurl="file://$PROJECT_DIR$/toutiaoexample/toutiaoexample.iml" filepath="$PROJECT_DIR$/toutiaoexample/toutiaoexample.iml" />
     </modules>
