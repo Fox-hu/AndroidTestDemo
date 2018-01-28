@@ -1,8 +1,11 @@
-package app.mrobot.cn.toutiaoexample;
+package app.mrobot.cn.toutiaoexample.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import app.mrobot.cn.toutiaoexample.InitApp;
+import app.mrobot.cn.toutiaoexample.database.table.NewsChannelTable;
 
 /**
  * Created by admin on 2018/1/26.
