@@ -1,4 +1,4 @@
-package app.mrobot.cn.toutiaoexample.bean;
+package app.mrobot.cn.toutiaoexample.bean.news;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;

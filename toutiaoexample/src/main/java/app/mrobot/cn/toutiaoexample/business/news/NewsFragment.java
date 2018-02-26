@@ -22,7 +22,7 @@ import app.mrobot.cn.toutiaoexample.business.news.article.NewsArticleFragment;
 import app.mrobot.cn.toutiaoexample.database.dao.NewsChannelDao;
 import app.mrobot.cn.toutiaoexample.R;
 import app.mrobot.cn.toutiaoexample.adapter.BasePagerAdapter;
-import app.mrobot.cn.toutiaoexample.bean.NewsChannelBean;
+import app.mrobot.cn.toutiaoexample.bean.news.NewsChannelBean;
 
 /**
  * Created by admin on 2018/1/24.

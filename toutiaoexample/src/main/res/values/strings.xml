@@ -9,4 +9,12 @@
     <string name="photos" >图片</string >
     <string name="video" >视频</string >
     <string name="media" >头条号</string >
+
+    <!--View Action-->
+    <string name="network_error" >网络不给力</string >
+
+    <!--Menu Action-->
+    <string name="action_share" >分享</string >
+    <string name="share_to">分享</string>
+
 </resources >

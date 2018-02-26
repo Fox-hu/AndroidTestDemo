@@ -11,7 +11,7 @@ import app.mrobot.cn.toutiaoexample.Constants;
 import app.mrobot.cn.toutiaoexample.InitApp;
 import app.mrobot.cn.toutiaoexample.database.table.NewsChannelTable;
 import app.mrobot.cn.toutiaoexample.R;
-import app.mrobot.cn.toutiaoexample.bean.NewsChannelBean;
+import app.mrobot.cn.toutiaoexample.bean.news.NewsChannelBean;
 import app.mrobot.cn.toutiaoexample.database.DataBaseHelper;
 
 /**
