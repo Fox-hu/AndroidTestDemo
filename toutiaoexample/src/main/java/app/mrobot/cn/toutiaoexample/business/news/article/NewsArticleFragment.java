@@ -1,5 +1,6 @@
 package app.mrobot.cn.toutiaoexample.business.news.article;
 
+import android.os.Bundle;
 import android.view.View;
 
 import java.util.List;
@@ -7,7 +8,10 @@ import java.util.List;
 import app.mrobot.cn.toutiaoexample.bean.LoadingBean;
 import app.mrobot.cn.toutiaoexample.module.BaseListFragment;
 import app.mrobot.cn.toutiaoexample.module.news.INewsArticle;
+import app.mrobot.cn.toutiaoexample.module.news.NewsArticlePresenter;
 import app.mrobot.cn.toutiaoexample.utils.DiffCallback;
+import app.mrobot.cn.toutiaoexample.utils.OnLoadMoreListener;
+import app.mrobot.cn.toutiaoexample.widget.Register;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
@@ -20,22 +24,36 @@ public class NewsArticleFragment extends BaseListFragment<INewsArticle.Presenter
     private static final String TAG = NewsArticleFragment.class.getSimpleName();
     private String mCategoryId;
 
-    public static NewsArticleFragment get() {
-        return new NewsArticleFragment();
+    public static NewsArticleFragment get(String categoryId) {
+        Bundle bundle = new Bundle();
+        bundle.putString(TAG,categoryId);
+        NewsArticleFragment newsArticleFragment = new NewsArticleFragment();
+        newsArticleFragment.setArguments(bundle);
+        return newsArticleFragment;
     }
 
     @Override
     protected void initView(View view) {
         super.initView(view);
         mAdapter = new MultiTypeAdapter(mOldItems);
-        Resisger
+        Register.registerNewsArticleItem(mAdapter);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addOnScrollListener(new OnLoadMoreListener() {
+            @Override
+            protected void onLoadMore() {
+                if (canLoadMore) {
+                    canLoadMore = false;
+                    presenter.doLoadMoreData();
+                }
+            }
+        });
     }
 
     @Override
     public void onSetAdapter(List<?> list) {
         Items items = new Items(list);
         items.add(new LoadingBean());
-        DiffCallback.create(mOldItems,items,mAdapter);
+        DiffCallback.create(mOldItems, items, mAdapter);
         mOldItems.clear();
         mOldItems.addAll(items);
         canLoadMore = true;
@@ -49,14 +67,15 @@ public class NewsArticleFragment extends BaseListFragment<INewsArticle.Presenter
 
     @Override
     public void setPresenter(INewsArticle.Presenter presenter) {
-        if(null == presenter){
-
+        if (null == presenter) {
+            this.presenter = new NewsArticlePresenter(this);
         }
     }
 
     @Override
     public void onLoadData() {
         onShowLoading();
+        presenter.doLoadData(mCategoryId);
     }
 
     @Override

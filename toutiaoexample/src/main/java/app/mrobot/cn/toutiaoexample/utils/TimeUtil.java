@@ -45,4 +45,8 @@ public class TimeUtil {
             return format.format(new Date(0));
         }
     }
+
+    public static String getCurrentTimeStamp() {
+        return String.valueOf(System.currentTimeMillis() / 1000);
+    }
 }

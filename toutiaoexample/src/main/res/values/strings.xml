@@ -12,6 +12,8 @@
 
     <!--View Action-->
     <string name="network_error" >网络不给力</string >
+    <string name="loading" >加载中</string >
+    <string name="no_more_content" >暂无更多内容</string >
 
     <!--Menu Action-->
     <string name="action_share" >分享</string >

@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.jakewharton.rxbinding2.view.RxView;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import app.mrobot.cn.toutiaoexample.R;
@@ -39,7 +38,7 @@ public class NewsArticleVideoViewBinder extends ItemViewBinder<MultiNewsArticleD
     @Override
     protected NewsArticleVideoViewBinder.ViewHolder onCreateViewHolder(
             @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View view = inflater.inflate(R.layout.item_news_article_img, parent, false);
+        View view = inflater.inflate(R.layout.item_news_article_video, parent, false);
         return new ViewHolder(view);
     }
 
@@ -48,18 +47,22 @@ public class NewsArticleVideoViewBinder extends ItemViewBinder<MultiNewsArticleD
             @NonNull final MultiNewsArticleDataBean item) {
         final Context context = holder.itemView.getContext();
 
-        String imgUrl = "http://p3.pstatp.com/";
-        List<MultiNewsArticleDataBean.ImageListBean> image_list = item.getImage_list();
-        if (image_list != null && !image_list.isEmpty()) {
-            String url = image_list.get(0).getUrl();
-            ImageLoader.loadCenterCrop(context, url, holder.iv_image, R.color.viewBackground);
-            if (!TextUtils.isEmpty(image_list.get(0).getUri())) {
-                imgUrl += image_list.get(0).getUri().replace("list", "large");
+        MultiNewsArticleDataBean.VideoDetailInfoBean video_detail_info = item
+                .getVideo_detail_info();
+        if (video_detail_info != null) {
+            if (video_detail_info.getDetail_video_large_image() != null) {
+                String image = video_detail_info.getDetail_video_large_image().getUrl();
+                if (!TextUtils.isEmpty(image)) {
+                    ImageLoader.loadCenterCrop(context, image, holder.iv_video_image,
+                            R.color.viewBackground, R.mipmap.error_image);
+                }
             }
+        } else {
+            holder.iv_video_image.setImageResource(R.mipmap.error_image);
         }
-        MultiNewsArticleDataBean.UserInfoBean user_info = item.getUser_info();
-        if (user_info != null) {
-            String avatar_url = user_info.getAvatar_url();
+
+        if (item.getUser_info() != null) {
+            String avatar_url = item.getUser_info().getAvatar_url();
             if (!TextUtils.isEmpty(avatar_url)) {
                 ImageLoader.loadCenterCrop(context, avatar_url, holder.iv_media,
                         R.color.viewBackground);
@@ -67,17 +70,24 @@ public class NewsArticleVideoViewBinder extends ItemViewBinder<MultiNewsArticleD
         }
 
         String title = item.getTitle();
-        String abstractX = item.getAbstractX();
         String source = item.getSource();
-        String comment = item.getComment_count() + "评论";
-        String datetime = item.getBehot_time() + "";
-        if (!TextUtils.isEmpty(datetime)) {
-            datetime = TimeUtil.getTimeStampAgo(datetime);
+        String commont_count = item.getComment_count() + "评论";
+        String date_time = item.getBehot_time() + "";
+        if(!TextUtils.isEmpty(date_time)){
+            date_time = TimeUtil.getTimeStampAgo(date_time);
         }
 
+        int video_duration = item.getVideo_duration();
+        String min = String.valueOf(video_duration / 60);
+        String second = String.valueOf(video_duration % 10);
+        if(Integer.parseInt(second)<10){
+            second = "0" + second;
+        }
+        String video_time = min + ":" + second;
+
         holder.tv_title.setText(title);
-        holder.tv_abstract.setText(abstractX);
-        holder.tv_extra.setText(source + " - " + comment + " - " + datetime);
+        holder.tv_extra.setText(source + " - " + commont_count + " - " + date_time);
+        holder.tv_video_time.setText(date_time);
         holder.iv_dots.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,9 +98,8 @@ public class NewsArticleVideoViewBinder extends ItemViewBinder<MultiNewsArticleD
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         int itemId = menuItem.getItemId();
-                        if (itemId == R.id.action_share) {
-                            IntentAction.send(context,
-                                    item.getTitle() + "\n" + item.getShare_url());
+                        if(itemId == R.id.action_share){
+                            IntentAction.send(context,item.getTitle() + "\n" + item.getShare_url());
                         }
                         return false;
                     }
@@ -99,10 +108,9 @@ public class NewsArticleVideoViewBinder extends ItemViewBinder<MultiNewsArticleD
             }
         });
 
-       final String finalImagUrl = imgUrl;
         RxView.clicks(holder.itemView).throttleFirst(1, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
             @Override
-            public void accept(@io.reactivex.annotations.NonNull Object o) throws Exception {
+            public void accept(Object o) throws Exception {
                 //todo
             }
         });
@@ -110,18 +118,18 @@ public class NewsArticleVideoViewBinder extends ItemViewBinder<MultiNewsArticleD
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private CircleImageView iv_media;
-        private ImageView iv_image;
+        private ImageView iv_video_image;
         private TextView tv_title;
-        private TextView tv_abstract;
+        private TextView tv_video_time;
         private TextView tv_extra;
         private ImageView iv_dots;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.iv_media = itemView.findViewById(R.id.iv_media);
-            this.iv_image = itemView.findViewById(R.id.iv_image);
+            this.iv_video_image = itemView.findViewById(R.id.iv_video_image);
             this.tv_title = itemView.findViewById(R.id.tv_title);
-            this.tv_abstract = itemView.findViewById(R.id.tv_abstract);
+            this.tv_video_time = itemView.findViewById(R.id.tv_video_time);
             this.tv_extra = itemView.findViewById(R.id.tv_extra);
             this.iv_dots = itemView.findViewById(R.id.iv_dots);
         }

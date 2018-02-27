@@ -86,7 +86,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                     if (mFragmentMap.containsKey(channelId)) {
                         mFragmentList.add(mFragmentMap.get(channelId));
                     } else {
-                        fragment = NewsArticleFragment.get();
+                        fragment = NewsArticleFragment.get(channelId);
                         mFragmentList.add(fragment);
                     }
                     break;

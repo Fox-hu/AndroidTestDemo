@@ -44,6 +44,6 @@ public interface INewsArticle {
         /**
          * 加载完毕
          */
-        void doShowMore();
+        void doShowNoMore();
     }
 }

@@ -15,4 +15,9 @@ public class ImageLoader {
             int defaultResId) {
         Glide.with(context).load(url).crossFade().centerCrop().into(view);
     }
+
+    public static void loadCenterCrop(Context context, String url, ImageView view, int defaultResId,
+            int errorResId) {
+        Glide.with(context).load(url).crossFade().centerCrop().error(errorResId).into(view);
+    }
 }
