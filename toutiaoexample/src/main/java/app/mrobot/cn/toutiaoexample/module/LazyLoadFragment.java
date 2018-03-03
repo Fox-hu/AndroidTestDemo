@@ -18,6 +18,7 @@ public abstract class LazyLoadFragment<T extends IBasePresenter> extends BaseFra
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         isViewInitiated = true;
+        prepareFetchData();
     }
 
     @Override

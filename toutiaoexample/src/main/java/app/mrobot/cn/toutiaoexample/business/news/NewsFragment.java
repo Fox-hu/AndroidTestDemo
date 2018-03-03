@@ -55,8 +55,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
 
     private void initData() {
         initTabs();
-        mBasePagerAdapter = new BasePagerAdapter(getChildFragmentManager(),
-                mTitleList, mFragmentList);
+        mBasePagerAdapter = new BasePagerAdapter(getChildFragmentManager(), mTitleList,
+                mFragmentList);
         mViewPager.setAdapter(mBasePagerAdapter);
         mViewPager.setOffscreenPageLimit(15);
     }
@@ -64,9 +64,13 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
     private void initTabs() {
         mFragmentList = new ArrayList<>();
         mTitleList = new ArrayList<>();
-        mNewsChannelDao.initNewsData();
         List<NewsChannelBean> newsChannelBeanList = mNewsChannelDao.query(
                 Constants.NEWS_CHANNEL_ENABLE);
+        if (newsChannelBeanList.isEmpty()) {
+            Log.d(TAG, "initTabs mNewsChannelDao initNewsData");
+            mNewsChannelDao.initNewsData();
+            newsChannelBeanList = mNewsChannelDao.query(Constants.NEWS_CHANNEL_ENABLE);
+        }
 
         for (NewsChannelBean bean : newsChannelBeanList) {
             Fragment fragment = null;
@@ -74,18 +78,19 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
             String channelId = bean.getChannelId();
 
             switch (channelId) {
-//                case "essay_joke": {
-//                    if (mFragmentMap.containsKey(channelId)) {
-//                        mFragmentList.add(mFragmentMap.get(channelId));
-//                    } else {
-//                        fragment = NewsArticleFragment.get();
-//                        mFragmentList.add(fragment);
-//                    }
-//                }
-//                break;
+                //                case "essay_joke": {
+                //                    if (mFragmentMap.containsKey(channelId)) {
+                //                        mFragmentList.add(mFragmentMap.get(channelId));
+                //                    } else {
+                //                        fragment = NewsArticleFragment.get();
+                //                        mFragmentList.add(fragment);
+                //                    }
+                //                }
+                //                break;
 
                 default:
                     if (mFragmentMap.containsKey(channelId)) {
+                        Log.d(TAG, "mFragmentMap containsKey = " + channelId);
                         mFragmentList.add(mFragmentMap.get(channelId));
                     } else {
                         fragment = NewsArticleFragment.get(channelId);
@@ -100,7 +105,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 mFragmentMap.put(bean.getChannelId(), fragment);
             }
         }
-        Log.d(TAG,"mFragmentList = " + mFragmentList.toString() + "mTitleList = " + mTitleList.toString());
+        Log.d(TAG, "mFragmentList = " + mFragmentList.toString() + "mTitleList = " +
+                   mTitleList.toString());
     }
 
     private void initView(View view) {
