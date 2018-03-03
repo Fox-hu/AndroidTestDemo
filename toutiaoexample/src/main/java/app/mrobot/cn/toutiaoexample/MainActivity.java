@@ -19,28 +19,30 @@ import app.mrobot.cn.toutiaoexample.widget.helper.BottomNavigationViewHepler;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private NewsFragment mNewsFragment;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.inflateMenu(R.menu.menu_activity_main);
+        setSupportActionBar(mToolbar);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationViewHepler.disableShiftMode(bottomNavigationView);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction(
-//                        "Action", null).show();
-//            }
-//        });
+        //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //        fab.setOnClickListener(new View.OnClickListener() {
+        //            @Override
+        //            public void onClick(View view) {
+        //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction(
+        //                        "Action", null).show();
+        //            }
+        //        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -52,11 +54,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setupFragment() {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        hideFragment(ft);
+        mToolbar.setTitle(R.string.app_name);
         if (mNewsFragment == null) {
             mNewsFragment = NewsFragment.get();
+            ft.add(R.id.container, mNewsFragment, NewsFragment.class.getSimpleName());
+        } else {
+            ft.show(mNewsFragment);
         }
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.container, mNewsFragment, NewsFragment.TAG).commit();
+        ft.commit();
+    }
+
+    private void hideFragment(FragmentTransaction ft) {
+        if (mNewsFragment != null) {
+            ft.hide(mNewsFragment);
+        }
     }
 
     private void initData() {
@@ -75,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_main, menu);
         return true;
     }
 

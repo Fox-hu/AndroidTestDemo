@@ -22,7 +22,7 @@ public class BottomNavigationBehavior extends CoordinatorLayout.Behavior<View> {
     @Override
     public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout,
             @NonNull View child, @NonNull View directTargetChild, @NonNull View target, int axes) {
-        return axes == ViewCompat.SCROLL_AXIS_HORIZONTAL;
+        return axes == ViewCompat.SCROLL_AXIS_VERTICAL;
     }
 
     @Override

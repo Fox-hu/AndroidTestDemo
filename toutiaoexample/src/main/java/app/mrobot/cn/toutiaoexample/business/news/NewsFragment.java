@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +37,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
     private Map<String, Fragment> mFragmentMap = new HashMap<>();
     private ViewPager mViewPager;
     private BasePagerAdapter mBasePagerAdapter;
+    private LinearLayout mHeadLayout;
 
     public static NewsFragment get() {
         return SingletonHolder.sInstance;
@@ -109,6 +111,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
 
         view.findViewById(R.id.add_channel_iv).setOnClickListener(this);
 
+        mHeadLayout = view.findViewById(R.id.ll_header);
+        mHeadLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
     }
 
     @Override
