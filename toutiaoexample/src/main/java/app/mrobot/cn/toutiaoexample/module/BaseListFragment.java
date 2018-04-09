@@ -72,14 +72,9 @@ public abstract class BaseListFragment<T extends IBasePresenter> extends LazyLoa
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter.setItems(new Items());
-                        mAdapter.notifyDataSetChanged();
-                        canLoadMore = false;
-                    }
-                });
+                mAdapter.setItems(new Items());
+                mAdapter.notifyDataSetChanged();
+                canLoadMore = false;
             }
         });
     }

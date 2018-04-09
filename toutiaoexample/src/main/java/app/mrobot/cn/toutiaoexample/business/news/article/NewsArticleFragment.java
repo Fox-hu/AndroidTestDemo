@@ -26,7 +26,7 @@ public class NewsArticleFragment extends BaseListFragment<INewsArticle.Presenter
 
     public static NewsArticleFragment get(String categoryId) {
         Bundle bundle = new Bundle();
-        bundle.putString(TAG,categoryId);
+        bundle.putString(TAG, categoryId);
         NewsArticleFragment newsArticleFragment = new NewsArticleFragment();
         newsArticleFragment.setArguments(bundle);
         return newsArticleFragment;

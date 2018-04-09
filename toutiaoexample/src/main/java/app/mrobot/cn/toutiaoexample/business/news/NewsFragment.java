@@ -53,6 +53,18 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    private void initView(View view) {
+        TabLayout tabLayout = view.findViewById(R.id.tab_layout_news);
+        mViewPager = view.findViewById(R.id.view_pager_news);
+        tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+        view.findViewById(R.id.add_channel_iv).setOnClickListener(this);
+
+        mHeadLayout = view.findViewById(R.id.ll_header);
+        mHeadLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+    }
+
     private void initData() {
         initTabs();
         mBasePagerAdapter = new BasePagerAdapter(getChildFragmentManager(), mTitleList,
@@ -109,17 +121,6 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                    mTitleList.toString());
     }
 
-    private void initView(View view) {
-        TabLayout tabLayout = view.findViewById(R.id.tab_layout_news);
-        mViewPager = view.findViewById(R.id.view_pager_news);
-        tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-
-        view.findViewById(R.id.add_channel_iv).setOnClickListener(this);
-
-        mHeadLayout = view.findViewById(R.id.ll_header);
-        mHeadLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-    }
 
     @Override
     public void onClick(View v) {
