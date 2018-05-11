@@ -43,60 +43,45 @@ public abstract class BaseListFragment<T extends IBasePresenter> extends LazyLoa
         mRecyclerView.setHasFixedSize(true);
 
         mSwipeRefreshLayout = view.findViewById(R.id.refresh_layout);
+        mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
 
     @Override
     public void onShowLoading() {
-        mSwipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(true);
-            }
-        });
+        mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(true));
     }
 
     @Override
     public void onHideLoading() {
-        mSwipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        });
+        mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(false););
     }
 
     @Override
     public void onShowNetError() {
         Toast.makeText(getActivity(), getString(R.string.network_error), Toast.LENGTH_SHORT).show();
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mAdapter.setItems(new Items());
-                mAdapter.notifyDataSetChanged();
-                canLoadMore = false;
-            }
+        getActivity().runOnUiThread(() -> {
+            mAdapter.setItems(new Items());
+            mAdapter.notifyDataSetChanged();
+            canLoadMore = false;
         });
     }
 
     @Override
     public void onShowNoMore() {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (mOldItems.size() > 0) {
-                    Items newItems = new Items(mOldItems);
-                    newItems.remove(newItems.size() - 1);
-                    newItems.add(new LoadingEndBean());
-                    mAdapter.setItems(newItems);
-                    mAdapter.notifyDataSetChanged();
-                } else if (mOldItems.size() == 0) {
-                    mOldItems.add(new LoadingEndBean());
-                    mAdapter.setItems(mOldItems);
-                    mAdapter.notifyDataSetChanged();
-                }
-                canLoadMore = false;
+        getActivity().runOnUiThread(() -> {
+            if (mOldItems.size() > 0) {
+                Items newItems = new Items(mOldItems);
+                newItems.remove(newItems.size() - 1);
+                newItems.add(new LoadingEndBean());
+                mAdapter.setItems(newItems);
+                mAdapter.notifyDataSetChanged();
+            } else if (mOldItems.size() == 0) {
+                mOldItems.add(new LoadingEndBean());
+                mAdapter.setItems(mOldItems);
+                mAdapter.notifyDataSetChanged();
             }
+            canLoadMore = false;
         });
     }
 
@@ -115,12 +100,7 @@ public abstract class BaseListFragment<T extends IBasePresenter> extends LazyLoa
     @Override
     protected void fetchData() {
         mObservable = RxBus.get().register(TAG);
-        mObservable.subscribe(new Consumer<Integer>() {
-            @Override
-            public void accept(Integer integer) throws Exception {
-                mAdapter.notifyDataSetChanged();
-            }
-        });
+        mObservable.subscribe(integer -> mAdapter.notifyDataSetChanged());
     }
 
     @Override

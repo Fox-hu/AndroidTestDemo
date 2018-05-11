@@ -126,8 +126,8 @@ public class NewsArticlePresenter implements INewsArticle.Presenter {
                         }
                         return list;
                     }
-                }).compose(view.<List<MultiNewsArticleDataBean>>bindToLife()).observeOn(
-                AndroidSchedulers.mainThread()).subscribe(
+                }).observeOn(
+                AndroidSchedulers.mainThread()).as(view.<List<MultiNewsArticleDataBean>>bindAutoDispose()).subscribe(
                 new Consumer<List<MultiNewsArticleDataBean>>() {
                     @Override
                     public void accept(List<MultiNewsArticleDataBean> list) throws Exception {

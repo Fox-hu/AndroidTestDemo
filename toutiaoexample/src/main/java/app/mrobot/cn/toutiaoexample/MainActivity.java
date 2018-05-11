@@ -12,12 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-
 import app.mrobot.cn.toutiaoexample.business.news.NewsFragment;
+import app.mrobot.cn.toutiaoexample.module.BaseActivity;
 import app.mrobot.cn.toutiaoexample.widget.helper.BottomNavigationViewHepler;
 
-public class MainActivity extends RxAppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private NewsFragment mNewsFragment;
     private Toolbar mToolbar;

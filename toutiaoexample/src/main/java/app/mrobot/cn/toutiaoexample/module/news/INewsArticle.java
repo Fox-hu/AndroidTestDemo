@@ -18,10 +18,6 @@ public interface INewsArticle {
          */
         void onLoadData();
 
-        /**
-         * 刷新
-         */
-        void onRefresh();
     }
 
     interface Presenter extends IBasePresenter{

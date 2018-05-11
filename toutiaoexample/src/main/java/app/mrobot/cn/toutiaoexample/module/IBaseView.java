@@ -1,6 +1,7 @@
 package app.mrobot.cn.toutiaoexample.module;
 
-import com.trello.rxlifecycle2.LifecycleTransformer;
+
+import com.uber.autodispose.AutoDisposeConverter;
 
 /**
  * Created by fox on 2018/2/24.
@@ -30,8 +31,8 @@ public interface IBaseView<T> {
 
     /**
      * 绑定生命周期
-     * @param <T>
+     * @param <X>
      * @return
      */
-    <T> LifecycleTransformer<T> bindToLife();
+    <X> AutoDisposeConverter<X> bindAutoDispose();
 }
