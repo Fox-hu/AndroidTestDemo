@@ -10,7 +10,6 @@ import app.mrobot.cn.toutiaoexample.R;
 import app.mrobot.cn.toutiaoexample.bean.LoadingEndBean;
 import app.mrobot.cn.toutiaoexample.utils.RxBus;
 import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
@@ -54,7 +53,7 @@ public abstract class BaseListFragment<T extends IBasePresenter> extends LazyLoa
 
     @Override
     public void onHideLoading() {
-        mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(false););
+        mSwipeRefreshLayout.post(() -> mSwipeRefreshLayout.setRefreshing(false));
     }
 
     @Override
