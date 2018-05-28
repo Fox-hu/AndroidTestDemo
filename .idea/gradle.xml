@@ -12,8 +12,8 @@
             <option value="$PROJECT_DIR$/materialdesigntestdemo" />
             <option value="$PROJECT_DIR$/mvprxjavaretrofit2" />
             <option value="$PROJECT_DIR$/mvvmrxjavaretrofit2" />
+            <option value="$PROJECT_DIR$/nexuslib" />
             <option value="$PROJECT_DIR$/toutiaoexample" />
-            <option value="$PROJECT_DIR$/webviewtest" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -1,1 +1,2 @@
-include ':mvvmrxjavaretrofit2', ':darwabletest', ':mvprxjavaretrofit2', ':toutiaoexample', ':materialdesigntestdemo', ':webviewtest'
+include ':mvvmrxjavaretrofit2', ':darwabletest', ':mvprxjavaretrofit2', ':toutiaoexample', ':materialdesigntestdemo',':nexuslib'
+
