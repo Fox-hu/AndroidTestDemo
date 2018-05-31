@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/algorithms" />
             <option value="$PROJECT_DIR$/darwabletest" />
             <option value="$PROJECT_DIR$/materialdesigntestdemo" />
             <option value="$PROJECT_DIR$/mvprxjavaretrofit2" />
