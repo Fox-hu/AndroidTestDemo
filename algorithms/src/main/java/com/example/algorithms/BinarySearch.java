@@ -13,9 +13,9 @@ public class BinarySearch {
         int hi = args.length - 1;
         while (lo <= hi) {
             int mid = lo + (hi - lo) / 2;
-            if (key > mid) {
+            if (key > args[mid]) {
                 lo = mid + 1;
-            } else if (key < mid){
+            } else if (key < args[mid]){
                 hi = mid - 1;
             } else {
                 return mid;
