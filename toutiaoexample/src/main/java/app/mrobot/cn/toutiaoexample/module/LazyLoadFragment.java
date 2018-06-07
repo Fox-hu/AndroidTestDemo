@@ -25,7 +25,9 @@ public abstract class LazyLoadFragment<T extends IBasePresenter> extends BaseFra
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         this.isVisibleToUser = isVisibleToUser;
-        prepareFetchData();
+        if (isVisibleToUser) {
+            prepareFetchData();
+        }
     }
 
     protected void prepareFetchData() {

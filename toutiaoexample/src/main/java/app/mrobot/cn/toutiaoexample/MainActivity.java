@@ -26,21 +26,23 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initView();
+
+        if (savedInstanceState != null) {
+            mNewsFragment = (NewsFragment) getSupportFragmentManager().findFragmentByTag(
+                    NewsFragment.class.getSimpleName());
+        }
+
+        setupFragment();
+    }
+
+    private void initView() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.inflateMenu(R.menu.menu_activity_main);
         setSupportActionBar(mToolbar);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationViewHepler.disableShiftMode(bottomNavigationView);
-
-        //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        //        fab.setOnClickListener(new View.OnClickListener() {
-        //            @Override
-        //            public void onClick(View view) {
-        //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction(
-        //                        "Action", null).show();
-        //            }
-        //        });
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, mToolbar,
@@ -50,9 +52,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        setupFragment();
-        initData();
     }
 
     private void setupFragment() {
@@ -72,9 +71,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (mNewsFragment != null) {
             ft.hide(mNewsFragment);
         }
-    }
-
-    private void initData() {
     }
 
     @Override

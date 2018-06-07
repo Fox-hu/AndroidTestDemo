@@ -1,6 +1,7 @@
 package app.mrobot.cn.toutiaoexample.business.news;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,18 +20,20 @@ import java.util.List;
 import java.util.Map;
 
 import app.mrobot.cn.toutiaoexample.Constants;
-import app.mrobot.cn.toutiaoexample.business.news.article.NewsArticleFragment;
-import app.mrobot.cn.toutiaoexample.database.dao.NewsChannelDao;
+import app.mrobot.cn.toutiaoexample.MainActivity;
 import app.mrobot.cn.toutiaoexample.R;
 import app.mrobot.cn.toutiaoexample.adapter.BasePagerAdapter;
 import app.mrobot.cn.toutiaoexample.bean.news.NewsChannelBean;
+import app.mrobot.cn.toutiaoexample.business.news.article.NewsArticleFragment;
+import app.mrobot.cn.toutiaoexample.database.dao.NewsChannelDao;
 
 /**
  * Created by admin on 2018/1/24.
  */
 
-public class NewsFragment extends Fragment implements View.OnClickListener {
+public class NewsFragment extends Fragment {
     public static final String TAG = NewsFragment.class.getSimpleName();
+
     private NewsChannelDao mNewsChannelDao = new NewsChannelDao();
     private List<Fragment> mFragmentList = new ArrayList<>();
     private List<String> mTitleList = new ArrayList<>();
@@ -59,7 +62,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
-        view.findViewById(R.id.add_channel_iv).setOnClickListener(this);
+        view.findViewById(R.id.add_channel_iv).setOnClickListener(
+                v -> startActivity(new Intent(getActivity(), MainActivity.class)));
 
         mHeadLayout = view.findViewById(R.id.ll_header);
         mHeadLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
@@ -85,8 +89,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
         }
 
         for (NewsChannelBean bean : newsChannelBeanList) {
-            Fragment fragment = null;
 
+            Fragment fragment = null;
             String channelId = bean.getChannelId();
 
             switch (channelId) {
@@ -114,24 +118,11 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
             mTitleList.add(bean.getChannelName());
 
             if (fragment != null) {
-                mFragmentMap.put(bean.getChannelId(), fragment);
+                mFragmentMap.put(channelId, fragment);
             }
         }
         Log.d(TAG, "mFragmentList = " + mFragmentList.toString() + "mTitleList = " +
                    mTitleList.toString());
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.add_channel_iv: {
-
-            }
-            break;
-            default:
-                break;
-        }
     }
 
     private static class SingletonHolder {

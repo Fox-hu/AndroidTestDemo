@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -23,7 +22,6 @@ import app.mrobot.cn.toutiaoexample.utils.ImageLoader;
 import app.mrobot.cn.toutiaoexample.utils.TimeUtil;
 import app.mrobot.cn.toutiaoexample.widget.CircleImageView;
 import app.mrobot.cn.toutiaoexample.widget.IntentAction;
-import io.reactivex.functions.Consumer;
 import me.drakeet.multitype.ItemViewBinder;
 
 /**
@@ -65,34 +63,24 @@ public class NewsTextViewBinder extends ItemViewBinder<MultiNewsArticleDataBean,
         holder.tv_title.setText(tv_title);
         holder.tv_abstract.setText(tv_abstract);
         holder.tv_extra.setText(tv_source + " - " + tv_comment_count + " - " + tv_datetime);
-        holder.iv_dots.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PopupMenu popupMenu = new PopupMenu(context, holder.iv_dots, Gravity.END, 0,
-                        R.style.MyPopupMenu);
-                popupMenu.inflate(R.menu.menu_share);
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menu) {
-                        int itemId = menu.getItemId();
-                        if (itemId == R.id.action_share) {
-                            IntentAction.send(context,
-                                    item.getTitle() + "\n" + item.getShare_url());
-                        }
-                        return false;
-                    }
-                });
-                popupMenu.show();
-            }
+        holder.iv_dots.setOnClickListener(view -> {
+            PopupMenu popupMenu = new PopupMenu(context, holder.iv_dots, Gravity.END, 0,
+                    R.style.MyPopupMenu);
+            popupMenu.inflate(R.menu.menu_share);
+            popupMenu.setOnMenuItemClickListener(menu -> {
+                int itemId = menu.getItemId();
+                if (itemId == R.id.action_share) {
+                    IntentAction.send(context,
+                            item.getTitle() + "\n" + item.getShare_url());
+                }
+                return false;
+            });
+            popupMenu.show();
         });
 
-        RxView.clicks(holder.itemView).throttleFirst(1, TimeUnit.SECONDS).subscribe(
-                new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        //todo
-                    }
-                });
+        RxView.clicks(holder.itemView).throttleFirst(1, TimeUnit.SECONDS).subscribe(o -> {
+            //todo
+        });
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
