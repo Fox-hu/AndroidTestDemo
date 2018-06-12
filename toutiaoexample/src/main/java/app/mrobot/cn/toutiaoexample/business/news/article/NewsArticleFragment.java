@@ -49,6 +49,10 @@ public class NewsArticleFragment extends BaseListFragment<INewsArticle.Presenter
         });
     }
 
+    /**
+     * @param list presenter层通过网络解析传递的datalist值
+     *             与view层中的datalist缓存进行比较，最后再添加一个正在加载的项
+     */
     @Override
     public void onSetAdapter(List<?> list) {
         Items items = new Items(list);

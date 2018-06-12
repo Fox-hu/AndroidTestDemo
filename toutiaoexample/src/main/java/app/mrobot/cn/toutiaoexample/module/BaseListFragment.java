@@ -84,6 +84,9 @@ public abstract class BaseListFragment<T extends IBasePresenter> extends LazyLoa
         });
     }
 
+    /**
+     * 在下拉刷新中，如果第一项是可见的 则下拉刷新，否则不刷新，在主线程中进行
+     */
     @Override
     public void onRefresh() {
         int firstVisibleItemPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())

@@ -13,7 +13,6 @@ import app.mrobot.cn.toutiaoexample.binder.news.NewsTextViewBinder;
 import me.drakeet.multitype.MultiTypeAdapter;
 
 /**
- *
  * @author fox
  * @date 2018/2/25
  */
@@ -35,6 +34,15 @@ public class Register {
                     return NewsTextViewBinder.class;
                 });
 
+        adapter.register(LoadingBean.class, new LoadingViewBinder());
+        adapter.register(LoadingEndBean.class, new LoadingEndViewBinder());
+    }
+
+    /**
+     * @param adapter
+     */
+    public static void registerVideoArticleItem(@NonNull MultiTypeAdapter adapter) {
+        adapter.register(MultiNewsArticleDataBean.class, new NewsArticleVideoViewBinder());
         adapter.register(LoadingBean.class, new LoadingViewBinder());
         adapter.register(LoadingEndBean.class, new LoadingEndViewBinder());
     }

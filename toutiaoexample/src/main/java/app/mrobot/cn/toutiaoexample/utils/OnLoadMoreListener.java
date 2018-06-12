@@ -6,6 +6,7 @@ import android.util.Log;
 
 /**
  * Created by fox on 2018/2/27.
+ * http://www.loongwind.com/archives/189.html
  */
 
 public abstract class OnLoadMoreListener extends RecyclerView.OnScrollListener {

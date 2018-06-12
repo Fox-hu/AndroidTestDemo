@@ -36,6 +36,11 @@ public class DiffCallback extends DiffUtil.Callback {
         return mNewItems == null ? 0 : mNewItems.size();
     }
 
+    /**
+     * @param oldItemPosition
+     * @param newItemPosition
+     * @return if return true, go to {@link areContentsTheSame}
+     */
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
         return mOldItems.get(oldItemPosition).equals(mNewItems.get(newItemPosition));
@@ -46,4 +51,5 @@ public class DiffCallback extends DiffUtil.Callback {
         return mOldItems.get(oldItemPosition).hashCode() == mNewItems.get(newItemPosition)
                 .hashCode();
     }
+
 }
