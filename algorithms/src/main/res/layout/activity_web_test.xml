@@ -13,7 +13,8 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:id="@+id/btn1"
-            android:text="无参调用"/>
+            android:text="无参调用"
+            android:tag="@string/app_name"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
