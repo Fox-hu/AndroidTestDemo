@@ -17,7 +17,6 @@ public class SearchActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
-    private SearchView searchView_expand;
     private SearchView searchView_collapse;
 
     @Override
@@ -31,7 +30,6 @@ public class SearchActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         searchView_collapse = findViewById(R.id.search_view_collapse);
-        searchView_expand = findViewById(R.id.search_view_expand);
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);

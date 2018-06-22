@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.CollapsingNormalActivity;
+import com.example.materialdesigntestdemo.collapsingToolbarLayout.LagouActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.ScrollingActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.SearchActivity;
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         activityMap.put("CollapsingNormalActivity", CollapsingNormalActivity.class);
         activityMap.put("ScrollingActivity", ScrollingActivity.class);
         activityMap.put("SearchActivity", SearchActivity.class);
+        activityMap.put("LagouActivity", LagouActivity.class);
     }
 
 

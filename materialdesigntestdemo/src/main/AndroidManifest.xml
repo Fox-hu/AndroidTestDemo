@@ -35,6 +35,10 @@
             android:name=".collapsingToolbarLayout.CollapsingNormalActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
+        <activity
+            android:name=".collapsingToolbarLayout.LagouActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity >
     </application >
 
 </manifest >

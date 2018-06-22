@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fl_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.materialdesigntestdemo.MainActivity" >
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height_360"
+            android:theme="@style/AppTheme.AppBarOverlay" >
+
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" >
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/tool_bar_height"
+                    android:minHeight="?attr/actionBarSize"
+                    app:layout_collapseMode="pin" >
+
+                </android.support.v7.widget.Toolbar >
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/tab_layout_height"
+                    android:layout_gravity="bottom"
+                    />
+            </android.support.design.widget.CollapsingToolbarLayout >
+        </android.support.design.widget.AppBarLayout >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
+
+    </android.support.design.widget.CoordinatorLayout >
+
+    <RelativeLayout
+        android:id="@+id/search_rl"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_anchor="@id/app_bar"
+        android:layout_marginTop="150dp"
+        app:layout_anchorGravity="bottom">
+        <SearchView
+            android:id="@+id/search_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:layout_margin="10dp"
+            android:background="@drawable/et_bac"
+            />
+    </RelativeLayout>
+
+</FrameLayout >
