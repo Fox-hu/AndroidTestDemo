@@ -1,4 +1,4 @@
-package com.example.algorithms.Thread;
+package com.example.algorithms.efficient.work_master;
 
 import android.util.Log;
 
@@ -6,7 +6,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by fox.hu on 2018/6/20.
+ *
+ * 在worker master模式中 最重要的是worker master持有同一个workqueue 和 resultmap
+ * @author fox.hu
+ * @date 2018/6/20
  */
 
 public class MasterWorkTest {
@@ -17,7 +20,7 @@ public class MasterWorkTest {
         for (int i = 0; i < 100; i++) {
             master.submit(i);
         }
-        master.excute();
+        master.execute();
 
         int re = 0;
 

@@ -1,4 +1,4 @@
-package com.example.algorithms.Thread;
+package com.example.algorithms.efficient.work_master;
 
 /**
  * Created by fox.hu on 2018/6/20.

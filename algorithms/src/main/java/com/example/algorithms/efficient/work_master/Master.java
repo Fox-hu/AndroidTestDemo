@@ -1,4 +1,4 @@
-package com.example.algorithms.Thread;
+package com.example.algorithms.efficient.work_master;
 
 import java.util.Map;
 import java.util.Queue;
@@ -34,7 +34,7 @@ public class Master {
         return resultMap;
     }
 
-    public void excute() {
+    public void execute() {
         for (Map.Entry<String, Thread> stringThreadEntry : threadMap.entrySet()) {
             stringThreadEntry.getValue().start();
         }

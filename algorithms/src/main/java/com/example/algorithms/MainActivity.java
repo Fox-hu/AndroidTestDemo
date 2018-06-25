@@ -23,7 +23,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.algorithms.Thread.MasterWorkTest;
+import com.example.algorithms.efficient.guarded_suspension.GuardedSuspensionTest;
 
 /**
  * An {@link Activity} that gets a text string from the user and displays it back when the user
@@ -50,7 +50,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mTextView = (TextView) findViewById(R.id.textToBeChanged);
         mEditText = (EditText) findViewById(R.id.editTextUserInput);
 
-        MasterWorkTest.start();
+        GuardedSuspensionTest.test();
     }
 
     @Override
@@ -62,13 +62,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         final int activityChangeTextBtnId = R.id.activityChangeTextBtn;
 
         if (view.getId() == changeTextBtId) {
-          // First button's interaction: set a text in a text view.
-          mTextView.setText(text);
+            // First button's interaction: set a text in a text view.
+            mTextView.setText(text);
         } else if (view.getId() == activityChangeTextBtnId) {
-          // Second button's interaction: start an activity and send a message to it.
-          Intent intent = ShowTextActivity
-              .newStartIntent(this, text);
-          startActivity(intent);
+            // Second button's interaction: start an activity and send a message to it.
+            Intent intent = ShowTextActivity.newStartIntent(this, text);
+            startActivity(intent);
         }
     }
 }

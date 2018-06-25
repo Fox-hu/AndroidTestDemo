@@ -1,4 +1,4 @@
-package com.example.algorithms.Thread;
+package com.example.algorithms.efficient.work_master;
 
 import android.util.Log;
 
