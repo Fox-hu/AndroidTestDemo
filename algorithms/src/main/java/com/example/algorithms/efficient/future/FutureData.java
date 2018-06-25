@@ -10,8 +10,7 @@ public class FutureData implements Data {
     private RealData realData;
     private boolean isReady = false;
 
-
-    public void setResult(RealData realData) {
+    public synchronized void setResult(RealData realData) {
         if (isReady) {
             return;
         }
@@ -21,7 +20,7 @@ public class FutureData implements Data {
     }
 
     @Override
-    public String getResult() {
+    public synchronized String getResult() {
         while (!isReady) {
             try {
                 wait();
@@ -29,7 +28,6 @@ public class FutureData implements Data {
                 e.printStackTrace();
             }
         }
-
         return realData.getResult();
     }
 }

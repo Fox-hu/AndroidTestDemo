@@ -2,6 +2,9 @@ package com.example.algorithms.efficient.guarded_suspension;
 
 import android.util.Log;
 
+import com.example.algorithms.efficient.future.FutureData;
+import com.example.algorithms.efficient.future.RealData;
+
 /**
  * Created by fox.hu on 2018/6/25.
  */
@@ -19,6 +22,9 @@ public class ServerThread extends Thread {
     public void run() {
         while (true) {
             Request request = requestQueue.getRequest();
+            FutureData futureData = (FutureData) request.getResponse();
+            RealData realData = new RealData(request.getName());
+            futureData.setResult(realData);
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
