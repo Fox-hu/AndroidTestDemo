@@ -13,6 +13,7 @@ import com.example.materialdesigntestdemo.collapsingToolbarLayout.CollapsingNorm
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.LagouActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.ScrollingActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.SearchActivity;
+import com.example.materialdesigntestdemo.collapsingToolbarLayout.WebViewCollapsingTestActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         activityMap.put("ScrollingActivity", ScrollingActivity.class);
         activityMap.put("SearchActivity", SearchActivity.class);
         activityMap.put("LagouActivity", LagouActivity.class);
+        activityMap.put("WebViewCollapsingTestActivity", WebViewCollapsingTestActivity.class);
     }
 
 
