@@ -28,7 +28,7 @@ import com.google.common.base.Strings;
  * A simple {@link Activity} that shows a message.
  */
 public class ShowTextActivity extends Activity {
-
+    public static final String TAG = ShowTextActivity.class.getSimpleName();
     // The name of the extra data sent through an {@link Intent}.
     public final static String KEY_EXTRA_MESSAGE =
             "com.example.android.testing.espresso.basicsample.MESSAGE";
