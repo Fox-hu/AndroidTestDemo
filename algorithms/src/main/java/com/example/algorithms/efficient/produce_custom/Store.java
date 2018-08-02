@@ -13,7 +13,7 @@ public class Store {
 
     public static void test() {
         Store store = new Store();
-        store.init(3, 2);
+        store.init(1, 1);
         store.start();
     }
 

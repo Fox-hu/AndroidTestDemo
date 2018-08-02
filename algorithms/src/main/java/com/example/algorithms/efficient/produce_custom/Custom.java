@@ -24,7 +24,7 @@ public class Custom extends Thread {
     public void run() {
         while (true) {
             synchronized (integerList) {
-                while (integerList.isEmpty()) {
+                if (integerList.isEmpty()) {
                     try {
                         Log.e(TAG, "Custom thread name = " + getName() + " integerList empty");
                         integerList.wait();
@@ -34,8 +34,9 @@ public class Custom extends Thread {
                 }
 
                 integerList.remove(0);
-                Log.e(TAG, "Custom thread name = " + getName() + " integerList remove, list size = " +
-                           integerList.size());
+                Log.e(TAG,
+                        "Custom thread name = " + getName() + " integerList remove, list size = " +
+                        integerList.size());
                 integerList.notifyAll();
 
             }
