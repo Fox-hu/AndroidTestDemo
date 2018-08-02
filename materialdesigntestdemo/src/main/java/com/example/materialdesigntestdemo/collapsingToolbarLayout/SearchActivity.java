@@ -34,7 +34,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
 
-        appbarHeight = getResources().getDimension(R.dimen.app_bar_height);
+        appbarHeight = getResources().getDimension(R.dimen.app_bar_height_360);
         toolBarHeight = getResources().getDimension(R.dimen.search_bar_height_in_toolbar);
         scrollEnableHeight = appbarHeight - toolBarHeight;
 

@@ -14,7 +14,7 @@
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="360dp"
             android:theme="@style/AppTheme.AppBarOverlay" >
 
             <android.support.design.widget.CollapsingToolbarLayout
@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:contentScrim="@color/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap" >
+                app:layout_scrollFlags="scroll|exitUntilCollapsed" >
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -31,6 +31,34 @@
                     app:layout_collapseMode="pin" >
 
                 </android.support.v7.widget.Toolbar >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    >
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="button1"
+                        />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="button2"
+                        />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="button3"
+                        />
+                </LinearLayout >
             </android.support.design.widget.CollapsingToolbarLayout >
         </android.support.design.widget.AppBarLayout >
 
