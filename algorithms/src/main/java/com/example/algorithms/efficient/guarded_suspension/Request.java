@@ -18,10 +18,12 @@ public class Request {
         this.name = name;
     }
 
+    //注意 此处的response 也是同步的方法
     public synchronized Data getResponse() {
         return response;
     }
 
+    //注意 此处的response 也是同步的方法
     public synchronized void setResponse(Data response) {
         this.response = response;
     }
