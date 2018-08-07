@@ -33,6 +33,21 @@ public class MyArrayList<T> implements Iterable<T> {
         return theSize == 0;
     }
 
+    public void set(int index, T value) {
+        if (index < 0 || index >= size()) {
+            throw new IllegalArgumentException();
+        }
+        theItems[index] = value;
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= size()) {
+            throw new IllegalArgumentException();
+        }
+
+        return theItems[index];
+    }
+
     public void add(T value) {
         add(size(), value);
     }
@@ -44,11 +59,11 @@ public class MyArrayList<T> implements Iterable<T> {
 
         for (int i = size(); i > index; i--) {
             theItems[i] = theItems[i - 1];
-            theItems[index] = value;
         }
-
+        theItems[index] = value;
         theSize++;
     }
+
 
     public T remove(int index) {
         T value = theItems[index];
@@ -72,10 +87,10 @@ public class MyArrayList<T> implements Iterable<T> {
 
         T[] oldItems = theItems;
 
-        T[] newItems = (T[]) new Object[newCapacity];
+        theItems = (T[]) new Object[newCapacity];
 
         for (int i = 0; i < size(); i++) {
-            newItems[i] = oldItems[i];
+            theItems[i] = oldItems[i];
         }
     }
 
