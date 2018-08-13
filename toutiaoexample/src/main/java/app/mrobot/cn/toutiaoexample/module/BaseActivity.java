@@ -5,6 +5,7 @@ import android.arch.lifecycle.Lifecycle;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.afollestad.materialdialogs.color.CircleView;
 import com.uber.autodispose.AutoDispose;
@@ -49,6 +50,12 @@ public class BaseActivity extends AppCompatActivity {
 
         getWindow().setNavigationBarColor(CircleView.shiftColorDown(color));
 
+    }
+
+    protected void initToolbar(Toolbar toolbar, boolean homeAsUpEnable, String title) {
+        toolbar.setTitle(title);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(homeAsUpEnable);
     }
 
     public <X> AutoDisposeConverter<X> bindAutoDispose() {

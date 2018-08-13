@@ -135,7 +135,7 @@ public class MyLinkedList<T> implements Iterable<T> {
     @NonNull
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new LinkedListIterator();
     }
 
     @Override
@@ -185,6 +185,7 @@ public class MyLinkedList<T> implements Iterable<T> {
                 throw new IllegalStateException();
             }
 
+            //此处是current.pre 和ArrayList不相同
             MyLinkedList.this.remove(current.pre);
         }
     }

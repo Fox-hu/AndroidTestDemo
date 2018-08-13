@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 import app.mrobot.cn.toutiaoexample.R;
 import app.mrobot.cn.toutiaoexample.bean.news.MultiNewsArticleDataBean;
+import app.mrobot.cn.toutiaoexample.module.news.content.NewsContentActivity;
 import app.mrobot.cn.toutiaoexample.utils.ImageLoader;
 import app.mrobot.cn.toutiaoexample.utils.TimeUtil;
 import app.mrobot.cn.toutiaoexample.widget.CircleImageView;
@@ -80,6 +81,7 @@ public class NewsTextViewBinder extends ItemViewBinder<MultiNewsArticleDataBean,
 
         RxView.clicks(holder.itemView).throttleFirst(1, TimeUnit.SECONDS).subscribe(o -> {
             //todo
+            NewsContentActivity.launch(item);
         });
     }
 

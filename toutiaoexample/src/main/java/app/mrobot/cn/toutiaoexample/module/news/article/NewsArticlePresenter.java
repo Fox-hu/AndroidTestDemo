@@ -1,4 +1,4 @@
-package app.mrobot.cn.toutiaoexample.module.news;
+package app.mrobot.cn.toutiaoexample.module.news.article;
 
 import android.text.TextUtils;
 

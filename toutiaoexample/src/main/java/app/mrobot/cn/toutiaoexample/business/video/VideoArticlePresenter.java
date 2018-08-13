@@ -3,7 +3,7 @@ package app.mrobot.cn.toutiaoexample.business.video;
 import java.util.List;
 
 import app.mrobot.cn.toutiaoexample.bean.news.MultiNewsArticleDataBean;
-import app.mrobot.cn.toutiaoexample.module.news.INewsArticle;
+import app.mrobot.cn.toutiaoexample.module.news.article.INewsArticle;
 
 /**
  *

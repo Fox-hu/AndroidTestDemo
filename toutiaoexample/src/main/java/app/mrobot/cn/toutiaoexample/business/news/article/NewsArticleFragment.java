@@ -7,8 +7,8 @@ import java.util.List;
 
 import app.mrobot.cn.toutiaoexample.bean.LoadingBean;
 import app.mrobot.cn.toutiaoexample.module.BaseListFragment;
-import app.mrobot.cn.toutiaoexample.module.news.INewsArticle;
-import app.mrobot.cn.toutiaoexample.module.news.NewsArticlePresenter;
+import app.mrobot.cn.toutiaoexample.module.news.article.INewsArticle;
+import app.mrobot.cn.toutiaoexample.module.news.article.NewsArticlePresenter;
 import app.mrobot.cn.toutiaoexample.utils.DiffCallback;
 import app.mrobot.cn.toutiaoexample.utils.OnLoadMoreListener;
 import app.mrobot.cn.toutiaoexample.widget.Register;

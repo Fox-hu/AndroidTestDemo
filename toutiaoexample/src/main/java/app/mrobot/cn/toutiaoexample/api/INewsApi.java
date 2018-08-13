@@ -1,9 +1,12 @@
 package app.mrobot.cn.toutiaoexample.api;
 
+import app.mrobot.cn.toutiaoexample.bean.news.NewsContentBean;
+import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * Created by fox on 2018/2/27.
@@ -25,10 +28,11 @@ public interface INewsApi {
     Call<ResponseBody> getNewsArticle(@Query("category") String category,
             @Query("_") int max_behot_time);
 
+
     /**
-     * 获取新闻标题等信息 部分请求参数不同上
-     * "http://toutiao.com/api/article/recent/?source=2&category=类型&as=A105177907376A5&cp=5797C7865AD54E1&_=时间&count=30";
+     * 获取新闻HTML内容
+     * http://m.toutiao.com/i6364969235889783298/info/
      */
-
-
+    @GET
+    Observable<NewsContentBean> getNewsContent(@Url String url);
 }

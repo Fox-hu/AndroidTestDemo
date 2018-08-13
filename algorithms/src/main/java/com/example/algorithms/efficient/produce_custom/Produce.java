@@ -23,7 +23,7 @@ public class Produce extends Thread {
     public void run() {
         while (true) {
             synchronized (integerList) {
-                if (integerList.size() == mMaxSize) {
+                while (integerList.size() == mMaxSize) {
                     try {
                         Log.e(TAG, "Produce thread name = " + getName() + " integerList full");
                         integerList.wait();
