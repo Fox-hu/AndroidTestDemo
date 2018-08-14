@@ -9,6 +9,9 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -23,7 +26,8 @@ import app.mrobot.cn.toutiaoexample.module.BaseFragment;
  * Created by fox.hu on 2018/8/10.
  */
 
-public class NewsContentFragment extends BaseFragment<INewsContent.Presenter> implements INewsContent.View {
+public class NewsContentFragment extends BaseFragment<INewsContent.Presenter> implements
+        INewsContent.View {
     private static final String TAG = NewsContentFragment.class.getSimpleName();
     private static final String IMG = "img";
 
@@ -122,18 +126,10 @@ public class NewsContentFragment extends BaseFragment<INewsContent.Presenter> im
 
         swipeRefreshLayout = view.findViewById(R.id.refresh_layout);
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayout.setRefreshing(true);
-                        presenter.doLoadData(bean);
-                    }
-                });
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(() -> swipeRefreshLayout.post(() -> {
+            swipeRefreshLayout.setRefreshing(true);
+            presenter.doLoadData(bean);
+        }));
 
     }
 
@@ -166,6 +162,7 @@ public class NewsContentFragment extends BaseFragment<INewsContent.Presenter> im
                 }
             }
         });
+        setHasOptionsMenu(true);
     }
 
 
@@ -174,5 +171,28 @@ public class NewsContentFragment extends BaseFragment<INewsContent.Presenter> im
         if (flag) {
             webView.loadDataWithBaseURL(null, url, "text/html", "utf-8", null);
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_browser, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_open_comment:
+                break;
+            case R.id.action_open_media_home:
+                break;
+            case R.id.action_share:
+                break;
+            case R.id.action_open_in_browser:
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

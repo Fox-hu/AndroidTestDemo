@@ -5,10 +5,12 @@ import android.support.annotation.NonNull;
 import app.mrobot.cn.toutiaoexample.bean.LoadingBean;
 import app.mrobot.cn.toutiaoexample.bean.LoadingEndBean;
 import app.mrobot.cn.toutiaoexample.bean.news.MultiNewsArticleDataBean;
+import app.mrobot.cn.toutiaoexample.bean.news.NewsCommentBean;
 import app.mrobot.cn.toutiaoexample.binder.LoadingEndViewBinder;
 import app.mrobot.cn.toutiaoexample.binder.LoadingViewBinder;
 import app.mrobot.cn.toutiaoexample.binder.news.NewsArticleImgViewBinder;
 import app.mrobot.cn.toutiaoexample.binder.news.NewsArticleVideoViewBinder;
+import app.mrobot.cn.toutiaoexample.binder.news.NewsCommentViewBinder;
 import app.mrobot.cn.toutiaoexample.binder.news.NewsTextViewBinder;
 import me.drakeet.multitype.MultiTypeAdapter;
 
@@ -45,5 +47,11 @@ public class Register {
         adapter.register(MultiNewsArticleDataBean.class, new NewsArticleVideoViewBinder());
         adapter.register(LoadingBean.class, new LoadingViewBinder());
         adapter.register(LoadingEndBean.class, new LoadingEndViewBinder());
+    }
+
+    public static void registerNewsCommentItem(@NonNull MultiTypeAdapter adapter){
+        adapter.register(NewsCommentBean.DataBean.CommentBean.class,new NewsCommentViewBinder());
+        adapter.register(LoadingBean.class,new LoadingViewBinder());
+        adapter.register(LoadingEndBean.class,new LoadingEndViewBinder());
     }
 }

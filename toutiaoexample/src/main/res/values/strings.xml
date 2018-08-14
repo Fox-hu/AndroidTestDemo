@@ -14,13 +14,23 @@
     <string name="network_error" >网络不给力</string >
     <string name="loading" >加载中</string >
     <string name="no_more_content" >暂无更多内容</string >
+    <string name="copied_to_clipboard">复制成功</string>
 
     <!--Menu Action-->
     <string name="action_share" >分享</string >
     <string name="share_to">分享</string>
     <string name="action_search">搜索</string>
-
+    <string name="action_open_comment">查看评论</string>
+    <string name="action_open_media_home">查看此头条号主页</string>
+    <string name="action_open_in_browser">在浏览器中打开</string>
 
     <!--title-->
     <string name="title_news_content">新闻内容</string>
+    <string name="title_comment">评论</string>
+
+    <!-- Bottom Sheet List -->
+    <string name="copy_content">复制内容</string>
+    <string name="share_content">分享内容</string>
+    <string name="download_image">下载图片</string>
+    <string name="share_image">分享图片</string>
 </resources >
