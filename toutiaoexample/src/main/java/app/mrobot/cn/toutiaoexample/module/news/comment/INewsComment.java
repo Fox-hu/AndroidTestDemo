@@ -1,7 +1,10 @@
 package app.mrobot.cn.toutiaoexample.module.news.comment;
 
+import java.util.List;
+
+import app.mrobot.cn.toutiaoexample.bean.news.NewsCommentBean;
+import app.mrobot.cn.toutiaoexample.module.IBaseListView;
 import app.mrobot.cn.toutiaoexample.module.IBasePresenter;
-import app.mrobot.cn.toutiaoexample.module.IBaseView;
 
 /**
  *
@@ -10,14 +13,11 @@ import app.mrobot.cn.toutiaoexample.module.IBaseView;
  */
 
 public interface INewsComment {
-    interface View extends IBaseView<Presenter>{
+    interface View extends IBaseListView<Presenter> {
         /**
          * 请求数据
          */
        void onLoadData();
-
-
-
     }
 
     interface Presenter extends IBasePresenter{
@@ -30,5 +30,15 @@ public interface INewsComment {
          * 下拉加载更多
          */
         void doLoadMore();
+
+        /**
+         * 设置适配器数据列表
+         */
+        void doSetAdapter(List<NewsCommentBean.DataBean.CommentBean> list);
+
+        /**
+         * 无更多列表时显示
+         */
+        void doShowNoMore();
     }
 }

@@ -7,9 +7,12 @@ import android.view.View;
 import java.util.List;
 
 import app.mrobot.cn.toutiaoexample.R;
+import app.mrobot.cn.toutiaoexample.bean.LoadingBean;
 import app.mrobot.cn.toutiaoexample.module.BaseListFragment;
+import app.mrobot.cn.toutiaoexample.utils.DiffCallback;
 import app.mrobot.cn.toutiaoexample.utils.OnLoadMoreListener;
 import app.mrobot.cn.toutiaoexample.widget.Register;
+import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
 /**
@@ -42,7 +45,13 @@ public class NewsCommentFragment extends BaseListFragment<INewsComment.Presenter
 
     @Override
     public void onSetAdapter(List list) {
-
+        Items newItems = new Items(list);
+        newItems.add(new LoadingBean());
+        DiffCallback.create(mOldItems, newItems, mAdapter);
+        mOldItems.clear();
+        mOldItems.addAll(newItems);
+        canLoadMore = true;
+        mRecyclerView.stopScroll();
     }
 
     @Override
@@ -72,24 +81,24 @@ public class NewsCommentFragment extends BaseListFragment<INewsComment.Presenter
         Bundle bundle = getArguments();
         groupId = bundle.getString(GROUP_ID);
         itemId = bundle.getString(itemId);
+        onLoadData();
     }
 
     @Override
     public void onLoadData() {
         onShowLoading();
-        presenter.doLoadData();
+        presenter.doLoadData(groupId, itemId);
     }
 
     @Override
     public void setPresenter(INewsComment.Presenter presenter) {
         if (presenter == null) {
-            this.presenter = new NewsCommentPresenter();
+            this.presenter = new NewsCommentPresenter(this);
         }
     }
 
     @Override
     protected void fetchData() {
-        super.fetchData();
-        onLoadData();
+
     }
 }

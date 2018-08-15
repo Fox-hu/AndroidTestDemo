@@ -37,6 +37,12 @@
             android:configChanges="orientation|screenSize|uiMode"
             android:label="@string/title_news_content"
             android:theme="@style/AppTheme.NoActionBar.Slidable"/>
+
+        <activity
+            android:name=".module.news.comment.NewsCommentActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:label="@string/title_comment"
+            android:theme="@style/AppTheme.NoActionBar.Slidable"/>
     </application >
 
 </manifest >

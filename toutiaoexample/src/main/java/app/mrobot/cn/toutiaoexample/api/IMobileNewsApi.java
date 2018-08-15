@@ -2,6 +2,7 @@ package app.mrobot.cn.toutiaoexample.api;
 
 
 import app.mrobot.cn.toutiaoexample.bean.news.MultiNewsArticleBean;
+import app.mrobot.cn.toutiaoexample.bean.news.NewsCommentBean;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -38,4 +39,8 @@ public interface IMobileNewsApi {
     @GET("http://lf.snssdk.com/api/news/feed/v62/?iid=12507202490&device_id=37487219424&refer=1&count=20&aid=13")
     Observable<MultiNewsArticleBean> getNewsArticle2(@Query("category") String category,
             @Query("max_behot_time") String maxBehotTime);
+
+    @GET("http://is.snssdk.com/article/v53/tab_comments/")
+    Observable<NewsCommentBean> getNewsComment(@Query("group_id") String groupId,
+            @Query("offset") int offset);
 }

@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 import app.mrobot.cn.toutiaoexample.R;
 import app.mrobot.cn.toutiaoexample.bean.news.MultiNewsArticleDataBean;
+import app.mrobot.cn.toutiaoexample.module.news.content.NewsContentActivity;
 import app.mrobot.cn.toutiaoexample.utils.ImageLoader;
 import app.mrobot.cn.toutiaoexample.utils.TimeUtil;
 import app.mrobot.cn.toutiaoexample.widget.CircleImageView;
@@ -83,17 +84,16 @@ public class NewsArticleImgViewBinder extends ItemViewBinder<MultiNewsArticleDat
             popupMenu.setOnMenuItemClickListener(menuItem -> {
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.action_share) {
-                    IntentAction.send(context,
-                            item.getTitle() + "\n" + item.getShare_url());
+                    IntentAction.send(context, item.getTitle() + "\n" + item.getShare_url());
                 }
                 return false;
             });
             popupMenu.show();
         });
 
-       final String finalImagUrl = imgUrl;
+        final String finalImgUrl = imgUrl;
         RxView.clicks(holder.itemView).throttleFirst(1, TimeUnit.SECONDS).subscribe(o -> {
-            //todo
+            NewsContentActivity.launch(item, finalImgUrl);
         });
     }
 

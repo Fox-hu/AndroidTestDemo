@@ -23,6 +23,11 @@ public class NewsContentActivity extends BaseActivity {
                 .putExtra(TAG, bean).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
+    public static void launch(MultiNewsArticleDataBean bean, String imgUrl) {
+        InitApp.sContext.startActivity(new Intent(InitApp.sContext, NewsContentActivity.class)
+                .putExtra(TAG, bean).putExtra(IMG, imgUrl).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
