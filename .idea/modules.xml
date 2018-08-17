@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/mvprxjavaretrofit2/mvprxjavaretrofit2.iml" filepath="$PROJECT_DIR$/mvprxjavaretrofit2/mvprxjavaretrofit2.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvvmrxjavaretrofit2/mvvmrxjavaretrofit2.iml" filepath="$PROJECT_DIR$/mvvmrxjavaretrofit2/mvvmrxjavaretrofit2.iml" />
       <module fileurl="file://E:\AndroidTestDemo\nexuslib\nexuslib.iml" filepath="E:\AndroidTestDemo\nexuslib\nexuslib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/soexample/soexample.iml" filepath="$PROJECT_DIR$/soexample/soexample.iml" />
       <module fileurl="file://$PROJECT_DIR$/toutiaoexample/toutiaoexample.iml" filepath="$PROJECT_DIR$/toutiaoexample/toutiaoexample.iml" />
       <module fileurl="file://$PROJECT_DIR$/umenglogin/umenglogin.iml" filepath="$PROJECT_DIR$/umenglogin/umenglogin.iml" />
     </modules>
