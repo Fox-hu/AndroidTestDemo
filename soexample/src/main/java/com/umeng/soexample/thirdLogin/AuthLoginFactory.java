@@ -2,23 +2,32 @@ package com.umeng.soexample.thirdLogin;
 
 import android.app.Activity;
 
-import com.umeng.soexample.thirdLogin.qq.QQLogin;
+import com.umeng.soexample.thirdLogin.qq.QQAuth;
+import com.umeng.soexample.thirdLogin.sina.SinaAuth;
+import com.umeng.soexample.thirdLogin.weixin.WeiXinAuth;
 
 /**
- * Created by fox.hu on 2018/8/16.
+ * @author fox.hu
+ * @date 2018/8/16
  */
 
 public class AuthLoginFactory {
-    public static ILogin generate(Activity activity, PlatForm platForm) {
-        ILogin iLogin;
+
+    public static IAuth generate(Activity activity, PlatForm platForm) {
+        IAuth iAuth = null;
         switch (platForm) {
             case QQ:
-                iLogin = new QQLogin(activity);
+                iAuth = new QQAuth(activity);
+                break;
+            case WEIXIN:
+                iAuth = new WeiXinAuth(activity);
+                break;
+            case SINA:
+                iAuth = new SinaAuth(activity);
                 break;
             default:
-                iLogin = new QQLogin(activity);
                 break;
         }
-        return iLogin;
+        return iAuth;
     }
 }

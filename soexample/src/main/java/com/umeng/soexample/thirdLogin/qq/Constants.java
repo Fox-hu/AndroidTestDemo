@@ -15,7 +15,7 @@ public class Constants {
 
     public static final String PARAM_NICK_NAME = "nickname";
     public static final String PARAM_GENDER = "gender";
-    public static final String PARAM_ICONURL = "figureurl_qq_1";
+    public static final String PARAM_ICON_URL = "figureurl_qq_1";
 
 
 }

@@ -1,6 +1,7 @@
 package com.umeng.soexample.thirdLogin.qq;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
@@ -11,8 +12,7 @@ import com.tencent.connect.UserInfo;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
-import com.umeng.soexample.thirdLogin.ILogin;
-import com.umeng.soexample.thirdLogin.LoginParam;
+import com.umeng.soexample.thirdLogin.IAuth;
 import com.umeng.soexample.thirdLogin.PlatForm;
 import com.umeng.soexample.thirdLogin.PlatFormInfo;
 import com.umeng.soexample.thirdLogin.onAuthListener;
@@ -24,24 +24,28 @@ import org.json.JSONObject;
  * Created by fox.hu on 2018/8/17.
  */
 
-public class QQLogin implements ILogin {
-    private static final String TAG = QQLogin.class.getSimpleName();
+public class QQAuth implements IAuth {
+    private static final String TAG = QQAuth.class.getSimpleName();
 
     private Tencent mTencent;
     private Activity mActivity;
     private onAuthListener authListener;
     private UserInfo mInfo;
 
-    public QQLogin(@NonNull Activity activity) {
+    public QQAuth(@NonNull Activity activity) {
         mActivity = activity;
         mTencent = Tencent.createInstance(PlatForm.QQ.getAppId(), activity.getApplicationContext());
     }
 
     @Override
-    public void getPlatFormInfo(Activity activity, LoginParam loginParam,
-            final onAuthListener listener) {
+    public boolean isInstall(Context context) {
+        return mTencent.isQQInstalled(context);
+    }
+
+    @Override
+    public void fetchPlatFormInfo(Activity activity, final onAuthListener listener) {
         authListener = listener;
-        mTencent.login(activity, loginParam.getScope(), loginListener);
+        mTencent.login(activity, "all", loginListener);
     }
 
     @Override
@@ -134,7 +138,7 @@ public class QQLogin implements ILogin {
         try {
             String nickName = response.getString(Constants.PARAM_NICK_NAME);
             String gender = response.getString(Constants.PARAM_GENDER);
-            String iconUrl = response.getString(Constants.PARAM_ICONURL);
+            String iconUrl = response.getString(Constants.PARAM_ICON_URL);
             String openId = mTencent.getOpenId();
 
             return new PlatFormInfo(openId, nickName, gender, iconUrl);

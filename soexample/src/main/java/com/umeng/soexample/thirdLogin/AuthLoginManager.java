@@ -14,7 +14,8 @@ import java.util.Map;
 
 public final class AuthLoginManager {
     private static final String TAG = AuthLoginManager.class.getSimpleName();
-    private Map<PlatForm, ILogin> mAuthLoginMap = new HashMap<>();
+    private Map<PlatForm, IAuth> mAuthLoginMap = new HashMap<>();
+    private Map<PlatForm, onAuthListener> mAuthListenerMap = new HashMap<>();
     private PlatForm mCurrentPlatForm;
 
     private AuthLoginManager() {
@@ -24,24 +25,44 @@ public final class AuthLoginManager {
         return Holder.INSTANCE;
     }
 
-    public void authLogin(@NonNull PlatForm platForm, @NonNull Activity activity,
-            LoginParam loginParam, @NonNull onAuthListener listener) {
-        ILogin iLogin = mAuthLoginMap.get(platForm);
-        if (iLogin == null) {
-            iLogin = AuthLoginFactory.generate(activity, platForm);
-            mAuthLoginMap.put(platForm, iLogin);
+    public void fetchPlatFormInfo(@NonNull PlatForm platForm, @NonNull Activity activity, @NonNull onAuthListener listener) {
+        IAuth iAuth = mAuthLoginMap.get(platForm);
+        if (iAuth == null) {
+            iAuth = AuthLoginFactory.generate(activity, platForm);
+            mAuthLoginMap.put(platForm, iAuth);
         }
         mCurrentPlatForm = platForm;
+        mAuthListenerMap.put(platForm, listener);
         listener.onStart(mCurrentPlatForm);
-        iLogin.getPlatFormInfo(activity, loginParam, listener);
+        iAuth.fetchPlatFormInfo(activity, listener);
     }
 
     public void onActivityResultData(int requestCode, int resultCode, Intent data) {
         if (mCurrentPlatForm != null) {
-            ILogin iLogin = mAuthLoginMap.get(mCurrentPlatForm);
-            if (iLogin != null) {
-                iLogin.onActivityResultData(requestCode, resultCode, data);
+            IAuth iAuth = mAuthLoginMap.get(mCurrentPlatForm);
+            if (iAuth != null) {
+                iAuth.onActivityResultData(requestCode, resultCode, data);
             }
+        }
+    }
+
+    public IAuth getIAuth(PlatForm platForm) {
+        IAuth iAuth = mAuthLoginMap.get(platForm);
+        if (iAuth != null) {
+            return iAuth;
+        } else {
+            throw new NullPointerException(
+                    "IAuth null, " + platForm.getShowWord() + " not register");
+        }
+    }
+
+    public onAuthListener getIAuthListener(PlatForm platForm) {
+        onAuthListener listener = mAuthListenerMap.get(platForm);
+        if (listener != null) {
+            return listener;
+        } else {
+            throw new NullPointerException(
+                    "onAuthListener null, " + platForm.getShowWord() + "not register");
         }
     }
 

@@ -9,7 +9,4 @@ public class PlatformName {
     public static String QQ = "QQ";
     public static String WEIXIN = "微信";
     public static String ALIPAY = "支付宝";
-
-    public PlatformName() {
-    }
 }

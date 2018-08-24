@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.umeng.soexample.thirdLogin.AuthLoginManager;
-import com.umeng.soexample.thirdLogin.LoginParam;
 import com.umeng.soexample.thirdLogin.PlatForm;
 import com.umeng.soexample.thirdLogin.PlatFormInfo;
 import com.umeng.soexample.thirdLogin.onAuthListener;
@@ -76,8 +75,7 @@ public class AuthAdapter extends BaseAdapter {
                 //                    UMShareAPI.get(mContext).doOauthVerify(mActivity, list.get(position),
                 //                            authListener);
                 //                }
-                AuthLoginManager.getDefault().authLogin(list.get(position), mActivity,
-                        new LoginParam("all"), authListener);
+                AuthLoginManager.getDefault().fetchPlatFormInfo(list.get(position), mActivity, authListener);
             }
         });
         if (position == list.size() - 1) {
