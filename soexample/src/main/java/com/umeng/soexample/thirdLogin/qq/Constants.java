@@ -12,10 +12,7 @@ public class Constants {
     public static final int REQUEST_LOGIN = 11101;
     public static final int REQUEST_APPBAR = 10102;
 
-
     public static final String PARAM_NICK_NAME = "nickname";
     public static final String PARAM_GENDER = "gender";
     public static final String PARAM_ICON_URL = "figureurl_qq_1";
-
-
 }

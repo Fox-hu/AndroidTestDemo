@@ -16,7 +16,7 @@ import com.umeng.soexample.thirdLogin.IAuth;
 import com.umeng.soexample.thirdLogin.PlatForm;
 import com.umeng.soexample.thirdLogin.PlatFormInfo;
 import com.umeng.soexample.thirdLogin.onAuthListener;
-import com.umeng.soexample.thirdLogin.weixin.HttpUtils;
+import com.umeng.soexample.thirdLogin.HttpUtils;
 import com.umeng.soexample.thirdLogin.weixin.WeiXinAuth;
 
 import org.json.JSONException;
@@ -68,6 +68,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                 listener.onError("授权失败");
                 break;
         }
+        finish();
     }
 
 

@@ -21,4 +21,5 @@ public interface IAuth{
     void fetchPlatFormInfo(Activity activity, onAuthListener listener);
 
     void onActivityResultData(int requestCode, int resultCode, Intent data);
+
 }

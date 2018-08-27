@@ -20,20 +20,23 @@ import com.umeng.soexample.thirdLogin.onAuthListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.ref.WeakReference;
+
 /**
- * Created by fox.hu on 2018/8/17.
+ * @author fox.hu
+ * @date 2018/8/17
  */
 
 public class QQAuth implements IAuth {
     private static final String TAG = QQAuth.class.getSimpleName();
 
     private Tencent mTencent;
-    private Activity mActivity;
+    private WeakReference<Activity> mActivity;
     private onAuthListener authListener;
     private UserInfo mInfo;
 
     public QQAuth(@NonNull Activity activity) {
-        mActivity = activity;
+        mActivity = new WeakReference<>(activity);
         mTencent = Tencent.createInstance(PlatForm.QQ.getAppId(), activity.getApplicationContext());
     }
 
@@ -108,7 +111,7 @@ public class QQAuth implements IAuth {
     }
 
     private void updateUserInfo() {
-        if (mTencent != null && mTencent.isSessionValid()) {
+        if (mTencent != null && mTencent.isSessionValid() && mActivity.get() != null) {
             IUiListener listener = new IUiListener() {
 
                 @Override
@@ -129,7 +132,7 @@ public class QQAuth implements IAuth {
                     Log.e(TAG, "updateUserInfo onCancel");
                 }
             };
-            mInfo = new UserInfo(mActivity, mTencent.getQQToken());
+            mInfo = new UserInfo(mActivity.get(), mTencent.getQQToken());
             mInfo.getUserInfo(listener);
         }
     }

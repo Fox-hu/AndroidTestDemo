@@ -16,33 +16,36 @@ import com.umeng.soexample.thirdLogin.IAuth;
 import com.umeng.soexample.thirdLogin.PlatForm;
 import com.umeng.soexample.thirdLogin.PlatFormInfo;
 import com.umeng.soexample.thirdLogin.onAuthListener;
-import com.umeng.soexample.thirdLogin.weixin.HttpUtils;
+import com.umeng.soexample.thirdLogin.HttpUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.ref.WeakReference;
+
 /**
- * Created by fox.hu on 2018/8/24.
+ * @author fox.hu
+ * @date 2018/8/24
  */
 
 public class SinaAuth implements IAuth {
     private static final String TAG = SinaAuth.class.getSimpleName();
-    private Activity mActivity;
+    private WeakReference<Activity> mActivity;
     private Oauth2AccessToken mAccessToken;
     private SsoHandler mSsoHandler;
     private onAuthListener mAuthListener;
 
     public SinaAuth(@NonNull Activity activity) {
-        mActivity = activity;
+        mActivity = new WeakReference<>(activity);
         WbSdk.install(activity,
                 new AuthInfo(activity, PlatForm.SINA.getAppId(), PlatForm.SINA.getAppKey(),
-                        Constants.SCOPE));
+                        PlatForm.SINA.getScope()));
         mSsoHandler = new SsoHandler(activity);
     }
 
     @Override
     public boolean isInstall(Context context) {
-        return false;
+        return WbSdk.isWbInstall(context);
     }
 
     @Override
@@ -62,8 +65,8 @@ public class SinaAuth implements IAuth {
         @Override
         public void onSuccess(Oauth2AccessToken oauth2AccessToken) {
             mAccessToken = oauth2AccessToken;
-            if (mAccessToken.isSessionValid()) {
-                AccessTokenKeeper.writeAccessToken(mActivity, mAccessToken);
+            if (mAccessToken.isSessionValid() && mActivity.get() != null) {
+                AccessTokenKeeper.writeAccessToken(mActivity.get(), mAccessToken);
                 getAccessToken(mAccessToken.getToken());
             }
         }
@@ -82,8 +85,8 @@ public class SinaAuth implements IAuth {
 
     private void getAccessToken(String access_token) {
         StringBuffer loginUrl = new StringBuffer();
-        loginUrl.append("https://api.weibo.com/2/users/show.json").append("?access_token=")
-                .append(access_token).append("&uid=").append(mAccessToken.getUid());
+        loginUrl.append("https://api.weibo.com/2/users/show.json").append("?access_token=").append(
+                access_token).append("&uid=").append(mAccessToken.getUid());
         HttpUtils.get(loginUrl.toString(), resultCallback);
     }
 

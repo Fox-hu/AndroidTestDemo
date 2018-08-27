@@ -19,10 +19,8 @@ import com.umeng.soexample.thirdLogin.onAuthListener;
 
 public class WeiXinAuth implements IAuth {
     private IWXAPI api;
-    private Activity activity;
 
     public WeiXinAuth(@NonNull Activity activity) {
-        this.activity = activity;
         api = WXAPIFactory.createWXAPI(activity.getApplicationContext(),
                 PlatForm.WEIXIN.getAppId());
         api.registerApp(PlatForm.WEIXIN.getAppId());

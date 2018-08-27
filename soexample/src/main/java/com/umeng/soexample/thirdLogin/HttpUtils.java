@@ -1,4 +1,4 @@
-package com.umeng.soexample.thirdLogin.weixin;
+package com.umeng.soexample.thirdLogin;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -20,7 +20,9 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * Created by fox.hu on 2018/8/24.
+ *
+ * @author fox.hu
+ * @date 2018/8/24
  */
 
 public class HttpUtils {

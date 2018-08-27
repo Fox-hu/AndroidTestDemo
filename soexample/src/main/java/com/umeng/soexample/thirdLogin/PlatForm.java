@@ -15,32 +15,32 @@ public enum PlatForm {
     ALIPAY(PlatformName.ALIPAY, "", "", ""),
     SINA(PlatformName.SINA, "2200713412", "http://sns.whalecloud.com", Constants.SCOPE);
 
-    private String mShowWord;
-    private String mAppId;
-    private String mAppKey;
-    private String mScope;
+    private String keyWord;
+    private String appId;
+    private String appKey;
+    private String scope;
 
-    PlatForm(String mShowWord, String mAppId, String mAppKey, String mScope) {
-        this.mScope = mScope;
-        this.mShowWord = mShowWord;
-        this.mAppId = mAppId;
-        this.mAppKey = mAppKey;
+    PlatForm(String keyWord, String appId, String appKey, String scope) {
+        this.scope = scope;
+        this.keyWord = keyWord;
+        this.appId = appId;
+        this.appKey = appKey;
     }
 
     public String getScope() {
-        return mScope;
+        return scope;
     }
 
     public String getShowWord() {
-        return mShowWord;
+        return keyWord;
     }
 
     public String getAppId() {
-        return mAppId;
+        return appId;
     }
 
     public String getAppKey() {
-        return mAppKey;
+        return appKey;
     }
 
 }
