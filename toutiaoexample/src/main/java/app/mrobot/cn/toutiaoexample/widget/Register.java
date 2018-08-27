@@ -12,6 +12,7 @@ import app.mrobot.cn.toutiaoexample.binder.news.NewsArticleImgViewBinder;
 import app.mrobot.cn.toutiaoexample.binder.news.NewsArticleVideoViewBinder;
 import app.mrobot.cn.toutiaoexample.binder.news.NewsCommentViewBinder;
 import app.mrobot.cn.toutiaoexample.binder.news.NewsTextViewBinder;
+import app.mrobot.cn.toutiaoexample.binder.video.VideoContentHeaderViewBinder;
 import me.drakeet.multitype.MultiTypeAdapter;
 
 /**
@@ -49,9 +50,16 @@ public class Register {
         adapter.register(LoadingEndBean.class, new LoadingEndViewBinder());
     }
 
-    public static void registerNewsCommentItem(@NonNull MultiTypeAdapter adapter){
-        adapter.register(NewsCommentBean.DataBean.CommentBean.class,new NewsCommentViewBinder());
-        adapter.register(LoadingBean.class,new LoadingViewBinder());
-        adapter.register(LoadingEndBean.class,new LoadingEndViewBinder());
+    public static void registerNewsCommentItem(@NonNull MultiTypeAdapter adapter) {
+        adapter.register(NewsCommentBean.DataBean.CommentBean.class, new NewsCommentViewBinder());
+        adapter.register(LoadingBean.class, new LoadingViewBinder());
+        adapter.register(LoadingEndBean.class, new LoadingEndViewBinder());
+    }
+
+    public static void registerVideoContentItem(@NonNull MultiTypeAdapter adapter) {
+        adapter.register(MultiNewsArticleDataBean.class, new VideoContentHeaderViewBinder());
+        adapter.register(NewsCommentBean.DataBean.CommentBean.class, new NewsCommentViewBinder());
+        adapter.register(LoadingBean.class, new LoadingViewBinder());
+        adapter.register(LoadingEndBean.class, new LoadingEndViewBinder());
     }
 }

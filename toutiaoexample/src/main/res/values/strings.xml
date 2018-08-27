@@ -23,6 +23,7 @@
     <string name="action_open_comment">查看评论</string>
     <string name="action_open_media_home">查看此头条号主页</string>
     <string name="action_open_in_browser">在浏览器中打开</string>
+    <string name="action_download">下载</string>
 
     <!--title-->
     <string name="title_news_content">新闻内容</string>
