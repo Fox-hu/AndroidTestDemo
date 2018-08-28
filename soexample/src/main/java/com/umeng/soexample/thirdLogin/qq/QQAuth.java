@@ -88,11 +88,13 @@ public class QQAuth implements IAuth {
         @Override
         public void onError(UiError e) {
             Log.e(TAG, "onLogin onError E = " + e.errorMessage);
+            authListener.onError(e.errorMessage);
         }
 
         @Override
         public void onCancel() {
             Log.e(TAG, "onLogin onCancel");
+            authListener.onCancel();
         }
     }
 
@@ -107,6 +109,7 @@ public class QQAuth implements IAuth {
                 mTencent.setOpenId(openId);
             }
         } catch (Exception e) {
+            authListener.onError(e.getMessage());
         }
     }
 
@@ -128,8 +131,8 @@ public class QQAuth implements IAuth {
 
                 @Override
                 public void onCancel() {
-                    authListener.onCancel();
                     Log.e(TAG, "updateUserInfo onCancel");
+                    authListener.onCancel();
                 }
             };
             mInfo = new UserInfo(mActivity.get(), mTencent.getQQToken());
@@ -146,7 +149,7 @@ public class QQAuth implements IAuth {
 
             return new PlatFormInfo(openId, nickName, gender, iconUrl);
         } catch (JSONException e) {
-            e.printStackTrace();
+            authListener.onError(e.getMessage());
         }
         return new PlatFormInfo("", "", "", "");
     }
