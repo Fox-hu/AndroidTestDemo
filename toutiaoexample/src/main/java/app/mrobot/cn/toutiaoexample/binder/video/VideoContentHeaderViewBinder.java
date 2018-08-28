@@ -80,23 +80,24 @@ public class VideoContentHeaderViewBinder extends ItemViewBinder<MultiNewsArticl
                         }
                     }).start();
                 } else {
-                    holder.ll_desc.animate().setDuration(200).alpha(1).translationY(
-                            holder.ll_desc.getHeight()).setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            super.onAnimationEnd(animation);
-                            holder.ll_desc.setVisibility(View.GONE);
-                            holder.iv_menu.setImageResource(R.drawable.ic_menu_up_gray_24dp);
-                        }
-                    }).start();
+                    holder.ll_desc.animate().setDuration(200).alpha(1).translationY(0).setListener(
+                            new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    super.onAnimationEnd(animation);
+                                    holder.ll_desc.setVisibility(View.VISIBLE);
+                                    holder.iv_menu.setImageResource(
+                                            R.drawable.ic_menu_up_gray_24dp);
+                                }
+                            }).start();
                 }
                 isShow = !isShow;
             }
         });
         final String videoTitle = item.getTitle();
         final String shareUrl = item.getDisplay_url();
-        holder.ll_share.setOnClickListener(v -> IntentAction
-                .send(holder.itemView.getContext(), videoTitle + "\n" + shareUrl));
+        holder.ll_share.setOnClickListener(
+                v -> IntentAction.send(holder.itemView.getContext(), videoTitle + "\n" + shareUrl));
 
         holder.ll_dl.setOnClickListener(v -> {
             // TODO 下载视频

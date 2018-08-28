@@ -65,7 +65,7 @@ public class VideoContentPresenter extends NewsCommentPresenter implements IVide
                 String url1 = new String(Base64.decode(mainUrl.getBytes(), Base64.DEFAULT));
                 return url1;
             }
-            if (videoList.getVideo_3() != null) {
+            if (videoList.getVideo_1() != null) {
                 String mainUrl = videoList.getVideo_1().getMain_url();
                 String url1 = new String(Base64.decode(mainUrl.getBytes(), Base64.DEFAULT));
                 return url1;
