@@ -43,6 +43,12 @@
             android:configChanges="orientation|screenSize|uiMode"
             android:label="@string/title_comment"
             android:theme="@style/AppTheme.NoActionBar.Slidable"/>
+
+        <activity
+            android:name=".module.video.VideoContentActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:label="@string/title_video_content"
+            android:theme="@style/AppTheme.NoActionBar.Slidable"/>
     </application >
 
 </manifest >

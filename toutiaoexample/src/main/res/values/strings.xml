@@ -28,6 +28,7 @@
     <!--title-->
     <string name="title_news_content">新闻内容</string>
     <string name="title_comment">评论</string>
+    <string name="title_video_content">视频播放</string>
 
     <!-- Bottom Sheet List -->
     <string name="copy_content">复制内容</string>

@@ -2,7 +2,9 @@ package app.mrobot.cn.toutiaoexample.module.video;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -11,6 +13,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.View;
 
 import java.util.List;
 
@@ -26,6 +29,10 @@ import app.mrobot.cn.toutiaoexample.utils.ImageLoader;
 import app.mrobot.cn.toutiaoexample.utils.OnLoadMoreListener;
 import app.mrobot.cn.toutiaoexample.widget.Register;
 import app.mrobot.cn.toutiaoexample.widget.helper.FullScreenVideoPlayer;
+import cn.jzvd.JZUserAction;
+import cn.jzvd.JZUserActionStandard;
+import cn.jzvd.JZVideoPlayer;
+import cn.jzvd.JZVideoPlayerStandard;
 import me.drakeet.multitype.Items;
 import me.drakeet.multitype.MultiTypeAdapter;
 
@@ -51,6 +58,7 @@ public class VideoContentActivity extends BaseActivity implements IVideoContent.
     private String videoTitle;
     private Items oldItems = new Items();
     private boolean canLoadMore = false;
+    private int currentAction;
 
     public static void launch(MultiNewsArticleDataBean bean) {
         InitApp.sContext.startActivity(new Intent(InitApp.sContext, VideoContentActivity.class)
@@ -164,27 +172,60 @@ public class VideoContentActivity extends BaseActivity implements IVideoContent.
 
     @Override
     public void onShowNoMore() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (oldItems.size() > 1) {
-                    Items newItems = new Items(oldItems);
-                    newItems.remove(newItems.size() - 1);
-                    newItems.add(new LoadingEndBean());
-                    adapter.setItems(newItems);
-                    adapter.notifyDataSetChanged();
-                } else if (oldItems.size() == 0) {
-                    oldItems.add(new LoadingEndBean());
-                    adapter.setItems(oldItems);
-                    adapter.notifyDataSetChanged();
-                }
-                canLoadMore = false;
+        runOnUiThread(() -> {
+            if (oldItems.size() > 1) {
+                Items newItems = new Items(oldItems);
+                //删除原列表中的loadingbean
+                newItems.remove(newItems.size() - 1);
+                newItems.add(new LoadingEndBean());
+                adapter.setItems(newItems);
+                adapter.notifyDataSetChanged();
+            } else if (oldItems.size() == 0) {
+                oldItems.add(new LoadingEndBean());
+                adapter.setItems(oldItems);
+                adapter.notifyDataSetChanged();
             }
+            canLoadMore = false;
         });
     }
 
     @Override
     public void onSetVideoPlay(String url) {
+        player.setUp(url, JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, videoTitle);
+
+        JZVideoPlayer.setJzUserAction((type, url1, screen, objects) -> {
+            if (type == JZUserActionStandard.ON_CLICK_START_THUMB ||
+                type == JZUserAction.ON_CLICK_START_ICON ||
+                type == JZUserAction.ON_CLICK_RESUME ||
+                type == JZUserAction.ON_CLICK_START_AUTO_COMPLETE) {
+            }
+
+            if (type == JZUserAction.ON_CLICK_PAUSE || type == JZUserAction.ON_AUTO_COMPLETE) {
+            }
+
+            if (type == JZUserAction.ON_ENTER_FULLSCREEN) {
+                currentAction = JZUserAction.ON_ENTER_FULLSCREEN;
+
+                View decorView = getWindow().getDecorView();
+                int uiOptions = 0;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                } else {
+                    uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+                }
+                decorView.setSystemUiVisibility(uiOptions);
+
+            }
+
+            if (type == JZUserAction.ON_QUIT_FULLSCREEN) {
+                currentAction = JZUserAction.ON_QUIT_FULLSCREEN;
+
+                View decorView = getWindow().getDecorView();
+                decorView.setSystemUiVisibility(0);
+
+            }
+        });
 
     }
 
@@ -192,5 +233,29 @@ public class VideoContentActivity extends BaseActivity implements IVideoContent.
     public void onLoadData() {
         presenter.doLoadData(groupId, itemId);
         presenter.doLoadVideoData(videoId);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(Color.BLACK);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JZVideoPlayer.setJzUserAction(null);
+        JZVideoPlayer.releaseAllVideos();
+        FullScreenVideoPlayer.releaseAllVideos();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (JZVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
     }
 }

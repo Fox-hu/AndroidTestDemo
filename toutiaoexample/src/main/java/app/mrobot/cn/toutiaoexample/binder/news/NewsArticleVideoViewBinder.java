@@ -19,11 +19,11 @@ import java.util.concurrent.TimeUnit;
 
 import app.mrobot.cn.toutiaoexample.R;
 import app.mrobot.cn.toutiaoexample.bean.news.MultiNewsArticleDataBean;
+import app.mrobot.cn.toutiaoexample.module.video.VideoContentActivity;
 import app.mrobot.cn.toutiaoexample.utils.ImageLoader;
 import app.mrobot.cn.toutiaoexample.utils.TimeUtil;
 import app.mrobot.cn.toutiaoexample.widget.CircleImageView;
 import app.mrobot.cn.toutiaoexample.widget.IntentAction;
-import io.reactivex.functions.Consumer;
 import me.drakeet.multitype.ItemViewBinder;
 
 /**
@@ -108,12 +108,8 @@ public class NewsArticleVideoViewBinder extends ItemViewBinder<MultiNewsArticleD
             }
         });
 
-        RxView.clicks(holder.itemView).throttleFirst(1, TimeUnit.SECONDS).subscribe(new Consumer<Object>() {
-            @Override
-            public void accept(Object o) throws Exception {
-                //todo
-            }
-        });
+        RxView.clicks(holder.itemView).throttleFirst(1, TimeUnit.SECONDS).subscribe(
+                o -> VideoContentActivity.launch(item), throwable -> throwable.printStackTrace());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
