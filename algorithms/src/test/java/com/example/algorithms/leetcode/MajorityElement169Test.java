@@ -11,6 +11,14 @@ public class MajorityElement169Test {
     public void majorityElement() throws Exception {
         int[] nums = new int[]{2,2,1,1,1,2,2};
         MajorityElement169 majorityElement169 = new MajorityElement169();
+        int i = majorityElement169.majorityElement_MooreVote(nums);
+        Assert.assertEquals(2,i);
+    }
+
+    @Test
+    public void majorityElement1() throws Exception {
+        int[] nums = new int[]{2,2,1,1,1,2,2};
+        MajorityElement169 majorityElement169 = new MajorityElement169();
         int i = majorityElement169.majorityElement(nums);
         Assert.assertEquals(2,i);
     }

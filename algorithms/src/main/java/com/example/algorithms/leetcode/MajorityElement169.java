@@ -11,7 +11,7 @@ public class MajorityElement169 {
 
 
     public int majorityElement(int[] nums) {
-        if(nums.length == 1){
+        if (nums.length == 1) {
             return nums[0];
         }
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -34,5 +34,20 @@ public class MajorityElement169 {
         }
 
         return index;
+    }
+
+    public int majorityElement_MooreVote(int[] nums) {
+        int res = 0, cnt = 0;
+        for (int num : nums) {
+            if (cnt == 0) {
+                res = num;
+                ++cnt;
+            } else if (num == res) {
+                ++cnt;
+            } else {
+                --cnt;
+            }
+        }
+        return res;
     }
 }
