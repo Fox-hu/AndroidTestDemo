@@ -1,4 +1,4 @@
-package com.umeng.soexample.thirdLogin;
+package com.umeng.soexample.authLogin;
 
 import android.app.Activity;
 import android.content.Intent;

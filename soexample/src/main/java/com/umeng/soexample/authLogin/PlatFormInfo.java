@@ -1,6 +1,7 @@
-package com.umeng.soexample.thirdLogin;
+package com.umeng.soexample.authLogin;
 
 /**
+ * 根据第三方登录 返回的所需信息
  * @author fox.hu
  * @date 2018/8/16
  */

@@ -1,4 +1,4 @@
-package com.umeng.soexample.thirdLogin;
+package com.umeng.soexample.authLogin;
 
 import android.os.Handler;
 import android.os.Looper;

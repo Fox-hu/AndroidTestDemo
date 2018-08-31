@@ -1,4 +1,4 @@
-package com.umeng.soexample.thirdLogin.sina;
+package com.umeng.soexample.authLogin.sina;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,11 +12,11 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WbAuthListener;
 import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
-import com.umeng.soexample.thirdLogin.IAuth;
-import com.umeng.soexample.thirdLogin.PlatForm;
-import com.umeng.soexample.thirdLogin.PlatFormInfo;
-import com.umeng.soexample.thirdLogin.onAuthListener;
-import com.umeng.soexample.thirdLogin.HttpUtils;
+import com.umeng.soexample.authLogin.IAuth;
+import com.umeng.soexample.authLogin.PlatForm;
+import com.umeng.soexample.authLogin.PlatFormInfo;
+import com.umeng.soexample.authLogin.onAuthListener;
+import com.umeng.soexample.authLogin.HttpUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

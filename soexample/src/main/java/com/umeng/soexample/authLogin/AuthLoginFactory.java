@@ -1,10 +1,10 @@
-package com.umeng.soexample.thirdLogin;
+package com.umeng.soexample.authLogin;
 
 import android.app.Activity;
 
-import com.umeng.soexample.thirdLogin.qq.QQAuth;
-import com.umeng.soexample.thirdLogin.sina.SinaAuth;
-import com.umeng.soexample.thirdLogin.weixin.WeiXinAuth;
+import com.umeng.soexample.authLogin.qq.QQAuth;
+import com.umeng.soexample.authLogin.sina.SinaAuth;
+import com.umeng.soexample.authLogin.weixin.WeiXinAuth;
 
 /**
  * @author fox.hu

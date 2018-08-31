@@ -1,4 +1,4 @@
-package com.umeng.soexample.thirdLogin;
+package com.umeng.soexample.authLogin;
 
 /**
  * 第三方登录的通用回调

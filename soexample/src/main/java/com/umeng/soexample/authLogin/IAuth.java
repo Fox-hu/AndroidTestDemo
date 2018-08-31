@@ -1,4 +1,4 @@
-package com.umeng.soexample.thirdLogin;
+package com.umeng.soexample.authLogin;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.content.Intent;
 
 /**
  *
+ * 第三方登录的抽象接口 所有第三方登录都需要实现该接口
  * @author fox.hu
  * @date 2018/8/16
  */
@@ -21,7 +22,7 @@ public interface IAuth{
     /**
      * 获取第三方登录平台的用户信息
      * @param activity
-     * @param listener 通用回调方法，不同的平台使用统一的回调
+     * @param listener 通用回调方法，不同的平台使用统一的回调，在此处统一
      */
     void fetchPlatFormInfo(Activity activity, onAuthListener listener);
 

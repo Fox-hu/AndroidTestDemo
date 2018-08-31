@@ -1,4 +1,4 @@
-package com.umeng.soexample.thirdLogin.qq;
+package com.umeng.soexample.authLogin.qq;
 
 /**
  * Created by fox.hu on 2018/8/17.

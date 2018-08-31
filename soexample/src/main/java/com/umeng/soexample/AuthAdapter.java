@@ -10,10 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.umeng.soexample.thirdLogin.AuthLoginManager;
-import com.umeng.soexample.thirdLogin.PlatForm;
-import com.umeng.soexample.thirdLogin.PlatFormInfo;
-import com.umeng.soexample.thirdLogin.onAuthListener;
+import com.umeng.soexample.authLogin.AuthLoginManager;
+import com.umeng.soexample.authLogin.PlatForm;
+import com.umeng.soexample.authLogin.PlatFormInfo;
+import com.umeng.soexample.authLogin.onAuthListener;
 
 import java.util.List;
 

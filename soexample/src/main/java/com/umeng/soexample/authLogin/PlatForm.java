@@ -1,10 +1,10 @@
-package com.umeng.soexample.thirdLogin;
+package com.umeng.soexample.authLogin;
 
 import com.umeng.soexample.PlatformName;
-import com.umeng.soexample.thirdLogin.sina.Constants;
+import com.umeng.soexample.authLogin.sina.Constants;
 
 /**
- *
+ * 第三方登录的平台
  * @author fox.hu
  * @date 2018/8/16
  */

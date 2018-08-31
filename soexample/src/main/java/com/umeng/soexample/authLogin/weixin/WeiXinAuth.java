@@ -1,4 +1,4 @@
-package com.umeng.soexample.thirdLogin.weixin;
+package com.umeng.soexample.authLogin.weixin;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.support.annotation.NonNull;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.umeng.soexample.thirdLogin.IAuth;
-import com.umeng.soexample.thirdLogin.PlatForm;
-import com.umeng.soexample.thirdLogin.onAuthListener;
+import com.umeng.soexample.authLogin.IAuth;
+import com.umeng.soexample.authLogin.PlatForm;
+import com.umeng.soexample.authLogin.onAuthListener;
 
 /**
  * @author fox.hu

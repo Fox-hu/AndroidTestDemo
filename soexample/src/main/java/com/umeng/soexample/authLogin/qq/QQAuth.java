@@ -1,4 +1,4 @@
-package com.umeng.soexample.thirdLogin.qq;
+package com.umeng.soexample.authLogin.qq;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,10 +12,10 @@ import com.tencent.connect.UserInfo;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
-import com.umeng.soexample.thirdLogin.IAuth;
-import com.umeng.soexample.thirdLogin.PlatForm;
-import com.umeng.soexample.thirdLogin.PlatFormInfo;
-import com.umeng.soexample.thirdLogin.onAuthListener;
+import com.umeng.soexample.authLogin.IAuth;
+import com.umeng.soexample.authLogin.PlatForm;
+import com.umeng.soexample.authLogin.PlatFormInfo;
+import com.umeng.soexample.authLogin.onAuthListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
