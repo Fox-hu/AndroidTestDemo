@@ -9,6 +9,8 @@ public class TwoSum167 {
         if (numbers == null || numbers.length < 1) {
             return null;
         }
+        //本题设中 一定会有解 采用双指针法 指向数组两端
+        //相加大于target则头指针后移 小于target则尾指针前移，直到相等
 
         int i = 0;
         int j = numbers.length - 1;
