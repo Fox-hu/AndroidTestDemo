@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.umeng.soexample.authLogin.AuthLoginManager;
 import com.umeng.soexample.authLogin.PlatForm;
 import com.umeng.soexample.authLogin.PlatFormInfo;
-import com.umeng.soexample.authLogin.onAuthListener;
+import com.umeng.soexample.authLogin.AuthListener;
 
 import java.util.List;
 
@@ -86,7 +86,7 @@ public class AuthAdapter extends BaseAdapter {
         return convertView;
     }
 
-    onAuthListener authListener = new onAuthListener() {
+    AuthListener authListener = new AuthListener() {
         @Override
         public void onStart(PlatForm platform) {
             dialog.show();

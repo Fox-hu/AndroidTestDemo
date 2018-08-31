@@ -15,7 +15,7 @@ import com.umeng.soexample.authLogin.AuthLoginManager;
 import com.umeng.soexample.authLogin.IAuth;
 import com.umeng.soexample.authLogin.PlatForm;
 import com.umeng.soexample.authLogin.PlatFormInfo;
-import com.umeng.soexample.authLogin.onAuthListener;
+import com.umeng.soexample.authLogin.AuthListener;
 import com.umeng.soexample.authLogin.HttpUtils;
 import com.umeng.soexample.authLogin.weixin.WeiXinAuth;
 
@@ -28,7 +28,7 @@ import org.json.JSONObject;
 
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     private static final String TAG = WXEntryActivity.class.getSimpleName();
-    private onAuthListener listener;
+    private AuthListener listener;
     private IWXAPI api;
 
     @Override

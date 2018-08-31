@@ -10,7 +10,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.soexample.authLogin.IAuth;
 import com.umeng.soexample.authLogin.PlatForm;
-import com.umeng.soexample.authLogin.onAuthListener;
+import com.umeng.soexample.authLogin.AuthListener;
 
 /**
  * @author fox.hu
@@ -32,7 +32,7 @@ public class WeiXinAuth implements IAuth {
     }
 
     @Override
-    public void fetchPlatFormInfo(Activity activity, onAuthListener listener) {
+    public void fetchPlatFormInfo(Activity activity, AuthListener listener) {
         if (api != null && !api.isWXAppInstalled()) {
             listener.onError("您还未安装微信客户端");
             return;

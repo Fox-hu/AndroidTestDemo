@@ -12,10 +12,10 @@ import com.tencent.connect.UserInfo;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
+import com.umeng.soexample.authLogin.AuthListener;
 import com.umeng.soexample.authLogin.IAuth;
 import com.umeng.soexample.authLogin.PlatForm;
 import com.umeng.soexample.authLogin.PlatFormInfo;
-import com.umeng.soexample.authLogin.onAuthListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +32,7 @@ public class QQAuth implements IAuth {
 
     private Tencent mTencent;
     private WeakReference<Activity> mActivity;
-    private onAuthListener authListener;
+    private AuthListener authListener;
     private UserInfo mInfo;
 
     public QQAuth(@NonNull Activity activity) {
@@ -46,7 +46,7 @@ public class QQAuth implements IAuth {
     }
 
     @Override
-    public void fetchPlatFormInfo(Activity activity, final onAuthListener listener) {
+    public void fetchPlatFormInfo(Activity activity, final AuthListener listener) {
         authListener = listener;
         mTencent.login(activity, "all", loginListener);
     }

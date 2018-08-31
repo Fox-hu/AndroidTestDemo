@@ -15,7 +15,7 @@ import java.util.Map;
 public final class AuthLoginManager {
     private static final String TAG = AuthLoginManager.class.getSimpleName();
     private Map<PlatForm, IAuth> mAuthLoginMap = new HashMap<>();
-    private Map<PlatForm, onAuthListener> mAuthListenerMap = new HashMap<>();
+    private Map<PlatForm, AuthListener> mAuthListenerMap = new HashMap<>();
     private PlatForm mCurrentPlatForm;
 
     private AuthLoginManager() {
@@ -25,7 +25,8 @@ public final class AuthLoginManager {
         return Holder.INSTANCE;
     }
 
-    public void fetchPlatFormInfo(@NonNull PlatForm platForm, @NonNull Activity activity, @NonNull onAuthListener listener) {
+    public void fetchPlatFormInfo(@NonNull PlatForm platForm, @NonNull Activity activity, @NonNull
+            AuthListener listener) {
         IAuth iAuth = mAuthLoginMap.get(platForm);
         if (iAuth == null) {
             iAuth = AuthLoginFactory.generate(activity, platForm);
@@ -56,13 +57,13 @@ public final class AuthLoginManager {
         }
     }
 
-    public onAuthListener getIAuthListener(PlatForm platForm) {
-        onAuthListener listener = mAuthListenerMap.get(platForm);
+    public AuthListener getIAuthListener(PlatForm platForm) {
+        AuthListener listener = mAuthListenerMap.get(platForm);
         if (listener != null) {
             return listener;
         } else {
             throw new NullPointerException(
-                    "onAuthListener null, " + platForm.getShowWord() + "not register");
+                    "AuthListener null, " + platForm.getShowWord() + "not register");
         }
     }
 

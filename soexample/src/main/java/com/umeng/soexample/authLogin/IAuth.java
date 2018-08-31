@@ -24,7 +24,7 @@ public interface IAuth{
      * @param activity
      * @param listener 通用回调方法，不同的平台使用统一的回调，在此处统一
      */
-    void fetchPlatFormInfo(Activity activity, onAuthListener listener);
+    void fetchPlatFormInfo(Activity activity, AuthListener listener);
 
     /**
      * 在activity 的onActivityResult使用 QQ和新浪需要

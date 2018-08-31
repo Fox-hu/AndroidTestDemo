@@ -12,10 +12,10 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WbAuthListener;
 import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
+import com.umeng.soexample.authLogin.AuthListener;
 import com.umeng.soexample.authLogin.IAuth;
 import com.umeng.soexample.authLogin.PlatForm;
 import com.umeng.soexample.authLogin.PlatFormInfo;
-import com.umeng.soexample.authLogin.onAuthListener;
 import com.umeng.soexample.authLogin.HttpUtils;
 
 import org.json.JSONException;
@@ -33,7 +33,7 @@ public class SinaAuth implements IAuth {
     private WeakReference<Activity> mActivity;
     private Oauth2AccessToken mAccessToken;
     private SsoHandler mSsoHandler;
-    private onAuthListener mAuthListener;
+    private AuthListener mAuthListener;
 
     public SinaAuth(@NonNull Activity activity) {
         mActivity = new WeakReference<>(activity);
@@ -49,7 +49,7 @@ public class SinaAuth implements IAuth {
     }
 
     @Override
-    public void fetchPlatFormInfo(Activity activity, onAuthListener listener) {
+    public void fetchPlatFormInfo(Activity activity, AuthListener listener) {
         mAuthListener = listener;
         mSsoHandler.authorize(sinaAuthListener);
     }
