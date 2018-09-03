@@ -9,7 +9,7 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.soexample.authLogin.IAuth;
-import com.umeng.soexample.authLogin.PlatForm;
+import com.umeng.soexample.PlatForm;
 import com.umeng.soexample.authLogin.AuthListener;
 
 /**

@@ -1,50 +1,32 @@
 package com.umeng.soexample;
 
-import android.app.ProgressDialog;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
+import android.support.annotation.Nullable;
+import android.view.View;
 
-import com.umeng.soexample.authLogin.AuthLoginManager;
-import com.umeng.soexample.authLogin.PlatForm;
+/**
+ * Created by fox.hu on 2018/9/3.
+ */
 
-import java.util.Arrays;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
-    private ListView listView;
-    private AuthAdapter shareAdapter;
-    public List<PlatForm> platforms = Arrays.asList(PlatForm.QQ, PlatForm.SINA, PlatForm.WEIXIN,
-            PlatForm.ALIPAY);
-    private ProgressDialog dialog;
-
+public class MainActivity extends Activity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        dialog = new ProgressDialog(this);
-        listView = (ListView) findViewById(R.id.list);
-        shareAdapter = new AuthAdapter(this, platforms);
-        listView.setAdapter(shareAdapter);
-    }
+        setContentView(R.layout.activity_list);
+        findViewById(R.id.auth).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, AuthActivity.class));
+            }
+        });
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        AuthLoginManager.getDefault().onActivityResultData(requestCode, resultCode, data);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-    }
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+        findViewById(R.id.share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ShareActivity.class));
+            }
+        });
     }
 }

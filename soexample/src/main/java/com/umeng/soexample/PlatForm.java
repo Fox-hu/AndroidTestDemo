@@ -1,6 +1,5 @@
-package com.umeng.soexample.authLogin;
+package com.umeng.soexample;
 
-import com.umeng.soexample.PlatformName;
 import com.umeng.soexample.authLogin.sina.Constants;
 
 /**

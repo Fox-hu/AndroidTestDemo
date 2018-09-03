@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import com.umeng.soexample.PlatForm;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,16 +14,16 @@ import java.util.Map;
  * @date 2018/8/16
  */
 
-public final class AuthLoginManager {
-    private static final String TAG = AuthLoginManager.class.getSimpleName();
+public final class AuthManager {
+    private static final String TAG = AuthManager.class.getSimpleName();
     private Map<PlatForm, IAuth> mAuthLoginMap = new HashMap<>();
     private Map<PlatForm, AuthListener> mAuthListenerMap = new HashMap<>();
     private PlatForm mCurrentPlatForm;
 
-    private AuthLoginManager() {
+    private AuthManager() {
     }
 
-    public static AuthLoginManager getDefault() {
+    public static AuthManager getDefault() {
         return Holder.INSTANCE;
     }
 
@@ -29,7 +31,7 @@ public final class AuthLoginManager {
             AuthListener listener) {
         IAuth iAuth = mAuthLoginMap.get(platForm);
         if (iAuth == null) {
-            iAuth = AuthLoginFactory.generate(activity, platForm);
+            iAuth = AuthFactory.generate(activity, platForm);
             mAuthLoginMap.put(platForm, iAuth);
         }
         mCurrentPlatForm = platForm;
@@ -68,6 +70,6 @@ public final class AuthLoginManager {
     }
 
     private static class Holder {
-        static final AuthLoginManager INSTANCE = new AuthLoginManager();
+        static final AuthManager INSTANCE = new AuthManager();
     }
 }

@@ -10,10 +10,11 @@ import android.os.Bundle;
 
 public interface IShare {
 
-    void shareTo(Activity activity, Bundle bundle, ShareListener listener);
+    void shareTo(ShareType type, Activity activity, Bundle bundle, ShareListener listener);
 
     /**
      * 在activity 的onActivityResult使用 QQ和新浪需要
+     *
      * @param requestCode
      * @param resultCode
      * @param data

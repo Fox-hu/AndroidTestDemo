@@ -2,6 +2,7 @@ package com.umeng.soexample.authLogin;
 
 import android.app.Activity;
 
+import com.umeng.soexample.PlatForm;
 import com.umeng.soexample.authLogin.qq.QQAuth;
 import com.umeng.soexample.authLogin.sina.SinaAuth;
 import com.umeng.soexample.authLogin.weixin.WeiXinAuth;
@@ -11,7 +12,7 @@ import com.umeng.soexample.authLogin.weixin.WeiXinAuth;
  * @date 2018/8/16
  */
 
-public class AuthLoginFactory {
+public class AuthFactory {
 
     public static IAuth generate(Activity activity, PlatForm platForm) {
         IAuth iAuth = null;

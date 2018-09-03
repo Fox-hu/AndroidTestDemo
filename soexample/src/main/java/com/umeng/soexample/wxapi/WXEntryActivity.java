@@ -11,9 +11,9 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
-import com.umeng.soexample.authLogin.AuthLoginManager;
+import com.umeng.soexample.authLogin.AuthManager;
 import com.umeng.soexample.authLogin.IAuth;
-import com.umeng.soexample.authLogin.PlatForm;
+import com.umeng.soexample.PlatForm;
 import com.umeng.soexample.authLogin.PlatFormInfo;
 import com.umeng.soexample.authLogin.AuthListener;
 import com.umeng.soexample.authLogin.HttpUtils;
@@ -34,8 +34,8 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        IAuth iAuth = AuthLoginManager.getDefault().getIAuth(PlatForm.WEIXIN);
-        listener = AuthLoginManager.getDefault().getIAuthListener(PlatForm.WEIXIN);
+        IAuth iAuth = AuthManager.getDefault().getIAuth(PlatForm.WEIXIN);
+        listener = AuthManager.getDefault().getIAuthListener(PlatForm.WEIXIN);
         api = ((WeiXinAuth) iAuth).getApi();
         api.handleIntent(getIntent(), this);
     }

@@ -1,5 +1,7 @@
 package com.umeng.soexample.authLogin;
 
+import com.umeng.soexample.PlatForm;
+
 /**
  * 第三方登录的通用回调
  * @author fox.hu
