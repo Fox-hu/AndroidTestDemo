@@ -65,6 +65,10 @@ public class SinaShare implements IShare, WbShareCallback {
                 weiboMessage.videoSourceObject = getVideoObject(bean);
                 break;
             case APP:
+                //todo 此处为了测试 之后删掉
+                weiboMessage.textObject = getTextObj(bean);
+                weiboMessage.imageObject = getImageObj(bean);
+                weiboMessage.videoSourceObject = getVideoObject(bean);
                 break;
             case MULTIPLE:
                 weiboMessage.textObject = getTextObj(bean);
