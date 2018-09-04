@@ -15,16 +15,7 @@ public class SinaShareHelper implements ShareParamsHelper<SinaShareBean> {
     @Override
     public Bundle createParams(ShareType type, SinaShareBean sinaShareBean) {
         final Bundle params = new Bundle();
-        switch (type) {
-            case TEXT:
-            case IMAGE:
-            case VIDEO:
-            case MULTIPLE:
-                params.putParcelable(TAG, sinaShareBean);
-                break;
-            default:
-                break;
-        }
+        params.putParcelable(TAG, sinaShareBean);
         return params;
     }
 

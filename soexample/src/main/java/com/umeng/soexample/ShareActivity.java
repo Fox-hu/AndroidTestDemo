@@ -18,8 +18,7 @@ import java.util.List;
 public class ShareActivity extends Activity {
     private ListView listView;
     private ShareAdapter shareAdapter;
-    public List<PlatForm> platforms = Arrays.asList(PlatForm.QQ, PlatForm.SINA, PlatForm.WEIXIN,
-            PlatForm.ALIPAY);
+    public List<PlatForm> platforms = Arrays.asList(PlatForm.QQ, PlatForm.SINA, PlatForm.WEIXIN);
     private ProgressDialog dialog;
 
     @Override
@@ -43,10 +42,5 @@ public class ShareActivity extends Activity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         ShareManager.getDefault().onNewIntent(intent);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }

@@ -14,8 +14,7 @@ import java.util.List;
 public class AuthActivity extends AppCompatActivity {
     private ListView listView;
     private AuthAdapter authAdapter;
-    public List<PlatForm> platforms = Arrays.asList(PlatForm.QQ, PlatForm.SINA, PlatForm.WEIXIN,
-            PlatForm.ALIPAY);
+    public List<PlatForm> platforms = Arrays.asList(PlatForm.QQ, PlatForm.SINA, PlatForm.WEIXIN);
     private ProgressDialog dialog;
 
     @Override
@@ -33,17 +32,5 @@ public class AuthActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         AuthManager.getDefault().onActivityResultData(requestCode, resultCode, data);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-    }
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
     }
 }
