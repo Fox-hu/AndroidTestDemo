@@ -13,6 +13,7 @@ import com.tencent.tauth.UiError;
 import com.umeng.soexample.PlatForm;
 import com.umeng.soexample.share.IShare;
 import com.umeng.soexample.share.ShareListener;
+import com.umeng.soexample.share.ShareParamsHelper;
 import com.umeng.soexample.share.ShareType;
 
 /**
@@ -32,6 +33,11 @@ public class QQShare implements IShare {
     @Override
     public boolean isInstall(Context context) {
         return mTencent.isQQInstalled(context);
+    }
+
+    @Override
+    public ShareParamsHelper getParamsHelper() {
+        return new QQShareHelper();
     }
 
     @Override

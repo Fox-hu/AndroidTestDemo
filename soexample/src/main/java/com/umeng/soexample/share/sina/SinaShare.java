@@ -21,6 +21,7 @@ import com.sina.weibo.sdk.share.WbShareHandler;
 import com.umeng.soexample.PlatForm;
 import com.umeng.soexample.share.IShare;
 import com.umeng.soexample.share.ShareListener;
+import com.umeng.soexample.share.ShareParamsHelper;
 import com.umeng.soexample.share.ShareType;
 
 import java.io.File;
@@ -47,6 +48,11 @@ public class SinaShare implements IShare, WbShareCallback {
     @Override
     public boolean isInstall(Context context) {
         return WbSdk.isWbInstall(context);
+    }
+
+    @Override
+    public ShareParamsHelper getParamsHelper() {
+        return new SinaShareHelper();
     }
 
     @Override

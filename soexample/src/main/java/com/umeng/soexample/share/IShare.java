@@ -13,12 +13,18 @@ public interface IShare {
 
     boolean isInstall(Context context);
 
+    ShareParamsHelper getParamsHelper();
+
     void shareTo(ShareType type, Activity activity, Bundle bundle, ShareListener listener);
 
+    /**
+     * 在activity onNewIntent 新浪需要
+     * @param intent
+     */
     void onNewIntent(Intent intent);
 
     /**
-     * 在activity 的onActivityResult使用 QQ和新浪需要
+     * 在activity 的onActivityResult使用 QQ需要
      *
      * @param requestCode
      * @param resultCode

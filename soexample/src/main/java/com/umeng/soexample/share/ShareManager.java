@@ -18,7 +18,6 @@ public class ShareManager {
     private static final String TAG = ShareManager.class.getSimpleName();
     private Map<PlatForm, IShare> mShareMap = new HashMap<>();
     private Map<PlatForm, ShareListener> mShareListenerMap = new HashMap<>();
-    private Map<PlatForm, ShareParamsHelper> mShareParemsMap = new HashMap<>();
     private PlatForm mCurrentPlatForm;
 
     private ShareManager() {}
@@ -29,11 +28,7 @@ public class ShareManager {
 
     public void shareTo(PlatForm platForm, ShareType type, Activity activity, Bundle bundle,
             ShareListener listener) {
-        IShare iShare = mShareMap.get(platForm);
-        if (iShare == null) {
-            iShare = ShareFactory.generateShare(activity, platForm);
-            mShareMap.put(platForm, iShare);
-        }
+        IShare iShare = getShare(platForm, activity);
         mCurrentPlatForm = platForm;
         mShareListenerMap.put(platForm, listener);
         listener.onStart(platForm);
@@ -58,12 +53,18 @@ public class ShareManager {
         }
     }
 
-    public ShareParamsHelper getParamsHelper(PlatForm platForm) {
-        ShareParamsHelper helper = mShareParemsMap.get(platForm);
-        if (helper == null) {
-            helper = ShareFactory.generateHelper(platForm);
+    public ShareParamsHelper getParamsHelper(Activity activity, PlatForm platForm) {
+        IShare iShare = getShare(platForm, activity);
+        return iShare.getParamsHelper();
+    }
+
+    private IShare getShare(PlatForm platForm, Activity activity) {
+        IShare iShare = mShareMap.get(platForm);
+        if (iShare == null) {
+            iShare = ShareFactory.generateShare(activity, platForm);
+            mShareMap.put(platForm, iShare);
         }
-        return helper;
+        return iShare;
     }
 
     private static class Holder {

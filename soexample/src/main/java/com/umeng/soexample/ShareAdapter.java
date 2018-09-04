@@ -62,7 +62,7 @@ public class ShareAdapter extends BaseAdapter {
         convertView.findViewById(R.id.share_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(
+                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(mActivity,
                         list.get(position));
                 ShareManager.getDefault().shareTo(list.get(position), ShareType.TEXT, mActivity,
                         paramsHelper.createParams(ShareType.TEXT, getBean(position)),
@@ -72,7 +72,7 @@ public class ShareAdapter extends BaseAdapter {
         convertView.findViewById(R.id.share_img).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(
+                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(mActivity,
                         list.get(position));
                 ShareManager.getDefault().shareTo(list.get(position), ShareType.IMAGE, mActivity,
                         paramsHelper.createParams(ShareType.IMAGE, getImg(position)),
@@ -82,7 +82,7 @@ public class ShareAdapter extends BaseAdapter {
         convertView.findViewById(R.id.share_video).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(
+                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(mActivity,
                         list.get(position));
                 ShareManager.getDefault().shareTo(list.get(position), ShareType.VIDEO, mActivity,
                         paramsHelper.createParams(ShareType.VIDEO, getAudio(position)),
@@ -92,7 +92,7 @@ public class ShareAdapter extends BaseAdapter {
         convertView.findViewById(R.id.share_app).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(
+                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(mActivity,
                         list.get(position));
                 ShareManager.getDefault().shareTo(list.get(position), ShareType.APP, mActivity,
                         paramsHelper.createParams(ShareType.APP, getApp(position)), shareListener);
