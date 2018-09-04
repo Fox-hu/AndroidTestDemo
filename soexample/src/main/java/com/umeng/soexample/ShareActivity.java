@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.umeng.soexample.authLogin.AuthManager;
+import com.umeng.soexample.share.ShareManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,13 +36,12 @@ public class ShareActivity extends Activity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        AuthManager.getDefault().onActivityResultData(requestCode, resultCode, data);
+        ShareManager.getDefault().onActivityResultData(requestCode, resultCode, data);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
     }
 
 

@@ -1,4 +1,4 @@
-package com.umeng.soexample.authLogin;
+package com.umeng.soexample.auth;
 
 import android.app.Activity;
 import android.content.Intent;

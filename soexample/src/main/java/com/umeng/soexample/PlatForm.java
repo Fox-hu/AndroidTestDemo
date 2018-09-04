@@ -1,6 +1,6 @@
 package com.umeng.soexample;
 
-import com.umeng.soexample.authLogin.sina.Constants;
+import com.umeng.soexample.auth.sina.Constants;
 
 /**
  * 第三方登录的平台

@@ -1,4 +1,4 @@
-package com.umeng.soexample.authLogin.weixin;
+package com.umeng.soexample.auth.weixin;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.support.annotation.NonNull;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.umeng.soexample.authLogin.IAuth;
+import com.umeng.soexample.auth.IAuth;
 import com.umeng.soexample.PlatForm;
-import com.umeng.soexample.authLogin.AuthListener;
+import com.umeng.soexample.auth.AuthListener;
 
 /**
  * @author fox.hu

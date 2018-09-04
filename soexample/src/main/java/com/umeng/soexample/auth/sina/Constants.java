@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.umeng.soexample.authLogin.sina;
+package com.umeng.soexample.auth.sina;
 
 /**
  * 该类定义了微博授权时所需要的参数。

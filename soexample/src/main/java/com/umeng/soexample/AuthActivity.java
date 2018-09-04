@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import com.umeng.soexample.authLogin.AuthManager;
+import com.umeng.soexample.auth.AuthManager;
 
 import java.util.Arrays;
 import java.util.List;

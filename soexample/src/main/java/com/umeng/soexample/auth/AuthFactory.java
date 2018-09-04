@@ -1,11 +1,11 @@
-package com.umeng.soexample.authLogin;
+package com.umeng.soexample.auth;
 
 import android.app.Activity;
 
 import com.umeng.soexample.PlatForm;
-import com.umeng.soexample.authLogin.qq.QQAuth;
-import com.umeng.soexample.authLogin.sina.SinaAuth;
-import com.umeng.soexample.authLogin.weixin.WeiXinAuth;
+import com.umeng.soexample.auth.qq.QQAuth;
+import com.umeng.soexample.auth.sina.SinaAuth;
+import com.umeng.soexample.auth.weixin.WeiXinAuth;
 
 /**
  * @author fox.hu

@@ -1,6 +1,7 @@
 package com.umeng.soexample.share;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.umeng.soexample.PlatForm;
@@ -36,6 +37,15 @@ public class ShareManager {
         mShareListenerMap.put(platForm, listener);
         listener.onStart(platForm);
         iShare.shareTo(type, activity, bundle, listener);
+    }
+
+    public void onActivityResultData(int requestCode, int resultCode, Intent data) {
+        if (mCurrentPlatForm != null) {
+            IShare iShare = mShareMap.get(mCurrentPlatForm);
+            if (iShare != null) {
+                iShare.onActivityResultData(requestCode, resultCode, data);
+            }
+        }
     }
 
     private static class Holder {

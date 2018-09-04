@@ -1,4 +1,4 @@
-package com.umeng.soexample.authLogin;
+package com.umeng.soexample.auth;
 
 /**
  * 根据第三方登录 返回的所需信息

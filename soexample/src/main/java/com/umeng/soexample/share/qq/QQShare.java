@@ -1,6 +1,7 @@
 package com.umeng.soexample.share.qq;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,7 +21,6 @@ import com.umeng.soexample.share.ShareType;
 
 public class QQShare implements IShare {
     private static final String TAG = QQShare.class.getSimpleName();
-    private int shareType = com.tencent.connect.share.QQShare.SHARE_TO_QQ_TYPE_DEFAULT;
     private Tencent mTencent;
     private ShareListener listener;
 
@@ -30,10 +30,20 @@ public class QQShare implements IShare {
 
 
     @Override
+    public boolean isInstall(Context context) {
+        return mTencent.isQQInstalled(context);
+    }
+
+    @Override
     public void shareTo(ShareType type, @NonNull Activity activity, Bundle bundle,
             @NonNull ShareListener listener) {
         this.listener = listener;
         mTencent.shareToQQ(activity, bundle, qqShareListener);
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+
     }
 
     @Override
@@ -46,9 +56,8 @@ public class QQShare implements IShare {
     IUiListener qqShareListener = new IUiListener() {
         @Override
         public void onCancel() {
-            if (shareType != com.tencent.connect.share.QQShare.SHARE_TO_QQ_TYPE_IMAGE) {
-                listener.onCancel();
-            }
+            listener.onCancel();
+
         }
 
         @Override

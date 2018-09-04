@@ -10,9 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.umeng.soexample.authLogin.AuthManager;
-import com.umeng.soexample.authLogin.PlatFormInfo;
-import com.umeng.soexample.authLogin.AuthListener;
+import com.umeng.soexample.auth.AuthManager;
+import com.umeng.soexample.auth.PlatFormInfo;
+import com.umeng.soexample.auth.AuthListener;
 
 import java.util.List;
 
@@ -84,7 +84,6 @@ public class AuthAdapter extends BaseAdapter {
             dialog.dismiss();
             Toast.makeText(mContext, "成功了,信息为 = " + platformInfo.toString(), Toast.LENGTH_LONG)
                     .show();
-            notifyDataSetChanged();
         }
 
         @Override

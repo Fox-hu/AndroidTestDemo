@@ -1,4 +1,4 @@
-package com.umeng.soexample.authLogin;
+package com.umeng.soexample.auth;
 
 import com.umeng.soexample.PlatForm;
 
