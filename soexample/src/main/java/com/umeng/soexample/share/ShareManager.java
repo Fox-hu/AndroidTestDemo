@@ -18,6 +18,7 @@ public class ShareManager {
     private static final String TAG = ShareManager.class.getSimpleName();
     private Map<PlatForm, IShare> mShareMap = new HashMap<>();
     private Map<PlatForm, ShareListener> mShareListenerMap = new HashMap<>();
+    private Map<PlatForm, ShareParamsHelper> mShareParemsMap = new HashMap<>();
     private PlatForm mCurrentPlatForm;
 
     private ShareManager() {}
@@ -30,7 +31,7 @@ public class ShareManager {
             ShareListener listener) {
         IShare iShare = mShareMap.get(platForm);
         if (iShare == null) {
-            iShare = ShareFactory.generate(activity, platForm);
+            iShare = ShareFactory.generateShare(activity, platForm);
             mShareMap.put(platForm, iShare);
         }
         mCurrentPlatForm = platForm;
@@ -46,6 +47,23 @@ public class ShareManager {
                 iShare.onActivityResultData(requestCode, resultCode, data);
             }
         }
+    }
+
+    public void onNewIntent(Intent intent) {
+        if (mCurrentPlatForm != null) {
+            IShare iShare = mShareMap.get(mCurrentPlatForm);
+            if (iShare != null) {
+                iShare.onNewIntent(intent);
+            }
+        }
+    }
+
+    public ShareParamsHelper getParamsHelper(PlatForm platForm) {
+        ShareParamsHelper helper = mShareParemsMap.get(platForm);
+        if (helper == null) {
+            helper = ShareFactory.generateHelper(platForm);
+        }
+        return helper;
     }
 
     private static class Holder {

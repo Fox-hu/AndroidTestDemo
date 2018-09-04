@@ -1,18 +1,53 @@
 package com.umeng.soexample.share.sina;
 
+import android.os.Bundle;
+
+import com.umeng.soexample.share.ShareParamsHelper;
+import com.umeng.soexample.share.ShareType;
+
 /**
  * Created by fox.hu on 2018/9/4.
  */
 
-public class SinaShareHelper {
-    //text
-    public static final String TEXT_CONTENT_KEY = "text_content_key";
-    public static final String TEXT_TITLE_KEY = "text_title_key";
-    public static final String TEXT_ACTION_KEY = "text_action_key";
+public class SinaShareHelper implements ShareParamsHelper<SinaShareBean> {
+    public static final String TAG = "bean2bundle";
 
-    //img
-    public static final String IMG_URL_KEY = "img_url_key";
+    @Override
+    public Bundle createParams(ShareType type, SinaShareBean sinaShareBean) {
+        final Bundle params = new Bundle();
+        switch (type) {
+            case TEXT:
+            case IMAGE:
+            case VIDEO:
+            case MULTIPLE:
+                params.putParcelable(TAG, sinaShareBean);
+                break;
+            default:
+                break;
+        }
+        return params;
+    }
 
-    //video
-    public static final String VIDEO_PATH_KEY = "video_path_key";
+    public static SinaShareBean createText(String text, String title, String actionUrl) {
+        SinaShareBean.Builder builder = new SinaShareBean.Builder();
+        return builder.text(text).title(title).actionUrl(actionUrl).bulid();
+    }
+
+    public static SinaShareBean createImg(int resId) {
+        SinaShareBean.Builder builder = new SinaShareBean.Builder();
+        return builder.resId(resId).bulid();
+    }
+
+    public static SinaShareBean createVideo(String audioPath) {
+        SinaShareBean.Builder builder = new SinaShareBean.Builder();
+        return builder.audioPath(audioPath).bulid();
+    }
+
+    public static SinaShareBean createMultiple(String text, String title, String actionUrl,
+            int resId, String audioPath) {
+        SinaShareBean.Builder builder = new SinaShareBean.Builder();
+        return builder.text(text).title(title).actionUrl(actionUrl).resId(resId).audioPath(
+                audioPath).bulid();
+    }
+
 }

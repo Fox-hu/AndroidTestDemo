@@ -3,16 +3,18 @@ package com.umeng.soexample.share.qq;
 import android.os.Bundle;
 
 import com.tencent.connect.share.QQShare;
+import com.umeng.soexample.share.ShareParamsHelper;
 import com.umeng.soexample.share.ShareType;
 
 /**
  * Created by fox.hu on 2018/9/4.
  */
 
-public class QQShareHelper {
+public class QQShareHelper implements ShareParamsHelper<QQShareBean> {
     private static final String TAG = QQShareHelper.class.getSimpleName();
 
-    public Bundle createBundle(ShareType type, QQShareBean bean) {
+    @Override
+    public Bundle createParams(ShareType type, QQShareBean bean) {
         final Bundle params = new Bundle();
         int shareType;
         switch (type) {
@@ -49,5 +51,30 @@ public class QQShareHelper {
         }
 
         return params;
+    }
+
+    public static QQShareBean createText(String title, String targetUrl, String imgUrl,
+            String summary, String appName) {
+        QQShareBean.Builder builder = new QQShareBean.Builder();
+        return builder.title(title).imgUrl(imgUrl).summary(summary).targetUrl(targetUrl).appName(
+                appName).build();
+    }
+
+    public static QQShareBean createImg(String imgLocalUrl) {
+        QQShareBean.Builder builder = new QQShareBean.Builder();
+        return builder.imgLocalUrl(imgLocalUrl).build();
+    }
+
+    public static QQShareBean createAudio(String title, String targetUrl, String imgUrl,
+            String summary, String appName, String audioUrl) {
+        QQShareBean.Builder builder = new QQShareBean.Builder();
+        return builder.title(title).imgUrl(imgUrl).summary(summary).targetUrl(targetUrl).appName(
+                appName).audioUrl(audioUrl).build();
+    }
+
+    public static QQShareBean createApp(String title, String targetUrl, String imgUrl,
+            String summary) {
+        QQShareBean.Builder builder = new QQShareBean.Builder();
+        return builder.title(title).imgUrl(imgUrl).summary(summary).targetUrl(targetUrl).build();
     }
 }

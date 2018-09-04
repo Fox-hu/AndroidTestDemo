@@ -15,8 +15,10 @@ import com.sina.weibo.sdk.api.ImageObject;
 import com.sina.weibo.sdk.api.TextObject;
 import com.sina.weibo.sdk.api.VideoSourceObject;
 import com.sina.weibo.sdk.api.WeiboMultiMessage;
+import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.share.WbShareCallback;
 import com.sina.weibo.sdk.share.WbShareHandler;
+import com.umeng.soexample.PlatForm;
 import com.umeng.soexample.share.IShare;
 import com.umeng.soexample.share.ShareListener;
 import com.umeng.soexample.share.ShareType;
@@ -35,6 +37,9 @@ public class SinaShare implements IShare, WbShareCallback {
 
     public SinaShare(@NonNull Activity activity) {
         context = activity.getApplicationContext();
+        WbSdk.install(activity,
+                new AuthInfo(activity, PlatForm.SINA.getAppId(), PlatForm.SINA.getAppKey(),
+                        PlatForm.SINA.getScope()));
         shareHandler = new WbShareHandler(activity);
         shareHandler.registerApp();
     }
@@ -48,22 +53,23 @@ public class SinaShare implements IShare, WbShareCallback {
     public void shareTo(ShareType type, Activity activity, Bundle bundle, ShareListener listener) {
         this.listener = listener;
         WeiboMultiMessage weiboMessage = new WeiboMultiMessage();
+        SinaShareBean bean = bundle.getParcelable(SinaShareHelper.TAG);
         switch (type) {
             case TEXT:
-                weiboMessage.textObject = getTextObj(bundle);
+                weiboMessage.textObject = getTextObj(bean);
                 break;
             case IMAGE:
-                weiboMessage.imageObject = getImageObj(bundle);
+                weiboMessage.imageObject = getImageObj(bean);
                 break;
             case VIDEO:
-                weiboMessage.videoSourceObject = getVideoObject(bundle);
+                weiboMessage.videoSourceObject = getVideoObject(bean);
                 break;
             case APP:
                 break;
             case MULTIPLE:
-                weiboMessage.textObject = getTextObj(bundle);
-                weiboMessage.imageObject = getImageObj(bundle);
-                weiboMessage.videoSourceObject = getVideoObject(bundle);
+                weiboMessage.textObject = getTextObj(bean);
+                weiboMessage.imageObject = getImageObj(bean);
+                weiboMessage.videoSourceObject = getVideoObject(bean);
                 break;
             default:
                 break;
@@ -71,8 +77,8 @@ public class SinaShare implements IShare, WbShareCallback {
         shareHandler.shareMessage(weiboMessage, false);
     }
 
-    private VideoSourceObject getVideoObject(Bundle bundle) {
-        String filePath = bundle.getString(SinaShareHelper.VIDEO_PATH_KEY, "");
+    private VideoSourceObject getVideoObject(SinaShareBean bean) {
+        String filePath = bean.getAudioPath();
         if (TextUtils.isEmpty(filePath)) {
             return null;
         } else {
@@ -82,8 +88,8 @@ public class SinaShare implements IShare, WbShareCallback {
         }
     }
 
-    private ImageObject getImageObj(Bundle bundle) {
-        int imgUrl = bundle.getInt(SinaShareHelper.IMG_URL_KEY, 0);
+    private ImageObject getImageObj(SinaShareBean bean) {
+        int imgUrl = bean.getResId();
         if (imgUrl == 0) {
             return null;
         } else {
@@ -94,11 +100,11 @@ public class SinaShare implements IShare, WbShareCallback {
         }
     }
 
-    private TextObject getTextObj(Bundle bundle) {
+    private TextObject getTextObj(SinaShareBean bean) {
         TextObject textObject = new TextObject();
-        textObject.text = bundle.getString(SinaShareHelper.TEXT_CONTENT_KEY, "");
-        textObject.title = bundle.getString(SinaShareHelper.TEXT_TITLE_KEY, "");
-        textObject.actionUrl = bundle.getString(SinaShareHelper.TEXT_ACTION_KEY, "");
+        textObject.text = bean.getText();
+        textObject.title = bean.getTitle();
+        textObject.actionUrl = bean.getActionUrl();
         return textObject;
     }
 

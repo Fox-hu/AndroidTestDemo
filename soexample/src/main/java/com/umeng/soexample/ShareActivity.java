@@ -15,7 +15,7 @@ import java.util.List;
  * Created by fox.hu on 2018/9/3.
  */
 
-public class ShareActivity extends Activity{
+public class ShareActivity extends Activity {
     private ListView listView;
     private ShareAdapter shareAdapter;
     public List<PlatForm> platforms = Arrays.asList(PlatForm.QQ, PlatForm.SINA, PlatForm.WEIXIN,
@@ -40,13 +40,13 @@ public class ShareActivity extends Activity{
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        ShareManager.getDefault().onNewIntent(intent);
     }
 
-
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
