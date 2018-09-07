@@ -49,8 +49,4 @@ public class WeiXinAuth implements IAuth {
     public void onActivityResultData(int requestCode, int resultCode, Intent data) {
 
     }
-
-    public IWXAPI getApi() {
-        return api;
-    }
 }

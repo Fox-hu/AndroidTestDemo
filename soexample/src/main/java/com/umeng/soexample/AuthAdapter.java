@@ -97,8 +97,6 @@ public class AuthAdapter extends BaseAdapter {
             dialog.dismiss();
             Toast.makeText(mContext, "取消了", Toast.LENGTH_LONG).show();
         }
-
-
     };
 }
 

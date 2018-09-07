@@ -58,6 +58,10 @@ public class ShareManager {
         return iShare.getParamsHelper();
     }
 
+    public ShareListener getIShareListener(PlatForm platForm) {
+        return mShareListenerMap.get(platForm);
+    }
+
     private IShare getShare(PlatForm platForm, Activity activity) {
         IShare iShare = mShareMap.get(platForm);
         if (iShare == null) {

@@ -3,7 +3,6 @@ package com.umeng.soexample.share;
 import android.os.Bundle;
 
 /**
- *
  * @author fox.hu
  * @date 2018/9/4
  */

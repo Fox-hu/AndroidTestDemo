@@ -62,18 +62,18 @@ public class ShareAdapter extends BaseAdapter {
         convertView.findViewById(R.id.share_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(mActivity,
-                        list.get(position));
+                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(
+                        mActivity, list.get(position));
                 ShareManager.getDefault().shareTo(list.get(position), ShareType.TEXT, mActivity,
-                        paramsHelper.createParams(ShareType.TEXT, getBean(position)),
+                        paramsHelper.createParams(ShareType.TEXT, getText(position)),
                         shareListener);
             }
         });
         convertView.findViewById(R.id.share_img).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(mActivity,
-                        list.get(position));
+                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(
+                        mActivity, list.get(position));
                 ShareManager.getDefault().shareTo(list.get(position), ShareType.IMAGE, mActivity,
                         paramsHelper.createParams(ShareType.IMAGE, getImg(position)),
                         shareListener);
@@ -82,8 +82,8 @@ public class ShareAdapter extends BaseAdapter {
         convertView.findViewById(R.id.share_video).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(mActivity,
-                        list.get(position));
+                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(
+                        mActivity, list.get(position));
                 ShareManager.getDefault().shareTo(list.get(position), ShareType.VIDEO, mActivity,
                         paramsHelper.createParams(ShareType.VIDEO, getAudio(position)),
                         shareListener);
@@ -92,8 +92,8 @@ public class ShareAdapter extends BaseAdapter {
         convertView.findViewById(R.id.share_app).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(mActivity,
-                        list.get(position));
+                ShareParamsHelper paramsHelper = ShareManager.getDefault().getParamsHelper(
+                        mActivity, list.get(position));
                 ShareManager.getDefault().shareTo(list.get(position), ShareType.APP, mActivity,
                         paramsHelper.createParams(ShareType.APP, getApp(position)), shareListener);
             }
@@ -111,6 +111,9 @@ public class ShareAdapter extends BaseAdapter {
             case 1:
                 appBean = SinaTest.getMulti();
                 break;
+            case 2:
+                appBean = Weixintest.getMp3();
+                break;
             default:
                 appBean = QQtest.getAPP(mContext);
                 break;
@@ -126,6 +129,9 @@ public class ShareAdapter extends BaseAdapter {
                 break;
             case 1:
                 audioBean = SinaTest.getvideo(mContext);
+                break;
+            case 2:
+                audioBean = Weixintest.getVideo();
                 break;
             default:
                 audioBean = QQtest.getAudio(mContext);
@@ -143,6 +149,9 @@ public class ShareAdapter extends BaseAdapter {
             case 1:
                 imgBean = SinaTest.getImg();
                 break;
+            case 2:
+                imgBean = Weixintest.getImg(mContext);
+                break;
             default:
                 imgBean = QQtest.getImg(mContext);
                 break;
@@ -150,7 +159,7 @@ public class ShareAdapter extends BaseAdapter {
         return imgBean;
     }
 
-    private Object getBean(int position) {
+    private Object getText(int position) {
         final Object textBean;
         switch (position) {
             case 0:
@@ -158,6 +167,9 @@ public class ShareAdapter extends BaseAdapter {
                 break;
             case 1:
                 textBean = SinaTest.getText();
+                break;
+            case 2:
+                textBean = Weixintest.getText();
                 break;
             default:
                 textBean = QQtest.getText(mContext);

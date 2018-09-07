@@ -10,12 +10,12 @@ import com.umeng.soexample.share.ShareType;
  */
 
 public class SinaShareHelper implements ShareParamsHelper<SinaShareBean> {
-    public static final String TAG = "bean2bundle";
+    public static final String SINA_BUNDLE = "sina_bundle";
 
     @Override
     public Bundle createParams(ShareType type, SinaShareBean sinaShareBean) {
         final Bundle params = new Bundle();
-        params.putParcelable(TAG, sinaShareBean);
+        params.putParcelable(SINA_BUNDLE, sinaShareBean);
         return params;
     }
 

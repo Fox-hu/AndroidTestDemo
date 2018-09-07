@@ -27,8 +27,8 @@ public final class AuthManager {
         return Holder.INSTANCE;
     }
 
-    public void fetchPlatFormInfo(@NonNull PlatForm platForm, @NonNull Activity activity, @NonNull
-            AuthListener listener) {
+    public void fetchPlatFormInfo(@NonNull PlatForm platForm, @NonNull Activity activity,
+            @NonNull AuthListener listener) {
         IAuth iAuth = mAuthLoginMap.get(platForm);
         if (iAuth == null) {
             iAuth = AuthFactory.generate(activity, platForm);
@@ -49,24 +49,8 @@ public final class AuthManager {
         }
     }
 
-    public IAuth getIAuth(PlatForm platForm) {
-        IAuth iAuth = mAuthLoginMap.get(platForm);
-        if (iAuth != null) {
-            return iAuth;
-        } else {
-            throw new NullPointerException(
-                    "IAuth null, " + platForm.getShowWord() + " not register");
-        }
-    }
-
     public AuthListener getIAuthListener(PlatForm platForm) {
-        AuthListener listener = mAuthListenerMap.get(platForm);
-        if (listener != null) {
-            return listener;
-        } else {
-            throw new NullPointerException(
-                    "AuthListener null, " + platForm.getShowWord() + "not register");
-        }
+        return mAuthListenerMap.get(platForm);
     }
 
     private static class Holder {

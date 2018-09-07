@@ -5,5 +5,5 @@ package com.umeng.soexample.share;
  */
 
 public enum ShareType {
-    TEXT, IMAGE, VIDEO, APP, MULTIPLE,
+    TEXT, IMAGE, MP3, VIDEO, APP, MULTIPLE,
 }

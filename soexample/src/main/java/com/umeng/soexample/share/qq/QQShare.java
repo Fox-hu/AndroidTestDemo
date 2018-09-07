@@ -29,7 +29,6 @@ public class QQShare implements IShare {
         mTencent = Tencent.createInstance(PlatForm.QQ.getAppId(), activity.getApplicationContext());
     }
 
-
     @Override
     public boolean isInstall(Context context) {
         return mTencent.isQQInstalled(context);
@@ -59,11 +58,10 @@ public class QQShare implements IShare {
         }
     }
 
-    IUiListener qqShareListener = new IUiListener() {
+    private IUiListener qqShareListener = new IUiListener() {
         @Override
         public void onCancel() {
             listener.onCancel();
-
         }
 
         @Override

@@ -3,7 +3,7 @@ package com.umeng.soexample.wxapi;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -11,13 +11,14 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
-import com.umeng.soexample.auth.AuthManager;
-import com.umeng.soexample.auth.IAuth;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.soexample.PlatForm;
-import com.umeng.soexample.auth.PlatFormInfo;
 import com.umeng.soexample.auth.AuthListener;
+import com.umeng.soexample.auth.AuthManager;
 import com.umeng.soexample.auth.HttpUtils;
-import com.umeng.soexample.auth.weixin.WeiXinAuth;
+import com.umeng.soexample.auth.PlatFormInfo;
+import com.umeng.soexample.share.ShareListener;
+import com.umeng.soexample.share.ShareManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,15 +29,16 @@ import org.json.JSONObject;
 
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     private static final String TAG = WXEntryActivity.class.getSimpleName();
-    private AuthListener listener;
+    private AuthListener authListener;
+    private ShareListener shareListener;
     private IWXAPI api;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        IAuth iAuth = AuthManager.getDefault().getIAuth(PlatForm.WEIXIN);
-        listener = AuthManager.getDefault().getIAuthListener(PlatForm.WEIXIN);
-        api = ((WeiXinAuth) iAuth).getApi();
+        api = WXAPIFactory.createWXAPI(this, PlatForm.WEIXIN.getAppId());
+        authListener = AuthManager.getDefault().getIAuthListener(PlatForm.WEIXIN);
+        shareListener = ShareManager.getDefault().getIShareListener(PlatForm.WEIXIN);
         api.handleIntent(getIntent(), this);
     }
 
@@ -47,28 +49,64 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     public void onResp(BaseResp baseResp) {
-        //登录回调
-        switch (baseResp.errCode) {
-            case BaseResp.ErrCode.ERR_OK:
-                Log.e(TAG, "onResp ERR_OK");
-                String code = ((SendAuth.Resp) baseResp).code;
-                Log.e(TAG, "onResp ERR_OK code = " + code);
-                //获取用户信息
-                getAccessToken(code);
-                break;
-            case BaseResp.ErrCode.ERR_AUTH_DENIED://用户拒绝授权
-                Log.e(TAG, "onResp 用户拒绝授权");
-                listener.onError("用户拒绝授权");
-                break;
-            case BaseResp.ErrCode.ERR_USER_CANCEL://用户取消
-                Log.e(TAG, "onResp 用户取消");
-                listener.onCancel();
-                break;
-            default:
-                listener.onError("授权失败");
-                break;
+        //登录回调 分享回调和授权回调都在此处理，根据前面的baseResp.transaction来判断是分享还是授权
+        //如果选择留在微信 则无法收到回调信息
+        if (!TextUtils.isEmpty(baseResp.transaction)) {
+            handleShareCallBack(baseResp);
+        } else {
+            handleAuthCallBack(baseResp);
         }
         finish();
+    }
+
+    private void handleAuthCallBack(BaseResp baseResp) {
+        switch (baseResp.errCode) {
+            case BaseResp.ErrCode.ERR_OK:
+                String code = ((SendAuth.Resp) baseResp).code;
+                getAccessToken(code);
+                break;
+            case BaseResp.ErrCode.ERR_AUTH_DENIED:
+                if (authListener != null) {
+                    authListener.onError("用户拒绝授权");
+                }
+                break;
+            case BaseResp.ErrCode.ERR_USER_CANCEL:
+                if (authListener != null) {
+                    authListener.onCancel();
+                }
+                break;
+            default:
+                if (authListener != null) {
+                    authListener.onError("授权失败");
+                }
+                break;
+        }
+    }
+
+    private void handleShareCallBack(BaseResp baseResp) {
+        switch (baseResp.errCode) {
+            case BaseResp.ErrCode.ERR_OK:
+                if (shareListener != null) {
+                    shareListener.onComplete("分享成功!");
+                }
+                break;
+            case BaseResp.ErrCode.ERR_AUTH_DENIED:
+                if (shareListener != null) {
+                    shareListener.onError("分享被拒绝");
+                }
+
+                break;
+            case BaseResp.ErrCode.ERR_USER_CANCEL:
+                if (shareListener != null) {
+                    shareListener.onCancel();
+                }
+                break;
+            default:
+                if (shareListener != null) {
+                    shareListener.onError("分享失败");
+                }
+                break;
+        }
     }
 
 
@@ -104,7 +142,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         public void onFailure(Exception e) {
             Toast.makeText(WXEntryActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
             finish();
-            listener.onError("授权失败");
+            authListener.onError("授权失败");
         }
     };
 
@@ -132,7 +170,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                 unionid = jsonObject.getString("unionid");
 
                 String gender = sex.equals("1") ? "男" : "女";
-                listener.onComplete(new PlatFormInfo(openId, nickName, gender, headimgurl));
+                authListener.onComplete(new PlatFormInfo(openId, nickName, gender, headimgurl));
                 finish();
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -143,7 +181,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         public void onFailure(Exception e) {
             Toast.makeText(WXEntryActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
             finish();
-            listener.onError("授权失败");
+            authListener.onError("授权失败");
         }
     };
 }

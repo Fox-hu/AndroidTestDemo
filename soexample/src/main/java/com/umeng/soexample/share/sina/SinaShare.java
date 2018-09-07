@@ -59,7 +59,7 @@ public class SinaShare implements IShare, WbShareCallback {
     public void shareTo(ShareType type, Activity activity, Bundle bundle, ShareListener listener) {
         this.listener = listener;
         WeiboMultiMessage weiboMessage = new WeiboMultiMessage();
-        SinaShareBean bean = bundle.getParcelable(SinaShareHelper.TAG);
+        SinaShareBean bean = bundle.getParcelable(SinaShareHelper.SINA_BUNDLE);
         switch (type) {
             case TEXT:
                 weiboMessage.textObject = getTextObj(bean);
@@ -125,7 +125,6 @@ public class SinaShare implements IShare, WbShareCallback {
 
     @Override
     public void onActivityResultData(int requestCode, int resultCode, Intent data) {
-
     }
 
     @Override
