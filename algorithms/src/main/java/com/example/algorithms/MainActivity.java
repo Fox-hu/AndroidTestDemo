@@ -23,15 +23,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.algorithms.efficient.produce_custom.Store;
-
 /**
  * An {@link Activity} that gets a text string from the user and displays it back when the user
  * clicks on one of the two buttons. The first one shows it in the same activity and the second
  * one opens another activity and displays the message.
  */
 public class MainActivity extends Activity implements View.OnClickListener {
-
+    private static final String TAG = MainActivity.class.getSimpleName();
     // The TextView used to display the message inside the Activity.
     private TextView mTextView;
 
@@ -49,8 +47,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         mTextView = (TextView) findViewById(R.id.textToBeChanged);
         mEditText = (EditText) findViewById(R.id.editTextUserInput);
-
-        Store.test();
     }
 
     @Override

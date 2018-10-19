@@ -62,25 +62,26 @@ public class FactoryProcessor2 extends AbstractProcessor {
         logger.info(">>> factoryNodes is " + factoryNodes.toString() + " <<<");
         parserFactoryNodes(factoryNodes);
         generateFactoryFile();
-        //一定要clear 防止多次注解文件处理
         pizzaList.clear();
         return true;
     }
 
     private void generateFactoryFile() {
-        String claName = Utils.genFactoryClass();
-        logger.info(">>> claName is " + claName + " <<<");
-        String pkg = claName.substring(0, claName.lastIndexOf("."));
-        logger.info(">>> pkg is " + pkg + " <<<");
-        String simpleName = claName.substring(claName.lastIndexOf(".") + 1);
-        logger.info(">>> simpleName is " + simpleName + " <<<");
-        MethodSpec addPizza = generateAddPizzaMethod();
+        if (!pizzaList.isEmpty()) {
+            String claName = Utils.genFactoryClass();
+            logger.info(">>> claName is " + claName + " <<<");
+            String pkg = claName.substring(0, claName.lastIndexOf("."));
+            logger.info(">>> pkg is " + pkg + " <<<");
+            String simpleName = claName.substring(claName.lastIndexOf(".") + 1);
+            logger.info(">>> simpleName is " + simpleName + " <<<");
+            MethodSpec addPizza = generateAddPizzaMethod();
 
-        try {
-            JavaFile.builder(pkg, TypeSpec.classBuilder(simpleName).addModifiers(Modifier.PUBLIC)
-                    .addMethod(addPizza).build()).build().writeTo(filer);
-        } catch (IOException e) {
-            e.printStackTrace();
+            try {
+                JavaFile.builder(pkg, TypeSpec.classBuilder(simpleName).addModifiers(
+                        Modifier.PUBLIC).addMethod(addPizza).build()).build().writeTo(filer);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
