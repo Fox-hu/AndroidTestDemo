@@ -23,6 +23,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.algorithms.multiple_thread.producer_customer.ProducerCustomerExecutor;
+
 /**
  * An {@link Activity} that gets a text string from the user and displays it back when the user
  * clicks on one of the two buttons. The first one shows it in the same activity and the second
@@ -47,6 +49,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         mTextView = (TextView) findViewById(R.id.textToBeChanged);
         mEditText = (EditText) findViewById(R.id.editTextUserInput);
+
+        new ProducerCustomerExecutor().test();
     }
 
     @Override
