@@ -3,7 +3,6 @@ package com.example.algorithms.multiple_thread.twoPhase_termination;
 import java.lang.ref.WeakReference;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by fox.hu on 2018/11/12.
@@ -12,7 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class TerminationToken {
 
     volatile boolean toShutdown = false;
-    public final AtomicInteger reservations = new AtomicInteger(0);
 
     private final Queue<WeakReference<Terminable>> coordinatedThreads;
 

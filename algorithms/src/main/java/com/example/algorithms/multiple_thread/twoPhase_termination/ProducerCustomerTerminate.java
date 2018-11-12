@@ -13,8 +13,8 @@ import java.util.concurrent.Executors;
  * Created by fox.hu on 2018/11/9.
  */
 
-public class ProducerCustomerTerminateDemo {
-    private static final String TAG = ProducerCustomerTerminateDemo.class.getSimpleName();
+public class ProducerCustomerTerminate {
+    private static final String TAG = ProducerCustomerTerminate.class.getSimpleName();
     private BlockQueueChannel<Integer> channel = new BlockQueueChannel<>(
             new ArrayBlockingQueue<Integer>(100));
     private ExecutorService producerExecutor = Executors.newCachedThreadPool();
@@ -23,17 +23,14 @@ public class ProducerCustomerTerminateDemo {
     public void test() {
         final Producer producer = new Producer();
         final Customer customer = new Customer();
-        producerExecutor.execute(producer);
-        customerExecutor.execute(customer);
+        producer.start();
+        customer.start();
+//        producerExecutor.execute(producer);
+//        customerExecutor.execute(customer);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //shutdown只会停止ExecutorService接受新的task 如果在shutdown后继续添加task
-                //线程会抛出RejectedExecutionException异常
-                //shutdownNow方法的作用是向所有执行中的线程发出interrupted以中止线程的运行
-                //线程会抛出InterruptedException异常
-                //在这个例子中刚好用于跳出循环
                 producer.terminate();
             }
         }, 10000);
@@ -56,6 +53,7 @@ public class ProducerCustomerTerminateDemo {
                            "Customer take, channel size = " + channel.size());
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Log.e(TAG, "InterruptedException = " + e.getMessage());
             }
         }
 
@@ -82,6 +80,7 @@ public class ProducerCustomerTerminateDemo {
                            "Producer put, channel size = " + channel.size());
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Log.e(TAG, "InterruptedException = " + e.getMessage());
             }
         }
 

@@ -5,14 +5,18 @@ package com.example.algorithms.multiple_thread.twoPhase_termination;
  */
 
 public abstract class AbstractTerminableThread extends Thread implements Terminable {
-    private final TerminationToken token = new TerminationToken();
+    protected final TerminationToken token = new TerminationToken();
+
+    public AbstractTerminableThread() {
+        token.register(this);
+    }
 
     @Override
     public void run() {
         Exception ex = null;
         try {
             for (; ; ) {
-                if (token.isToShutdown() && token.reservations.get() <= 0) {
+                if (token.isToShutdown()) {
                     break;
                 }
                 doRun();
@@ -44,9 +48,7 @@ public abstract class AbstractTerminableThread extends Thread implements Termina
         try {
             doTerminate();
         } finally {
-            if (token.reservations.get() <= 0) {
-                super.interrupt();
-            }
+            super.interrupt();
         }
     }
 }
