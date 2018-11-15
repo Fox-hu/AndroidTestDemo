@@ -1,21 +1,26 @@
-package com.example.algorithms.multiple_thread.twoPhase_termination;
+package com.example.algorithms.multiple_thread.two_phase_termination;
 
 import java.lang.ref.WeakReference;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by fox.hu on 2018/11/12.
+ * Created by fox.hu on 2018/11/15.
  */
 
-public class TerminationToken {
-
-    volatile boolean toShutdown = false;
+public class TerminateToken {
+    private static final String TAG = TerminateToken.class.getSimpleName();
 
     private final Queue<WeakReference<Terminable>> coordinatedThreads;
 
-    public TerminationToken() {
-        coordinatedThreads = new ConcurrentLinkedQueue<WeakReference<Terminable>>();
+    volatile boolean toShutdown = false;
+
+    public final AtomicInteger reservations = new AtomicInteger(0);
+
+
+    public TerminateToken() {
+        this.coordinatedThreads = new ConcurrentLinkedQueue<>();
     }
 
     public boolean isToShutdown() {
@@ -30,7 +35,7 @@ public class TerminationToken {
         coordinatedThreads.add(new WeakReference<>(thread));
     }
 
-    public void notifyThreadTermination(Terminable thread) {
+    protected void notifyThreadTermination(Terminable thread) {
         WeakReference<Terminable> wrThread;
         Terminable otherThread;
         while (null != (wrThread = coordinatedThreads.poll())) {

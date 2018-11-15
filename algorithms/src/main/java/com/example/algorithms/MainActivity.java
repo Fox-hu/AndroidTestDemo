@@ -23,7 +23,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.algorithms.multiple_thread.twoPhase_termination.ProducerCustomerTerminate;
+import com.example.algorithms.multiple_thread.producer_customer.PCTerminatableDemo;
 
 /**
  * An {@link Activity} that gets a text string from the user and displays it back when the user
@@ -50,7 +50,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mTextView = (TextView) findViewById(R.id.textToBeChanged);
         mEditText = (EditText) findViewById(R.id.editTextUserInput);
 
-        new ProducerCustomerTerminate().test();
+        PCTerminatableDemo.test();
     }
 
     @Override

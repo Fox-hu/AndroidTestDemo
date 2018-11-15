@@ -32,7 +32,7 @@ public class ProducerCustomerExecutor {
                 //在这个例子中刚好用于跳出循环
                 producerExecutor.shutdownNow();
             }
-        },10000);
+        }, 10000);
 
     }
 
@@ -46,7 +46,7 @@ public class ProducerCustomerExecutor {
                     channel.take();
                     Log.e(TAG, "current thread = " + Thread.currentThread() +
                                "Customer take, channel size = " + channel.size());
-                } catch (InterruptedException  e) {
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                     break;
                 }
@@ -64,7 +64,7 @@ public class ProducerCustomerExecutor {
                     channel.put(1);
                     Log.e(TAG, "current thread = " + Thread.currentThread() +
                                "Producer put, channel size = " + channel.size());
-                } catch (InterruptedException  e) {
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                     break;
                 }
