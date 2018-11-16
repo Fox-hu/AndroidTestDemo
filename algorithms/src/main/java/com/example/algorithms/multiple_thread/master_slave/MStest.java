@@ -82,6 +82,8 @@ public class MStest {
             final int subTasksCount = (0 == (originalTaskScale % slaveNum))
                                       ? slaveNum
                                       : slaveNum + 1;
+            Log.e(TAG, "slaveNum = " + slaveNum + "originalTaskScale = " + originalTaskScale +
+                       "subTaskScale = " + subTaskScale + "subTasksCount = " + subTasksCount);
 
             final TaskDivideStrategy<Range> tds = new TaskDivideStrategy<Range>() {
                 private int i = 1;
@@ -99,6 +101,7 @@ public class MStest {
 
                     int lowerBound = (i - 1) * subTaskScale + 1;
                     i++;
+                    Log.e(TAG, "new range, lower = " + lowerBound + "upper = " + upperBound);
                     return new Range(lowerBound, upperBound);
                 }
             };
@@ -129,6 +132,7 @@ public class MStest {
             //从start开始，寻找下一个质数，如果相等则记录并重置start，超过end范围则跳出循环
             while (-1 == (start = start.nextProbablePrime()).compareTo(end)) {
                 result.add(start);
+                Log.e(TAG, "threadName = " + Thread.currentThread().getName() + "ret = " + start);
             }
             return result;
         }
