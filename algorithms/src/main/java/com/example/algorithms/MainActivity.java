@@ -23,7 +23,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.algorithms.multiple_thread.producer_customer.PCTerminatableDemo;
+import com.example.algorithms.multiple_thread.master_slave.MStest;
 
 /**
  * An {@link Activity} that gets a text string from the user and displays it back when the user
@@ -50,7 +50,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mTextView = (TextView) findViewById(R.id.textToBeChanged);
         mEditText = (EditText) findViewById(R.id.editTextUserInput);
 
-        PCTerminatableDemo.test();
+//        PCTerminatableDemo.test();
+        try {
+            new MStest().test();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
