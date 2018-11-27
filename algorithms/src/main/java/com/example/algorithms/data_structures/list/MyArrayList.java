@@ -1,4 +1,4 @@
-package com.example.algorithms.data_structures;
+package com.example.algorithms.data_structures.list;
 
 import android.support.annotation.NonNull;
 
