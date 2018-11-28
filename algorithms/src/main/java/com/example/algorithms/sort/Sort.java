@@ -43,12 +43,20 @@ public class Sort {
         }
     }
 
+    //线性复杂度实现的随机打乱 洗牌功能
+    public static void shuffle(Object[] input) {
+        for (int i = 0; i < input.length; i++) {
+            int r = (int) (Math.random() * (i + 1));
+            swap(input, i, r);
+        }
+    }
+
     public static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;
     }
 
-    public static void swap(Comparable[] a, int i, int j) {
-        Comparable t = a[i];
+    public static void swap(Object[] a, int i, int j) {
+        Object t = a[i];
         a[i] = a[j];
         a[j] = t;
     }
