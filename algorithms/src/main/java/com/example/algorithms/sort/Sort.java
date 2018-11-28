@@ -5,6 +5,27 @@ package com.example.algorithms.sort;
  */
 
 public class Sort {
+
+    public static void SelectionSort(Comparable[] input) {
+        for (int i = 0; i < input.length; i++) {
+            for (int j = i + 1; j < input.length; j++) {
+                if (less(input[j], input[i])) {
+                    swap(input, i, j);
+                }
+            }
+        }
+    }
+
+    public static void InsertSort(Comparable[] input) {
+        for (int i = 0; i < input.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (less(input[j], input[j - 1])) {
+                    swap(input, j, j - 1);
+                }
+            }
+        }
+    }
+
     public static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;
     }
