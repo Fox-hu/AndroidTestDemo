@@ -39,4 +39,12 @@ public class SortTest {
             System.out.println(integer);
         }
     }
+
+    @Test
+    public void quickSort() throws Exception {
+        QuickSort.sort(integers);
+        for (Integer integer : integers) {
+            System.out.println(integer);
+        }
+    }
 }
