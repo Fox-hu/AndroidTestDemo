@@ -14,6 +14,8 @@ public class QuickSort {
         if (hi <= lo) {
             return;
         }
+        //1 寻找切分点 切分点的要点在于 在切分点的左侧 都比它小 在切分点的右侧 都比它大
+        //2 递归的进行
         int partition = partition(a, lo, hi);
         sort(a, lo, partition - 1);
         sort(a, partition + 1, hi);
