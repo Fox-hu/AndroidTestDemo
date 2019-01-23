@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class LagouActivity extends AppCompatActivity {
+public class SerachAppBarActivity extends AppCompatActivity {
 
     private FrameLayout frameLayout;
     private CollapsingToolbarLayout collapsingToolbarLayout;
@@ -72,7 +72,7 @@ public class LagouActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lagou);
+        setContentView(R.layout.activity_search_appbar);
 
         searchBarInToolbarHeight = getResources().getDimension(R.dimen.search_bar_height_in_toolbar);
         toolbarHeight = getResources().getDimension(R.dimen.tool_bar_height);

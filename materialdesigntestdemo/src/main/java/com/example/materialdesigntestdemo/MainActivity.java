@@ -10,7 +10,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.CollapsingNormalActivity;
-import com.example.materialdesigntestdemo.collapsingToolbarLayout.LagouActivity;
+import com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemoActivity;
+import com.example.materialdesigntestdemo.collapsingToolbarLayout.LagouDemoActivity;
+import com.example.materialdesigntestdemo.collapsingToolbarLayout.SerachAppBarActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.ScrollingActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.SearchActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.WebViewCollapsingTestActivity;
@@ -51,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
         activityMap.put("CollapsingNormalActivity", CollapsingNormalActivity.class);
         activityMap.put("ScrollingActivity", ScrollingActivity.class);
         activityMap.put("SearchActivity", SearchActivity.class);
-        activityMap.put("LagouActivity", LagouActivity.class);
+        activityMap.put("SerachAppBarActivity", SerachAppBarActivity.class);
+        activityMap.put("LagouDemoActivity", LagouDemoActivity.class);
+        activityMap.put("JobDemoActivity", JobDemoActivity.class);
         activityMap.put("WebViewCollapsingTestActivity", WebViewCollapsingTestActivity.class);
     }
-
-
 }

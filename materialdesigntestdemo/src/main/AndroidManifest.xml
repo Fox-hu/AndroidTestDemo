@@ -38,9 +38,20 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".collapsingToolbarLayout.LagouActivity"
+            android:name=".collapsingToolbarLayout.SerachAppBarActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
+
+        <activity
+            android:name=".collapsingToolbarLayout.LagouDemoActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity >
+
+        <activity
+            android:name=".collapsingToolbarLayout.JobDemoActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity >
+
         <activity
             android:name=".collapsingToolbarLayout.WebViewCollapsingTestActivity"
             android:theme="@style/AppTheme.NoActionBar" >
