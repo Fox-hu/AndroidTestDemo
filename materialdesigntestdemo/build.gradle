@@ -32,5 +32,5 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.android.support:support-core-ui:26.1.0'
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+//    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
 }
