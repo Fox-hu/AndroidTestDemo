@@ -2,7 +2,6 @@ package com.example.materialdesigntestdemo.collapsingToolbarLayout;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -12,7 +11,7 @@ import android.view.View;
  * Created by fox on 2018/1/28.
  */
 
-public class NestedScrollBehavior extends AppBarLayout.ScrollingViewBehavior {
+public class NestedScrollBehavior extends CoordinatorLayout.Behavior<View> {
     private static final String TAG = NestedScrollBehavior.class.getSimpleName();
 
     public NestedScrollBehavior(Context context, AttributeSet attrs) {
@@ -25,4 +24,6 @@ public class NestedScrollBehavior extends AppBarLayout.ScrollingViewBehavior {
         super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type);
         Log.e(TAG, " dx = " + dx + " dy = " + dy);
     }
+
+
 }

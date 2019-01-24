@@ -53,6 +53,11 @@
         </activity >
 
         <activity
+            android:name=".collapsingToolbarLayout.JobDemo1Activity"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity >
+
+        <activity
             android:name=".collapsingToolbarLayout.WebViewCollapsingTestActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >

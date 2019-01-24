@@ -10,11 +10,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.CollapsingNormalActivity;
+import com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo1Activity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemoActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.LagouDemoActivity;
-import com.example.materialdesigntestdemo.collapsingToolbarLayout.SerachAppBarActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.ScrollingActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.SearchActivity;
+import com.example.materialdesigntestdemo.collapsingToolbarLayout.SerachAppBarActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.WebViewCollapsingTestActivity;
 
 import java.util.ArrayList;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         activityMap.put("SerachAppBarActivity", SerachAppBarActivity.class);
         activityMap.put("LagouDemoActivity", LagouDemoActivity.class);
         activityMap.put("JobDemoActivity", JobDemoActivity.class);
+        activityMap.put("JobDemo1Activity", JobDemo1Activity.class);
         activityMap.put("WebViewCollapsingTestActivity", WebViewCollapsingTestActivity.class);
     }
 }
