@@ -3,8 +3,10 @@ package com.example.materialdesigntestdemo.collapsingToolbarLayout;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
 
@@ -12,10 +14,22 @@ import com.example.materialdesigntestdemo.R;
 
 
 public class CollapsingNormalActivity extends AppCompatActivity {
+    private static final String TAG = CollapsingNormalActivity.class.getSimpleName();
 
     private ImageView iv;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private Toolbar toolbar;
+    private NestedScrollView nestedScrollView;
+
+    private NestedScrollView.OnScrollChangeListener nestedScrollListener = new NestedScrollView.OnScrollChangeListener() {
+        @Override
+        public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX,
+                int oldScrollY) {
+            Log.e(TAG, "NestedScrollView onScrollChange ," + "getMaxScrollAmount = " +
+                       v.getMaxScrollAmount() + "scrollX = " + scrollX + "scrollY = " + scrollY +
+                       "oldScrollX = " + oldScrollX + "oldScrollY = " + oldScrollY);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +37,7 @@ public class CollapsingNormalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_collapsing_normal);
 
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
+        nestedScrollView = findViewById(R.id.nested_scrollview);
         iv = findViewById(R.id.iv);
         toolbar = findViewById(R.id.toolbar);
 
@@ -33,6 +48,7 @@ public class CollapsingNormalActivity extends AppCompatActivity {
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
 
         iv.setImageResource(R.mipmap.ic_bg);
+        nestedScrollView.setOnScrollChangeListener(nestedScrollListener);
     }
 
     @Override
