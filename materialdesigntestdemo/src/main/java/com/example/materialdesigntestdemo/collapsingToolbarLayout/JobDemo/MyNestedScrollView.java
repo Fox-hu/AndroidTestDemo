@@ -1,4 +1,4 @@
-package com.example.materialdesigntestdemo.collapsingToolbarLayout;
+package com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo;
 
 import android.content.Context;
 import android.support.v4.widget.NestedScrollView;

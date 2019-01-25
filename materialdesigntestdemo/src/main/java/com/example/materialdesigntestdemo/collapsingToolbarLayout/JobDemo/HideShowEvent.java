@@ -1,56 +1,68 @@
-package com.example.materialdesigntestdemo.collapsingToolbarLayout;
+package com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
-import android.support.design.widget.CoordinatorLayout;
-import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
-import com.example.materialdesigntestdemo.R;
-
 /**
- * Created by fox on 2018/1/28.
+ * Created by fox.hu on 2019/1/25.
  */
 
-public class HideHeadBehavior extends CoordinatorLayout.Behavior<View> {
-    private boolean isHeadHide = false;
+public enum HideShowEvent {
+    INSTANCE;
+
+    public boolean isAnimating() {
+        return isAnimating;
+    }
+
     private boolean isAnimating = false;
+    private static final String TAG = HideShowEvent.class.getSimpleName();
     private final int SCROOL_VALUE = 50;
-    private int childHeight;
+    private boolean isHeadHide = false;
     private final int animationDuration = 500;
 
-
-    public HideHeadBehavior(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public void setChildHeight(int childHeight) {
+        this.childHeight = childHeight;
     }
 
-    @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
-        if (target.getId() == R.id.rel_body) {
-            if (childHeight == 0) {
-                childHeight = child.getHeight();
-            }
-            return true;
-        } else {
-            return false;
-        }
+    private int childHeight;
+
+    public void setChild(View child) {
+        this.child = child;
     }
 
-    @Override
-    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dx, int dy, int[] consumed) {
-        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
-        if (isAnimating) {
-            return;
-        }
+    public void setTarget(View target) {
+        this.target = target;
+    }
+
+    private View child;
+    private View target;
+
+    public interface ScrollEventListener {
+        void onScrollDown();
+
+        void onScrollUp();
+    }
+
+    public void handleScrollAction(int dy, ScrollEventListener listener) {
         if (dy > SCROOL_VALUE && !isHeadHide) {
-            hide(child, target);
+            isHeadHide = true;
+            hide();
+            if (listener != null) {
+                Log.e(TAG, "onScrollUp");
+                listener.onScrollUp();
+            }
         } else if (dy < -SCROOL_VALUE && isHeadHide) {
-            show(child, target);
+            isHeadHide = false;
+            show();
+            if (listener != null) {
+                Log.e(TAG, "onScrollDown");
+                listener.onScrollDown();
+            }
         }
     }
 
-    public void hide(final View child, final View target) {
-        isHeadHide = true;
+    public void hide() {
         ValueAnimator valueAnimator = new ValueAnimator();
         valueAnimator.setIntValues(0, childHeight);
         valueAnimator.setDuration(animationDuration);
@@ -59,17 +71,18 @@ public class HideHeadBehavior extends CoordinatorLayout.Behavior<View> {
             public void onAnimationUpdate(ValueAnimator animation) {
                 if (child.getBottom() > 0) {
                     int value = (int) animation.getAnimatedValue();
+                    Log.e(TAG, "hide top getAnimatedValue = " + value);
                     isAnimating = value != childHeight;
                     child.layout(child.getLeft(), -value, child.getRight(), -value + childHeight);
-                    target.layout(target.getLeft(), -value + childHeight, target.getRight(), target.getBottom());
+                    target.layout(target.getLeft(), -value + childHeight, target.getRight(),
+                            target.getBottom());
                 }
             }
         });
         valueAnimator.start();
     }
 
-    public void show(final View child, final View target) {
-        isHeadHide = false;
+    public void show() {
         ValueAnimator valueAnimator = new ValueAnimator();
         valueAnimator.setIntValues(0, childHeight);
         valueAnimator.setDuration(animationDuration);
@@ -78,6 +91,7 @@ public class HideHeadBehavior extends CoordinatorLayout.Behavior<View> {
             public void onAnimationUpdate(ValueAnimator animation) {
                 if (child.getBottom() < childHeight) {
                     int value = (int) animation.getAnimatedValue();
+                    Log.e(TAG, "show getAnimatedValue = " + value);
                     isAnimating = value != childHeight;
                     child.layout(child.getLeft(), value - childHeight, child.getRight(), value);
                     target.layout(target.getLeft(), value, target.getRight(), target.getBottom());

@@ -12,29 +12,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />-->
 
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
     <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         >
 
-        <View
+        <com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo.MyNestedScrollView1
             android:id="@+id/rel_head"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@color/colorAccent"
-            app:layout_behavior="com.example.materialdesigntestdemo.collapsingToolbarLayout.HideHeadBehavior" />
+            app:layout_behavior="com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo.HideHeadBehavior" />
 
-        <View
+        <LinearLayout
             android:id="@+id/rel_body"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="200dp"
             android:background="@color/colorPrimaryDark"
-            android:scrollbars="none"
-            app:layout_behavior="com.example.materialdesigntestdemo.collapsingToolbarLayout.TouchBehavior"
+            android:orientation="vertical"
+            app:layout_behavior="com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo.TouchBehavior"
             >
 
             <!--            <LinearLayout
@@ -57,9 +72,8 @@
 
                         </LinearLayout >-->
 
-        </View >
+        </LinearLayout >
 
     </android.support.design.widget.CoordinatorLayout >
-<!--</com.scwang.smartrefresh.layout.SmartRefreshLayout >-->
-
-
+</LinearLayout >
+    <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout >-->

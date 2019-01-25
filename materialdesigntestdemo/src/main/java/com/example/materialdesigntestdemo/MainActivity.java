@@ -10,8 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.CollapsingNormalActivity;
-import com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo1Activity;
-import com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemoActivity;
+import com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo.JobDemo1Activity;
+import com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo.JobDemoActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.LagouDemoActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.ScrollingActivity;
 import com.example.materialdesigntestdemo.collapsingToolbarLayout.SearchActivity;

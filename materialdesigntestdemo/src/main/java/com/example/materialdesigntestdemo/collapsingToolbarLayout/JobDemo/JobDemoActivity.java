@@ -1,4 +1,4 @@
-package com.example.materialdesigntestdemo.collapsingToolbarLayout;
+package com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo;
 
 import android.animation.ObjectAnimator;
 import android.graphics.Rect;
