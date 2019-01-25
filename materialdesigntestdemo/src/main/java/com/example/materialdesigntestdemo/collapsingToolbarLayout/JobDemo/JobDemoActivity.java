@@ -59,7 +59,7 @@ public class JobDemoActivity extends AppCompatActivity {
                 Log.e(TAG, "up");
                 if (!nestedVisible) {
                     //如果nestedscorllview不可见则移动到屏幕中央
-                    moveNestedToScreenMid();
+
                 }
                 Log.e(TAG, "appBarLayout Expanded");
 //                handler.sendEmptyMessage(1);
