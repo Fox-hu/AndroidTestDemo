@@ -1,6 +1,5 @@
 package com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo;
 
-import android.animation.ObjectAnimator;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +22,6 @@ import com.example.materialdesigntestdemo.R;
 
 public class JobDemoActivity extends AppCompatActivity {
     private static final String TAG = JobDemoActivity.class.getSimpleName();
-    private ObjectAnimator inAnimator;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private Toolbar toolbar;
     private AppBarLayout appBarLayout;
@@ -59,7 +57,6 @@ public class JobDemoActivity extends AppCompatActivity {
                 Log.e(TAG, "up");
                 if (!nestedVisible) {
                     //如果nestedscorllview不可见则移动到屏幕中央
-
                 }
                 Log.e(TAG, "appBarLayout Expanded");
 //                handler.sendEmptyMessage(1);
@@ -124,7 +121,6 @@ public class JobDemoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_demo);
-
 
         collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
         toolbar = findViewById(R.id.toolbar);

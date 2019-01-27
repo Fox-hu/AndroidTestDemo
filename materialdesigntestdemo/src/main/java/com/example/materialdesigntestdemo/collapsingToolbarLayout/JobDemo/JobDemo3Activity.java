@@ -24,9 +24,7 @@ public class JobDemo3Activity extends AppCompatActivity {
     private ImageView head;
     private String[] data = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i"};
     private boolean isShow = true;
-    private boolean isMid = true;
     private volatile boolean isScrollStop = false;
-    private final Object object = new Object();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,14 +84,13 @@ public class JobDemo3Activity extends AppCompatActivity {
             //                    }
             //                }
             //            }
-            Log.e(TAG, "low NestedScrollView onScrollChange ," + " getMaxScrollAmount = " +
+            Log.e(TAG, "NestedScrollView onScrollChange ," + " getMaxScrollAmount = " +
                        v.getMaxScrollAmount() + " scrollX = " + scrollX + " scrollY = " + scrollY +
                        " oldScrollX = " + oldScrollX + " oldScrollY = " + oldScrollY);
 
-            if (!Utils.isVisible(rv) && isMid) {
+            if (scrollY - oldScrollY > 0 && !Utils.isVisible(rv) && isScrollStop) {
                 Log.e(TAG, "onscrollmid");
                 isScrollStop = false;
-                isMid = false;
                 nestedScrollView.scrollTo(0, 2000);
                 return;
             }
@@ -105,17 +102,18 @@ public class JobDemo3Activity extends AppCompatActivity {
                 //                linearLayout.removeView(head);
                 head.animate().setDuration(500).translationY(-head.getHeight());
                 rv.animate().setDuration(500).translationY(-head.getHeight());
-//                ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
-//                layoutParams.height -= head.getHeight();
-//                linearLayout.setLayoutParams(layoutParams);
+                //todo 将父布局的底部提上去 要不nestedScrollView.scrollTo(0, 2000)会调用
+                //                ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+                //                layoutParams.height -= head.getHeight();
+                //                linearLayout.setLayoutParams(layoutParams);
                 //                nestedScrollView.scrollTo(0, -rv.getHeight());
-            } else if (scrollY - oldScrollY < 0 && !isShow) {
+            } else if (scrollY - oldScrollY < 0 && !isShow && isScrollStop) {
                 isScrollStop = false;
                 Log.e(TAG, "onscrolldown");
                 isShow = true;
-//                linearLayout.addView(head, 0);
-//                head.animate().setDuration(500).translationY(0);
-//                rv.animate().setDuration(500).translationY(0);
+                //                linearLayout.addView(head, 0);
+//                                head.animate().setDuration(500).translationY(0);
+//                                rv.animate().setDuration(500).translationY(0);
             }
         }
 
