@@ -24,7 +24,7 @@ public class JobDemo3Activity extends AppCompatActivity {
     private ImageView head;
     private String[] data = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i"};
     private boolean isShow = true;
-    private volatile boolean isScrollStop = false;
+    private volatile boolean isScrollStop = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class JobDemo3Activity extends AppCompatActivity {
                     public void run() {
                         isScrollStop = true;
                     }
-                }, 500);
+                }, 1000);
             }
         });
 
@@ -89,9 +89,8 @@ public class JobDemo3Activity extends AppCompatActivity {
                        " oldScrollX = " + oldScrollX + " oldScrollY = " + oldScrollY);
 
             if (scrollY - oldScrollY > 0 && !Utils.isVisible(rv) && isScrollStop) {
-                Log.e(TAG, "onscrollmid");
-                isScrollStop = false;
-                nestedScrollView.scrollTo(0, 2000);
+                Log.e(TAG, "bringToMid");
+                bringToMid();
                 return;
             }
 
@@ -99,27 +98,38 @@ public class JobDemo3Activity extends AppCompatActivity {
                 isShow = false;
                 isScrollStop = false;
                 Log.e(TAG, "onscrollup");
-                //                linearLayout.removeView(head);
-                head.animate().setDuration(500).translationY(-head.getHeight());
-                rv.animate().setDuration(500).translationY(-head.getHeight());
-                //todo 将父布局的底部提上去 要不nestedScrollView.scrollTo(0, 2000)会调用
-                //                ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
-                //                layoutParams.height -= head.getHeight();
-                //                linearLayout.setLayoutParams(layoutParams);
-                //                nestedScrollView.scrollTo(0, -rv.getHeight());
+                hideHead();
+
             } else if (scrollY - oldScrollY < 0 && !isShow && isScrollStop) {
                 isScrollStop = false;
                 Log.e(TAG, "onscrolldown");
                 isShow = true;
-                //                linearLayout.addView(head, 0);
-//                                head.animate().setDuration(500).translationY(0);
-//                                rv.animate().setDuration(500).translationY(0);
+                showHead();
             }
         }
 
     };
 
+    private void showHead() {
+        //TODO 微信效果
+        //                                head.animate().setDuration(500).translationY(0);
+        //                                rv.animate().setDuration(500).translationY(0);
+    }
 
+    public void bringToMid() {
+        isScrollStop = false;
+        nestedScrollView.scrollTo(0, 2000);
+    }
+
+    public void hideHead() {
+        //todo 将父布局的底部提上去 要不nestedScrollView.scrollTo(0, 2000)会漏出底部一块内容
+        //        Slide slide = new Slide(Gravity.TOP);
+        //        slide.setDuration(1000);
+        //        TransitionManager.beginDelayedTransition(linearLayout,slide);
+        //        head.setVisibility(View.GONE);
+        head.animate().setDuration(500).translationY(-head.getHeight());
+        rv.animate().setDuration(500).translationY(-head.getHeight());
+    }
     //    @Override
     //    protected void onResume() {
     //        super.onResume();
