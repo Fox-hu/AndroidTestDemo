@@ -10,7 +10,7 @@ import android.view.MotionEvent;
  */
 
 public class MyNestedScrollView1 extends NestedScrollView {
-    private static final String TAG = MyNestedScrollView.class.getSimpleName();
+    private static final String TAG = MyNestedScrollView1.class.getSimpleName();
     private float ox;
     private float oy;
     private int mLastY;

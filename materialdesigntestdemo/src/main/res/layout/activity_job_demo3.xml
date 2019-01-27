@@ -27,7 +27,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"/>
 
-        <android.support.v4.widget.NestedScrollView
+        <com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo.MyNestedScrollView2
             android:id="@+id/nested_scrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,8 +37,9 @@
             <LinearLayout
                 android:id="@+id/ll_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
+                android:background="@color/colorAccent"
                 android:orientation="vertical" >
 
                 <ImageView
@@ -54,7 +55,7 @@
 
             </LinearLayout >
 
-        </android.support.v4.widget.NestedScrollView >
+        </com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo.MyNestedScrollView2 >
     </LinearLayout >
 </com.scwang.smartrefresh.layout.SmartRefreshLayout >
 
