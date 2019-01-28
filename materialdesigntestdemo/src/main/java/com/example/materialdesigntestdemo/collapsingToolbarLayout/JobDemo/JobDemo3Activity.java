@@ -25,6 +25,7 @@ public class JobDemo3Activity extends AppCompatActivity {
     private volatile boolean isScrollStop = true;
     private int headHeight = Utils.dip2px(InitApp.sContext, 1000);
     private boolean isAnimating = false;
+    private int oldscrollY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class JobDemo3Activity extends AppCompatActivity {
                     public void run() {
                         isScrollStop = true;
                     }
-                }, 2000);
+                }, 1000);
             }
         });
 
@@ -77,28 +78,29 @@ public class JobDemo3Activity extends AppCompatActivity {
             //                    }
             //                }
             //            }
-            //            Log.e(TAG, "NestedScrollView onScrollChange ," + " getMaxScrollAmount = " +
-            //                       v.getMaxScrollAmount() + " scrollX = " + scrollX + " scrollY = " + scrollY +
-            //                       " oldScrollX = " + oldScrollX + " oldScrollY = " + oldScrollY);
+            Log.e(TAG, "NestedScrollView onScrollChange ," + " getMaxScrollAmount = " +
+                       v.getMaxScrollAmount() + " scrollX = " + scrollX + " scrollY = " + scrollY +
+                       " oldScrollX = " + oldScrollX + " oldScrollY = " + oldScrollY);
 
-            if (scrollY - oldScrollY > 0 && !Utils.isVisible(rv) && isScrollStop) {
-                Log.e(TAG, "bringToMid");
+            if (scrollY - oldscrollY > 0 && !Utils.isVisible(rv) && !isAnimating) {
+                isScrollStop = false;
+                Log.e(TAG, "ScrollEvent bringToMid");
                 bringToMid();
                 return;
             }
 
-            if (scrollY - oldScrollY > 0 && isShow && isScrollStop) {
+            if (scrollY - oldscrollY > 0 && isShow && !isAnimating && isScrollStop) {
+                isScrollStop = false;
                 isShow = false;
-                isScrollStop = false;
-                Log.e(TAG, "onscrollup");
+                Log.e(TAG, "ScrollEvent onscrollup");
                 hideHead();
-
-            } else if (scrollY - oldScrollY < 0 && !isShow && isScrollStop) {
+            } else if (scrollY - oldscrollY < 0 && !isShow && !isAnimating && isScrollStop) {
                 isScrollStop = false;
-                Log.e(TAG, "onscrolldown");
                 isShow = true;
+                Log.e(TAG, "ScrollEvent onscrolldown");
                 showHead();
             }
+            oldscrollY = scrollY;
         }
 
     };
@@ -140,7 +142,7 @@ public class JobDemo3Activity extends AppCompatActivity {
         }
         ValueAnimator valueAnimator = new ValueAnimator();
         valueAnimator.setIntValues(0, 2000);
-        valueAnimator.setDuration(500);
+        valueAnimator.setDuration(1000);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -184,7 +186,7 @@ public class JobDemo3Activity extends AppCompatActivity {
         }
         ValueAnimator valueAnimator = new ValueAnimator();
         valueAnimator.setIntValues(0, 1500);
-        valueAnimator.setDuration(500);
+        valueAnimator.setDuration(1000);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
