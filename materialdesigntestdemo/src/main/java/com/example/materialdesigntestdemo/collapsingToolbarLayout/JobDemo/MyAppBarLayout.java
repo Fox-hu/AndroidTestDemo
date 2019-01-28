@@ -9,6 +9,18 @@ import android.util.AttributeSet;
  */
 
 public class MyAppBarLayout extends AppBarLayout {
+    private static final String TAG = MyAppBarLayout.class.getSimpleName();
+    private State mCurrentState = State.IDLE;
+    private AppBarStateListener stateListener;
+
+    public void setStateListener(AppBarStateListener stateListener) {
+        this.stateListener = stateListener;
+    }
+
+
+    protected interface AppBarStateListener {
+        void onStateChanged(AppBarLayout appBarLayout, State idle);
+    }
 
     public MyAppBarLayout(Context context) {
         super(context);
@@ -24,36 +36,30 @@ public class MyAppBarLayout extends AppBarLayout {
         EXPANDED, COLLAPSED, IDLE
     }
 
-    private State mCurrentState = State.IDLE;
+    public State getCurrentState() {
+        return mCurrentState;
+    }
+
 
     private OnOffsetChangedListener listener = new OnOffsetChangedListener() {
         @Override
         public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+            if (stateListener == null) {
+                return;
+            }
+
             if (verticalOffset == 0) {
-                if (mCurrentState != State.EXPANDED) {
-                    onStateChanged(appBarLayout, State.EXPANDED);
-                }
+                stateListener.onStateChanged(appBarLayout, State.EXPANDED);
                 mCurrentState = State.EXPANDED;
             } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
-                if (mCurrentState != State.COLLAPSED) {
-                    onStateChanged(appBarLayout, State.COLLAPSED);
-                }
+                stateListener.onStateChanged(appBarLayout, State.COLLAPSED);
                 mCurrentState = State.COLLAPSED;
             } else {
-                if (mCurrentState != State.IDLE) {
-                    onStateChanged(appBarLayout, State.IDLE);
-                }
+                stateListener.onStateChanged(appBarLayout, State.IDLE);
                 mCurrentState = State.IDLE;
             }
         }
     };
 
-    protected void onStateChanged(AppBarLayout appBarLayout, State idle) {
 
-    }
-
-    @Override
-    public void setExpanded(boolean expanded, boolean animate) {
-        super.setExpanded(expanded, animate);
-    }
 }

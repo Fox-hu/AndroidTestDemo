@@ -1,19 +1,18 @@
 package com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.materialdesigntestdemo.InitApp;
 import com.example.materialdesigntestdemo.R;
 import com.example.materialdesigntestdemo.Utils;
-
-import java.util.Arrays;
 
 
 public class JobDemo3Activity extends AppCompatActivity {
@@ -22,9 +21,10 @@ public class JobDemo3Activity extends AppCompatActivity {
     private RecyclerView rv;
     private LinearLayout linearLayout;
     private ImageView head;
-    private String[] data = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i"};
     private boolean isShow = true;
     private volatile boolean isScrollStop = true;
+    private int headHeight = Utils.dip2px(InitApp.sContext, 1000);
+    private boolean isAnimating = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +45,12 @@ public class JobDemo3Activity extends AppCompatActivity {
                     public void run() {
                         isScrollStop = true;
                     }
-                }, 1000);
+                }, 2000);
             }
         });
 
         rv = findViewById(R.id.rv_content);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setSmoothScrollbarEnabled(true);
-        layoutManager.setAutoMeasureEnabled(true);
-
-        rv.setLayoutManager(layoutManager);
-        rv.setHasFixedSize(true);
-        rv.setNestedScrollingEnabled(false);
-        rv.setAdapter(new NormalAdapter(Arrays.asList(data)));
+        Utils.setRv(rv, this);
     }
 
     private NestedScrollView.OnScrollChangeListener scrollChangeListener = new NestedScrollView.OnScrollChangeListener() {
@@ -84,9 +77,9 @@ public class JobDemo3Activity extends AppCompatActivity {
             //                    }
             //                }
             //            }
-            Log.e(TAG, "NestedScrollView onScrollChange ," + " getMaxScrollAmount = " +
-                       v.getMaxScrollAmount() + " scrollX = " + scrollX + " scrollY = " + scrollY +
-                       " oldScrollX = " + oldScrollX + " oldScrollY = " + oldScrollY);
+            //            Log.e(TAG, "NestedScrollView onScrollChange ," + " getMaxScrollAmount = " +
+            //                       v.getMaxScrollAmount() + " scrollX = " + scrollX + " scrollY = " + scrollY +
+            //                       " oldScrollX = " + oldScrollX + " oldScrollY = " + oldScrollY);
 
             if (scrollY - oldScrollY > 0 && !Utils.isVisible(rv) && isScrollStop) {
                 Log.e(TAG, "bringToMid");
@@ -111,33 +104,96 @@ public class JobDemo3Activity extends AppCompatActivity {
     };
 
     private void showHead() {
+        //        nestedScrollView.scrollTo(0, -headHeight);
         //TODO 微信效果
-        //                                head.animate().setDuration(500).translationY(0);
-        //                                rv.animate().setDuration(500).translationY(0);
+        //        head.animate().setDuration(500).translationY(0);
+        //        rv.animate().setDuration(500).translationY(0);
+
+        //动画效果
+        //        if (isAnimating) {
+        //            return;
+        //        }
+        //        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) head.getLayoutParams();
+        //        ValueAnimator valueAnimator = new ValueAnimator();
+        //        valueAnimator.setIntValues(0, headHeight);
+        //        valueAnimator.setDuration(500);
+        //        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        //            @Override
+        //            public void onAnimationUpdate(ValueAnimator animation) {
+        //                if (head.getBottom() < headHeight) {
+        //                    int value = (int) animation.getAnimatedValue();
+        //                    Log.e(TAG, "show getAnimatedValue = " + value + " head.getBottom() = " +
+        //                               head.getBottom() + " head.getTop()" + head.getTop());
+        //                    isAnimating = value != headHeight;
+        //                    params.height = value;
+        //                    head.setLayoutParams(params);
+        //                }
+        //            }
+        //        });
+        //        valueAnimator.start();
     }
 
     public void bringToMid() {
         isScrollStop = false;
-        nestedScrollView.scrollTo(0, 2000);
+        if (isAnimating) {
+            return;
+        }
+        ValueAnimator valueAnimator = new ValueAnimator();
+        valueAnimator.setIntValues(0, 2000);
+        valueAnimator.setDuration(500);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int value = (int) animation.getAnimatedValue();
+                isAnimating = value != 2000;
+                nestedScrollView.scrollTo(0, value);
+            }
+        });
+        valueAnimator.start();
     }
 
     public void hideHead() {
         //todo 将父布局的底部提上去 要不nestedScrollView.scrollTo(0, 2000)会漏出底部一块内容
-        //        Slide slide = new Slide(Gravity.TOP);
-        //        slide.setDuration(1000);
-        //        TransitionManager.beginDelayedTransition(linearLayout,slide);
-        //        head.setVisibility(View.GONE);
-        head.animate().setDuration(500).translationY(-head.getHeight());
-        rv.animate().setDuration(500).translationY(-head.getHeight());
+        //        head.animate().setDuration(500).translationY(-head.getHeight());
+        //        rv.animate().setDuration(500).translationY(-head.getHeight());
+
+        //        if (isAnimating) {
+        //            return;
+        //        }
+        //        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) head.getLayoutParams();
+        //        ValueAnimator valueAnimator = new ValueAnimator();
+        //        valueAnimator.setIntValues(0, headHeight);
+        //        valueAnimator.setDuration(500);
+        //        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        //            @Override
+        //            public void onAnimationUpdate(ValueAnimator animation) {
+        //                if (head.getBottom() > 0) {
+        //                    int value = (int) animation.getAnimatedValue();
+        //                    Log.e(TAG, "hide getAnimatedValue = " + value + " head.getBottom() = " +
+        //                               head.getBottom() + " head.getTop()" + head.getTop());
+        //                    isAnimating = value != headHeight;
+        //                    params.height = headHeight - value;
+        //                    head.setLayoutParams(params);
+        //                }
+        //            }
+        //        });
+        //        valueAnimator.start();
+
+        if (isAnimating) {
+            return;
+        }
+        ValueAnimator valueAnimator = new ValueAnimator();
+        valueAnimator.setIntValues(0, 1500);
+        valueAnimator.setDuration(500);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int value = (int) animation.getAnimatedValue();
+                isAnimating = value != 1500;
+                nestedScrollView.scrollTo(0, 2000 + value);
+            }
+        });
+        valueAnimator.start();
     }
-    //    @Override
-    //    protected void onResume() {
-    //        super.onResume();
-    //        new Handler().postDelayed(new Runnable() {
-    //            @Override
-    //            public void run() {
-    //                nestedScrollView.smoothScrollTo(0, 2000);
-    //            }
-    //        }, 5000);
-    //    }
+
 }

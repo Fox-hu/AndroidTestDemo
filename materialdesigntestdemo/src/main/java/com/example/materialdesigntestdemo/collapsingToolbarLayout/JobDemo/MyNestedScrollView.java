@@ -12,23 +12,6 @@ import android.view.MotionEvent;
 
 public class MyNestedScrollView extends NestedScrollView {
     private static final String TAG = MyNestedScrollView.class.getSimpleName();
-    private int mLastY;
-    private ScrollEventListener listener;
-    private ScrollType type = ScrollType.NORMAL;
-
-    private enum ScrollType {
-        UP, DOWN, NORMAL
-    }
-
-    public interface ScrollEventListener {
-        void onScrollDown();
-
-        void onScrollUp();
-    }
-
-    public void setScrollEventListener(ScrollEventListener listener) {
-        this.listener = listener;
-    }
 
     public MyNestedScrollView(Context context) {
         super(context);
@@ -44,49 +27,20 @@ public class MyNestedScrollView extends NestedScrollView {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        int y = (int) ev.getRawY();
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                type = ScrollType.NORMAL;
+                Log.e(TAG, "MyNestedScrollView MotionEvent.ACTION_DOWN");
                 break;
             case MotionEvent.ACTION_MOVE:
-                int deltaY = y - mLastY;
-                Log.e(TAG, " move,deltay = " + deltaY + " raw y = " + y + "mLastY" + mLastY);
-                if (deltaY < 0) {
-                    //上滑
-                    type = ScrollType.UP;
-                } else {
-                    //下滑
-                    type = ScrollType.DOWN;
-                }
+                Log.e(TAG, "MyNestedScrollView MotionEvent.ACTION_MOVE");
                 break;
             case MotionEvent.ACTION_UP:
-                handleScrollAction();
-                type = ScrollType.NORMAL;
+                Log.e(TAG, "MyNestedScrollView MotionEvent.ACTION_UP");
                 break;
             default:
                 break;
         }
-        mLastY = y;
         return super.onTouchEvent(ev);
     }
 
-    private void handleScrollAction() {
-        switch (type) {
-            case UP:
-                if (listener != null) {
-                    Log.e(TAG, "onScrollUp");
-                    listener.onScrollUp();
-                }
-                break;
-            case DOWN:
-                if (listener != null) {
-                    Log.e(TAG, "onScrollDown");
-                    listener.onScrollDown();
-                }
-                break;
-            default:
-                break;
-        }
-    }
 }
