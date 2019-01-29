@@ -27,7 +27,7 @@
             android:layout_height="50dp"
             android:background="@color/colorPrimary" />
 
-        <com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo.MyNestedScrollView2
+        <android.support.v4.widget.NestedScrollView
             android:id="@+id/nested_scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
 
             </LinearLayout >
 
-        </com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo.MyNestedScrollView2 >
+        </android.support.v4.widget.NestedScrollView>
     </LinearLayout >
 </com.scwang.smartrefresh.layout.SmartRefreshLayout >
 

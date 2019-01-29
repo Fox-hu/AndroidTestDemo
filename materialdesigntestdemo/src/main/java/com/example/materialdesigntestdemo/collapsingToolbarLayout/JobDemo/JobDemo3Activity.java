@@ -15,7 +15,7 @@ import com.example.materialdesigntestdemo.Utils;
 
 public class JobDemo3Activity extends AppCompatActivity {
     private static final String TAG = JobDemo3Activity.class.getSimpleName();
-    private MyNestedScrollView2 nestedScrollView;
+    private NestedScrollView nestedScrollView;
     private RecyclerView rv;
     private LinearLayout linearLayout;
     private ImageView head;
