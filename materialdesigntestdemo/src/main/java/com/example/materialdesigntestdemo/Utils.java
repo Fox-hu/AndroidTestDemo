@@ -30,6 +30,21 @@ public class Utils {
         rv.setAdapter(new NormalAdapter(Arrays.asList(Utils.data)));
     }
 
+    public static void setNoScrollRv(RecyclerView rv, Context context) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context,
+                LinearLayoutManager.VERTICAL, false) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        rv.setLayoutManager(linearLayoutManager);
+        rv.setHasFixedSize(true);
+        rv.setNestedScrollingEnabled(false);
+        rv.setAdapter(new NormalAdapter(Arrays.asList(Utils.data)));
+    }
+
+
     /**
      * 根据手机分辨率从DP转成PX
      *

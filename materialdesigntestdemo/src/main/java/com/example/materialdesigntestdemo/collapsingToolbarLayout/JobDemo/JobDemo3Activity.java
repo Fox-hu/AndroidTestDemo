@@ -9,7 +9,6 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.materialdesigntestdemo.InitApp;
 import com.example.materialdesigntestdemo.R;
 import com.example.materialdesigntestdemo.Utils;
 
@@ -20,10 +19,7 @@ public class JobDemo3Activity extends AppCompatActivity {
     private RecyclerView rv;
     private LinearLayout linearLayout;
     private ImageView head;
-    private boolean isShow = true;
-    private int headHeight = Utils.dip2px(InitApp.sContext, 1000);
     private boolean isAnimating = false;
-    private boolean isFingerUp = false;
     private int oldscrollY;
 
     @Override
@@ -44,47 +40,22 @@ public class JobDemo3Activity extends AppCompatActivity {
         @Override
         public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX,
                 int oldScrollY) {
-            //基本行为逻辑
-            //            if (scrollup()) {
-            //                if (header.isvisiable()) {
-            //                    if (!body.isvisiable()) {
-            //                        body.makeVisiable();
-            //                    } else {
-            //                        header.goneWithHead();
-            //                    }
-            //                } else {
-            //                    body.scroll();
-            //                }
-            //            } else {
-            //                if (header.isvisiable()) {
-            //                    body.scroll();
-            //                } else {
-            //                    if (scrollY > tY) {
-            //                        header.makeVisiable();
-            //                    }
-            //                }
-            //            }
-            Log.e(TAG,
-                    "NestedScrollView onScrollChange ,  scrollY = " + scrollY + " oldScrollY = " +
-                    oldScrollY + " preScrolly = " + oldscrollY);
 
-            //注意 y值可能会超过head的大小
-            if (scrollY - oldscrollY > 0 && !Utils.isVisible(rv) && !isAnimating) {
-                Log.e(TAG, "ScrollEvent bringToMid");
-                bringToMid();
-                oldscrollY = scrollY;
+            if (isAnimating) {
                 return;
             }
 
-            if (2000 + 200 < scrollY && scrollY < 3500 && scrollY - oldscrollY > 0 &&
-                !isAnimating) {
-                Log.e(TAG, "ScrollEvent onscrollup");
-                hideHead();
-            }
+            Log.e(TAG,"NestedScrollView onScrollChange ,  scrollY = " + scrollY + " oldScrollY = " +
+                    oldScrollY + " preScrolly = " + oldscrollY);
 
-            if (oldscrollY <= 3500 && scrollY - oldscrollY < 0  && !isAnimating) {
-                Log.e(TAG, "ScrollEvent onscrolldown");
-                showHead();
+            if (scrollY - oldscrollY > 0) {
+                if (0 <= scrollY && scrollY < 2000 && !Utils.isVisible(rv)) {
+                    Log.e(TAG, "ScrollEvent bringToMid");
+                    bringToMid();
+                } else if (2200 < scrollY && scrollY < 3500) {
+                    Log.e(TAG, "ScrollEvent hideHead");
+                    hideHead();
+                }
             }
             oldscrollY = scrollY;
         }
@@ -92,33 +63,7 @@ public class JobDemo3Activity extends AppCompatActivity {
     };
 
     private void showHead() {
-        //        nestedScrollView.scrollTo(0, -headHeight);
-        //TODO 微信效果
-        //        head.animate().setDuration(500).translationY(0);
-        //        rv.animate().setDuration(500).translationY(0);
 
-        //动画效果
-        //        if (isAnimating) {
-        //            return;
-        //        }
-        //        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) head.getLayoutParams();
-        //        ValueAnimator valueAnimator = new ValueAnimator();
-        //        valueAnimator.setIntValues(0, headHeight);
-        //        valueAnimator.setDuration(500);
-        //        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-        //            @Override
-        //            public void onAnimationUpdate(ValueAnimator animation) {
-        //                if (head.getBottom() < headHeight) {
-        //                    int value = (int) animation.getAnimatedValue();
-        //                    Log.e(TAG, "show getAnimatedValue = " + value + " head.getBottom() = " +
-        //                               head.getBottom() + " head.getTop()" + head.getTop());
-        //                    isAnimating = value != headHeight;
-        //                    params.height = value;
-        //                    head.setLayoutParams(params);
-        //                }
-        //            }
-        //        });
-        //        valueAnimator.start();
     }
 
     public void bringToMid() {
@@ -133,8 +78,11 @@ public class JobDemo3Activity extends AppCompatActivity {
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
+                int scrollY1 = nestedScrollView.getScrollY();
                 int value = (int) animation.getAnimatedValue();
-                Log.e(TAG, "bringToMid , animation value = " + value + " i = " + i);
+                Log.e(TAG,
+                        "bringToMid , animation value = " + value + " i = " + i + " scrollY1 = " +
+                        scrollY1 + " isAnimating = " + isAnimating);
                 nestedScrollView.scrollTo(0, scrollY + value);
                 isAnimating = value != i;
             }
@@ -143,32 +91,6 @@ public class JobDemo3Activity extends AppCompatActivity {
     }
 
     public void hideHead() {
-        //todo 将父布局的底部提上去 要不nestedScrollView.scrollTo(0, 2000)会漏出底部一块内容
-        //        head.animate().setDuration(500).translationY(-head.getHeight());
-        //        rv.animate().setDuration(500).translationY(-head.getHeight());
-
-        //        if (isAnimating) {
-        //            return;
-        //        }
-        //        final LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) head.getLayoutParams();
-        //        ValueAnimator valueAnimator = new ValueAnimator();
-        //        valueAnimator.setIntValues(0, headHeight);
-        //        valueAnimator.setDuration(500);
-        //        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-        //            @Override
-        //            public void onAnimationUpdate(ValueAnimator animation) {
-        //                if (head.getBottom() > 0) {
-        //                    int value = (int) animation.getAnimatedValue();
-        //                    Log.e(TAG, "hide getAnimatedValue = " + value + " head.getBottom() = " +
-        //                               head.getBottom() + " head.getTop()" + head.getTop());
-        //                    isAnimating = value != headHeight;
-        //                    params.height = headHeight - value;
-        //                    head.setLayoutParams(params);
-        //                }
-        //            }
-        //        });
-        //        valueAnimator.start();
-
         if (isAnimating) {
             return;
         }
@@ -181,7 +103,9 @@ public class JobDemo3Activity extends AppCompatActivity {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 int value = (int) animation.getAnimatedValue();
-                Log.e(TAG, "head hide , animation value = " + value + " i = " + i);
+                int scrollY1 = nestedScrollView.getScrollY();
+                Log.e(TAG, "head hide , animation value = " + value + " i = " + i + " scrollY1 = " +
+                           scrollY1 + " isAnimating = " + isAnimating);
                 nestedScrollView.scrollTo(0, scrollY + value);
                 isAnimating = value != i;
             }
