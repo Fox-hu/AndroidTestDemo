@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 
 /**
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 
 @SuppressLint("AppCompatCustomView")
 public class FitImageView extends ImageView {
+    private static final String TAG = FitImageView.class.getSimpleName();
 
     public FitImageView(Context context) {
         super(context);
@@ -30,6 +32,9 @@ public class FitImageView extends ImageView {
             int width = MeasureSpec.getSize(widthMeasureSpec);
             int height = (int) Math.ceil((float) width * (float) drawable.getIntrinsicHeight() /
                                          (float) drawable.getIntrinsicWidth());
+            Log.e(TAG, "width = " + width + " height = " + height + " getIntrinsicHeight = " +
+                       drawable.getIntrinsicHeight() + " getIntrinsicWidth = " +
+                       drawable.getIntrinsicWidth());
             setMeasuredDimension(width, height);
         } else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
