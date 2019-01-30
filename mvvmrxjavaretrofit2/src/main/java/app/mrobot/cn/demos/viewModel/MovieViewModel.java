@@ -5,6 +5,7 @@ import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import app.mrobot.cn.demos.R;
 import app.mrobot.cn.demos.model.entity.Movie;
@@ -50,8 +51,8 @@ public class MovieViewModel extends BaseObservable {
 
     @BindingAdapter({"imageUrl"})
     public static void loadImage(ImageView imageView, String url) {
-        Glide.with(imageView.getContext()).load(url).placeholder(R.drawable.cover).error(
-                R.drawable.cover).into(imageView);
-
+        Glide.with(imageView.getContext()).load(url).apply(
+                new RequestOptions().placeholder(R.drawable.cover).error(R.drawable.cover)).into(
+                imageView);
     }
 }

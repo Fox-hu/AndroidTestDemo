@@ -1,4 +1,4 @@
-package com.example.materialdesigntestdemo;
+package com.component.common.utils;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -6,8 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo.NormalAdapter;
 
 import java.util.Arrays;
 

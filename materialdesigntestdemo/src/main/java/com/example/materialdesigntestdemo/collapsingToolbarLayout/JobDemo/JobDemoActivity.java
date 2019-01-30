@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.materialdesigntestdemo.R;
-import com.example.materialdesigntestdemo.Utils;
+import com.component.common.utils.Utils;
 
 
 public class JobDemoActivity extends AppCompatActivity {

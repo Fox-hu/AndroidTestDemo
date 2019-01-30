@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.example.materialdesigntestdemo.R;
-import com.example.materialdesigntestdemo.Utils;
+import com.component.common.utils.Utils;
 
 
 public class JobDemo1Activity extends AppCompatActivity {

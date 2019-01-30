@@ -10,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,8 +63,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         holder.ratingTv.setText(String.valueOf(movie.getRating().getAverage()));
         holder.ratingBar.setRating(movie.getRating().getAverage());
 
-        Glide.with(mContext).load(movie.getImages().getSmall()).placeholder(R.drawable.cover).error(
-                R.drawable.cover).into(holder.coverIv);
+        Glide.with(mContext).load(movie.getImages().getSmall()).apply(
+                new RequestOptions().placeholder(R.drawable.cover).error(R.drawable.cover)).into(
+                holder.coverIv);
     }
 
     @Override

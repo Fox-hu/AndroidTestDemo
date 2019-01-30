@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.materialdesigntestdemo.R;
-import com.example.materialdesigntestdemo.Utils;
+import com.component.common.utils.Utils;
 
 
 public class JobDemo3Activity extends AppCompatActivity {

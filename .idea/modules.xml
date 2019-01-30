@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/algorithms/algorithms.iml" filepath="$PROJECT_DIR$/algorithms/algorithms.iml" />
       <module fileurl="file://$PROJECT_DIR$/annotation/annotation.iml" filepath="$PROJECT_DIR$/annotation/annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/annotation-compiler/annotation-compiler.iml" filepath="$PROJECT_DIR$/annotation-compiler/annotation-compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/darwabletest/darwabletest.iml" filepath="$PROJECT_DIR$/darwabletest/darwabletest.iml" />
       <module fileurl="file://$PROJECT_DIR$/materialdesigntestdemo/materialdesigntestdemo.iml" filepath="$PROJECT_DIR$/materialdesigntestdemo/materialdesigntestdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvprxjavaretrofit2/mvprxjavaretrofit2.iml" filepath="$PROJECT_DIR$/mvprxjavaretrofit2/mvprxjavaretrofit2.iml" />
