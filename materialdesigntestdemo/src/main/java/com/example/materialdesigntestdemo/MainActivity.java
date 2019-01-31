@@ -9,6 +9,7 @@ public class MainActivity extends BaseListActivity {
         activityMap.put("CollapsingNormalActivity", CollapsingNormalActivity.class);
         activityMap.put("ScrollingActivity", ScrollingActivity.class);
         activityMap.put("SearchActivity", SearchActivity.class);
+        activityMap.put("ViewDragActivity", ViewDragActivity.class);
         activityMap.put("SerachAppBarActivity", SerachAppBarActivity.class);
         activityMap.put("LagouDemoActivity", LagouDemoActivity.class);
         activityMap.put("JobDemoActivity", JobDemoActivity.class);

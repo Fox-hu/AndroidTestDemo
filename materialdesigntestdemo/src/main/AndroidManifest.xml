@@ -12,13 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter >
         </activity >
@@ -43,15 +43,15 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".JobDemo.JobDemoActivity"
+            android:name=".JobDemoActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".JobDemo.JobDemo1Activity"
+            android:name=".ViewDragActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".JobDemo.JobDemo3Activity"
+            android:name=".JobDemo3Activity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
