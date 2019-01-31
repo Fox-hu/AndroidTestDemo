@@ -1,4 +1,4 @@
-package com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo;
+package com.example.materialdesigntestdemo.JobDemo;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

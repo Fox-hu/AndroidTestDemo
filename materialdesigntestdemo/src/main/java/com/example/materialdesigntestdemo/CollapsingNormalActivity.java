@@ -1,4 +1,4 @@
-package com.example.materialdesigntestdemo.collapsingToolbarLayout;
+package com.example.materialdesigntestdemo;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,8 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
-
-import com.example.materialdesigntestdemo.R;
 
 
 public class CollapsingNormalActivity extends AppCompatActivity {

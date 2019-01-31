@@ -35,7 +35,7 @@
         android:orientation="vertical"
         >
 
-        <com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo.MyNestedScrollView1
+        <com.example.materialdesigntestdemo.JobDemo.MyNestedScrollView1
             android:id="@+id/rel_head"
             android:layout_width="match_parent"
             android:layout_height="200dp"

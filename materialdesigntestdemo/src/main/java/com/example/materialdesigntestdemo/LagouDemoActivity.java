@@ -1,4 +1,4 @@
-package com.example.materialdesigntestdemo.collapsingToolbarLayout;
+package com.example.materialdesigntestdemo;
 
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -13,8 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.example.materialdesigntestdemo.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.materialdesigntestdemo.collapsingToolbarLayout;
+package com.example.materialdesigntestdemo;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

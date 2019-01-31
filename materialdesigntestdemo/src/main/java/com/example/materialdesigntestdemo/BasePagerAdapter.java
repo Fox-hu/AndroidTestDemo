@@ -1,4 +1,4 @@
-package com.example.materialdesigntestdemo.collapsingToolbarLayout;
+package com.example.materialdesigntestdemo;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

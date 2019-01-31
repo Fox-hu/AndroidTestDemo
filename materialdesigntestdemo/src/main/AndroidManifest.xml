@@ -23,39 +23,39 @@
             </intent-filter >
         </activity >
         <activity
-            android:name=".collapsingToolbarLayout.ScrollingActivity"
+            android:name=".ScrollingActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".collapsingToolbarLayout.SearchActivity"
+            android:name=".SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".collapsingToolbarLayout.CollapsingNormalActivity"
+            android:name=".CollapsingNormalActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".collapsingToolbarLayout.SerachAppBarActivity"
+            android:name=".SerachAppBarActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".collapsingToolbarLayout.LagouDemoActivity"
+            android:name=".LagouDemoActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".collapsingToolbarLayout.JobDemo.JobDemoActivity"
+            android:name=".JobDemo.JobDemoActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".collapsingToolbarLayout.JobDemo.JobDemo1Activity"
+            android:name=".JobDemo.JobDemo1Activity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".collapsingToolbarLayout.JobDemo.JobDemo3Activity"
+            android:name=".JobDemo.JobDemo3Activity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity
-            android:name=".collapsingToolbarLayout.WebViewCollapsingTestActivity"
+            android:name=".WebViewCollapsingTestActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
     </application >

@@ -1,4 +1,4 @@
-package com.example.materialdesigntestdemo.collapsingToolbarLayout.JobDemo;
+package com.example.materialdesigntestdemo;
 
 import android.animation.ValueAnimator;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.materialdesigntestdemo.R;
 import com.component.common.utils.Utils;
 
 
