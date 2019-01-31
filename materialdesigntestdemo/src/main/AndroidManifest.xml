@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -23,17 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter >
         </activity >
-
         <activity
             android:name=".collapsingToolbarLayout.ScrollingActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
-
         <activity
             android:name=".collapsingToolbarLayout.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
-
         <activity
             android:name=".collapsingToolbarLayout.CollapsingNormalActivity"
             android:theme="@style/AppTheme.NoActionBar" >
@@ -42,27 +38,22 @@
             android:name=".collapsingToolbarLayout.SerachAppBarActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
-
         <activity
             android:name=".collapsingToolbarLayout.LagouDemoActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
-
         <activity
             android:name=".collapsingToolbarLayout.JobDemo.JobDemoActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
-
         <activity
             android:name=".collapsingToolbarLayout.JobDemo.JobDemo1Activity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
-
         <activity
             android:name=".collapsingToolbarLayout.JobDemo.JobDemo3Activity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
-
         <activity
             android:name=".collapsingToolbarLayout.WebViewCollapsingTestActivity"
             android:theme="@style/AppTheme.NoActionBar" >
