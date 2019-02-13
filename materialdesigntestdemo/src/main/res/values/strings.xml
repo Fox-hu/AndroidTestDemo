@@ -169,4 +169,5 @@
 
 在说我愿意</string >
     <string name="title_activity_view_drag_helper_test" >ViewDragHelperTestActivity</string >
+    <string name="title_activity_wechat" >WechatActivity</string >
 </resources >
