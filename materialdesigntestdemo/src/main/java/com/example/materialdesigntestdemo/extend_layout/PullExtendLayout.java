@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
 
 public class PullExtendLayout extends LinearLayout {
@@ -29,6 +31,8 @@ public class PullExtendLayout extends LinearLayout {
     private float offsetRadio = 1.0f;
 
     private boolean isHandleTouchEvent = false;
+
+    private SmoothScrollRunnable smoothScrollRunnable;
 
     private ExtendLayout headerLayout;
 
@@ -205,11 +209,111 @@ public class PullExtendLayout extends LinearLayout {
         if (absScrollY < headerHeight) {
             smoothScrollTo(0);
         } else {
-
+            smoothScrollTo(-headerListHeight);
         }
     }
 
     private void smoothScrollTo(int newScrollValue) {
+        if (null != smoothScrollRunnable) {
+            smoothScrollRunnable.stop();
+        }
 
+        final int scrollY = getScrollY();
+        //如果未滑动到位 继续滑动
+        boolean post = (scrollY != newScrollValue);
+        if (post) {
+            smoothScrollRunnable = new SmoothScrollRunnable(scrollY, newScrollValue, 200);
+            post(smoothScrollRunnable);
+        }
+    }
+
+    final class SmoothScrollRunnable implements Runnable {
+        /**
+         * 动画效果
+         */
+        private final Interpolator mInterpolator;
+        /**
+         * 结束Y
+         */
+        private final int mScrollToY;
+        /**
+         * 开始Y
+         */
+        private final int mScrollFromY;
+        /**
+         * 滑动时间
+         */
+        private final long mDuration;
+        /**
+         * 是否继续运行
+         */
+        private boolean mContinueRunning = true;
+        /**
+         * 开始时刻
+         */
+        private long mStartTime = -1;
+        /**
+         * 当前Y
+         */
+        private int mCurrentY = -1;
+
+        /**
+         * 构造方法
+         *
+         * @param fromY    开始Y
+         * @param toY      结束Y
+         * @param duration 动画时间
+         */
+        public SmoothScrollRunnable(int fromY, int toY, long duration) {
+            mScrollFromY = fromY;
+            mScrollToY = toY;
+            mDuration = duration;
+            mInterpolator = new DecelerateInterpolator();
+        }
+
+        @Override
+        public void run() {
+            if (mDuration <= 0) {
+                scrollTo(0, mScrollToY);
+                return;
+            }
+
+            if (mStartTime == -1) {
+                mStartTime = System.currentTimeMillis();
+            } else {
+
+                final long oneSecond = 1000;
+                long normalizedTime =
+                        (oneSecond * (System.currentTimeMillis() - mStartTime)) / mDuration;
+                normalizedTime = Math.max(Math.min(normalizedTime, oneSecond), 0);
+
+                final int deltaY = Math.round((mScrollFromY - mScrollToY) * mInterpolator
+                        .getInterpolation(normalizedTime / (float) oneSecond));
+                mCurrentY = mScrollFromY - deltaY;
+                scrollTo(0, mCurrentY);
+
+                if (null != headerLayout && 0 != headerHeight) {
+                    headerLayout.onPull(Math.abs(mCurrentY));
+                    if (mCurrentY == 0) {
+                        headerLayout.setState(IExtendLayout.State.RESET);
+                    }
+                    if (Math.abs(mCurrentY) == headerListHeight) {
+                        headerLayout.setState(IExtendLayout.State.ARRIVED_LIST_HEIGHT);
+                    }
+                }
+            }
+
+            if (mContinueRunning && mScrollToY != mCurrentY) {
+                PullExtendLayout.this.postDelayed(this, 16);
+            }
+        }
+
+        /**
+         * 停止滑动
+         */
+        public void stop() {
+            mContinueRunning = false;
+            removeCallbacks(this);
+        }
     }
 }

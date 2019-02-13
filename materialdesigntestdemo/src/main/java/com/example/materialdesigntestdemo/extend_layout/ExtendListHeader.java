@@ -14,6 +14,7 @@ public class ExtendListHeader extends ExtendLayout {
 
     float containerHeight = Utils.dip2px(60);
     float listHeight = Utils.dip2px(120);
+    boolean arrivedListHeight = false;
     private RecyclerView mRecyclerView;
 
     public ExtendListHeader(Context context) {
@@ -42,8 +43,11 @@ public class ExtendListHeader extends ExtendLayout {
     protected void notifyStateChange(State state) {
         switch (state) {
             case RESET:
+                mRecyclerView.setTranslationY(0);
+                arrivedListHeight = false;
                 break;
             case ARRIVED_LIST_HEIGHT:
+                arrivedListHeight = true;
                 break;
             default:
                 break;
@@ -62,6 +66,19 @@ public class ExtendListHeader extends ExtendLayout {
 
     @Override
     public void onPull(int offset) {
-
+        if (!arrivedListHeight) {
+            float percent = Math.abs(offset) / containerHeight;
+            int moreOffset = Math.abs(offset) - (int) containerHeight;
+            if (percent <= 1.0f) {
+                mRecyclerView.setTranslationY(-containerHeight);
+            } else {
+                float subPercent = (moreOffset) / (listHeight - containerHeight);
+                subPercent = Math.min(1.0f, subPercent);
+                mRecyclerView.setTranslationY(-(1 - subPercent) * containerHeight);
+            }
+        }
+        if (Math.abs(offset) >= listHeight) {
+            mRecyclerView.setTranslationY(-(Math.abs(offset) - listHeight) / 2);
+        }
     }
 }
