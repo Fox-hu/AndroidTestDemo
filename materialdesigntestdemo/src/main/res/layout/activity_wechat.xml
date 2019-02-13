@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.materialdesigntestdemo.extend_layout.GestureLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <com.example.materialdesigntestdemo.extend_layout.PullExtendLayout
-        android:id=""
+        android:id="@+id/pull_extend"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
         <com.example.materialdesigntestdemo.extend_layout.ExtendListHeader
             android:layout_width="match_parent"
-            android:layout_height="460dp"/>
+            android:layout_height="460dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,16 +23,16 @@
             android:background="@android:color/white"
             android:clickable="true"
             android:paddingLeft="25dp"
-            android:paddingRight="25dp">
+            android:paddingRight="25dp" >
 
             <ImageView
                 android:layout_width="66dp"
                 android:layout_height="66dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="40dp"
-                android:src="@mipmap/ic_bg"/>
-        </RelativeLayout>
+                android:src="@mipmap/ic_bg" />
+        </RelativeLayout >
 
     </com.example.materialdesigntestdemo.extend_layout.PullExtendLayout >
 
-</com.example.materialdesigntestdemo.extend_layout.GestureLayout >
+</LinearLayout >

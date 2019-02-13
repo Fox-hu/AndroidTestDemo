@@ -128,6 +128,10 @@ public class PullExtendLayout extends LinearLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         final int action = ev.getAction();
+        if (action != MotionEvent.ACTION_DOWN && mIsHandledTouchEvent) {
+            Log.e(TAG, " onInterceptTouchEvent not down");
+            return true;
+        }
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 lastMotionY = ev.getY();
@@ -148,6 +152,7 @@ public class PullExtendLayout extends LinearLayout {
             default:
                 break;
         }
+        Log.e(TAG, " onInterceptTouchEvent " + mIsHandledTouchEvent);
         return mIsHandledTouchEvent;
     }
 
@@ -160,10 +165,12 @@ public class PullExtendLayout extends LinearLayout {
                 mIsHandledTouchEvent = false;
                 break;
             case MotionEvent.ACTION_MOVE:
-                final float delatY = event.getY() - lastMotionY;
+                final float deltaY = event.getY() - lastMotionY;
                 lastMotionY = event.getY();
-                if (isReadyForPullDown(delatY)) {
-                    pullHeaderLayout(delatY / offsetRadio);
+                if (isReadyForPullDown(deltaY)) {
+                    pullHeaderLayout(deltaY / offsetRadio);
+                    handled = true;
+                } else if (isReadyForPullUp(deltaY)) {
                     handled = true;
                 } else {
                     mIsHandledTouchEvent = false;
@@ -182,6 +189,7 @@ public class PullExtendLayout extends LinearLayout {
             default:
                 break;
         }
+        Log.e(TAG, " onTouchEvent , action = " + event.getAction() + " handled = " + handled);
         return handled;
     }
 
@@ -189,8 +197,28 @@ public class PullExtendLayout extends LinearLayout {
         return getScrollY() < 0 || (getScrollY() == 0 && deltaY > 0);
     }
 
+    /**
+     * 判断刷新的View是否滑动到底
+     *
+     * @return true表示已经滑动到底部，否则false
+     */
+    protected boolean isReadyForPullUp(float deltaY) {
+        return getScrollY() > 0 || (getScrollY() == 0 && deltaY < 0);
+    }
+
     private void pullHeaderLayout(float delta) {
         Log.e(TAG, " pullHeaderLayout , delta = " + delta + " getScrollY = " + getScrollY());
+        // 向上滑动，并且当前scrollY为0时，不滑动
+        int oldScrollY = getScrollY();
+        if (delta < 0 && (oldScrollY - delta) >= 0) {
+            Log.e(TAG, " 我也不知道这个是啥意思");
+            scrollTo(0, 0);
+            if (null != headerLayout && 0 != headerHeight) {
+                headerLayout.setState(IExtendLayout.State.RESET);
+                headerLayout.onPull(0);
+            }
+            return;
+        }
         scrollBy(0, -(int) delta);
         final int absScrollY = Math.abs(getScrollY());
         if (headerLayout != null && headerHeight != 0) {
@@ -208,7 +236,7 @@ public class PullExtendLayout extends LinearLayout {
         final int absScrollY = Math.abs(getScrollY());
         if (absScrollY < headerHeight) {
             smoothScrollTo(0);
-        } else {
+        } else if (absScrollY >= headerHeight) {
             smoothScrollTo(-headerListHeight);
         }
     }
