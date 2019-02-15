@@ -8,6 +8,7 @@ import android.view.WindowManager;
 
 import app.mrobot.cn.rv_bg.ScollLinearLayoutManager;
 import app.mrobot.cn.rv_bg.SplashAdapter;
+import app.mrobot.cn.R;
 
 public class RvbgActivity extends Activity implements View.OnClickListener{
 

@@ -29,7 +29,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import app.mrobot.cn.drawabletest.R;
+import app.mrobot.cn.R;
+
 
 public class SelectorActivity extends AppCompatActivity implements View.OnClickListener {
 

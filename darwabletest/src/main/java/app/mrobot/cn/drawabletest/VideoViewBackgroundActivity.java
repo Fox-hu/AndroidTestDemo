@@ -6,13 +6,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.VideoView;
 
+import app.mrobot.cn.R;
+
 public class VideoViewBackgroundActivity extends Activity {
     private VideoView myVideo = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_video);
         myVideo = (VideoView) findViewById(R.id.myvideo);
         initView();
     }

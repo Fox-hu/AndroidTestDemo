@@ -52,7 +52,7 @@
             android:layout_height="match_parent"
             >
 
-            <include layout="@layout/item_card"/>
+            <include layout="@layout/commonitem_card"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

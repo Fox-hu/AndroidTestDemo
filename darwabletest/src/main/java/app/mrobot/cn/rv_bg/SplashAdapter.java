@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import app.mrobot.cn.drawabletest.R;
+import app.mrobot.cn.R;
 
 
 public class SplashAdapter extends RecyclerView.Adapter<SplashAdapter.ViewHolder> {

@@ -20,7 +20,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import app.mrobot.cn.drawabletest.R;
+import app.mrobot.cn.R;
+
 
 public class ShapeActivity extends AppCompatActivity {
 

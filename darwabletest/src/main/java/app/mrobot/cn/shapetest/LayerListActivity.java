@@ -18,7 +18,8 @@ package app.mrobot.cn.shapetest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import app.mrobot.cn.drawabletest.R;
+import app.mrobot.cn.R;
+
 
 public class LayerListActivity extends AppCompatActivity {
 

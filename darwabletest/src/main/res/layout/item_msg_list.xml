@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/message_itme_background"
-    tools:mContext="app.mrobot.cn.drawabletest.MainActivity" >
+    tools:mContext="app.mrobot.cn.MainActivity" >
 
     <ImageView
         android:id="@+id/id_msg_item_icon"
