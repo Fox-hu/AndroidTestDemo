@@ -8,15 +8,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-
-        <activity android:name="app.mrobot.cn.MainActivity" >
+        <activity android:name=".custom.CanvasPaintActivity" >
+        </activity >
+        <activity android:name=".MainActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter >
         </activity >
-
         <activity android:name=".shapetest.ShapeMainActivity" />
         <activity android:name=".shapetest.LayerListActivity" />
         <activity android:name=".shapetest.LevelListActivity" />
@@ -26,7 +26,6 @@
         <activity android:name=".shapetest.RingActivity" />
         <activity android:name=".shapetest.SelectorActivity" />
         <activity android:name=".shapetest.ShapeActivity" />
-
         <activity android:name=".drawabletest.RvbgActivity" />
         <activity android:name=".drawabletest.VideoViewBackgroundActivity" />
     </application >
