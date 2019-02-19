@@ -111,7 +111,7 @@ public class NewsArticlePresenter implements INewsArticle.Presenter {
             }
             return list;
         }).observeOn(
-                AndroidSchedulers.mainThread()).as(view.<List<MultiNewsArticleDataBean>>bindAutoDispose()).subscribe(
+                AndroidSchedulers.mainThread()).as(view.bindAutoDispose()).subscribe(
                 list -> {
                     if (list != null && !list.isEmpty()) {
                         doSetAdapter(list);

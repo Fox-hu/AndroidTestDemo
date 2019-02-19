@@ -27,6 +27,7 @@
         <activity android:name=".shapetest.SelectorActivity" />
         <activity android:name=".shapetest.ShapeActivity" />
         <activity android:name=".drawabletest.RvbgActivity" />
+        <activity android:name=".drawabletest.IvbgActivity" />
         <activity android:name=".drawabletest.VideoViewBackgroundActivity" />
     </application >
 
