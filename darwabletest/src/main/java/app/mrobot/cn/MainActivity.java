@@ -3,6 +3,7 @@ package app.mrobot.cn;
 import com.component.common.BaseListActivity;
 
 import app.mrobot.cn.custom.CanvasPaintActivity;
+import app.mrobot.cn.drawabletest.FlexboxActivity;
 import app.mrobot.cn.drawabletest.IvbgActivity;
 import app.mrobot.cn.drawabletest.RvbgActivity;
 import app.mrobot.cn.drawabletest.VideoViewBackgroundActivity;
@@ -17,5 +18,6 @@ public class MainActivity extends BaseListActivity {
         activityMap.put("RvbgActivity", RvbgActivity.class);
         activityMap.put("IvbgActivity", IvbgActivity.class);
         activityMap.put("CanvasPaintActivity", CanvasPaintActivity.class);
+        activityMap.put("FlexboxActivity", FlexboxActivity.class);
     }
 }

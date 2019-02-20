@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.flexbox.FlexboxLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:alignContent="flex_start"
+    app:alignItems="stretch"
+    app:flexDirection="row"
+    app:flexWrap="wrap"
+    app:justifyContent="flex_start"
+    app:showDivider="beginning|middle"
+    tools:context=".drawabletest.FlexboxActivity" >
+
+    <app.mrobot.cn.drawabletest.LoweButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:gravity="center"
+        app:layout_flexGrow="4"
+        app:ratio="1.333"
+        android:background="@color/colorAccent"
+        />
+
+    <app.mrobot.cn.drawabletest.LoweButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="1"
+        app:layout_flexGrow="3"
+        android:background="@color/cardview_dark_background"
+        />
+    <app.mrobot.cn.drawabletest.LoweButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_wrapBefore="true"
+        android:gravity="center"
+        android:text="1"
+        app:layout_flexGrow="3"
+        app:ratio="1.333"
+        android:background="@color/cardview_dark_background"
+        />
+    <app.mrobot.cn.drawabletest.LoweButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="1"
+        app:layout_flexGrow="4"
+        android:background="@color/colorAccent"
+        />
+
+</com.google.android.flexbox.FlexboxLayout >

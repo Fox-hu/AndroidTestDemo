@@ -1,3 +1,4 @@
 <resources >
     <string name="app_name" >drawabletest</string >
+    <string name="title_activity_flexbox" >FlexboxActivity</string >
 </resources >

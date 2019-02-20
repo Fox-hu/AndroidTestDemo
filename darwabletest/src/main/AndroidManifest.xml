@@ -8,6 +8,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+        <activity
+            android:name=".drawabletest.FlexboxActivity"
+            android:label="@string/title_activity_flexbox"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity >
         <activity android:name=".custom.CanvasPaintActivity" >
         </activity >
         <activity android:name=".MainActivity" >

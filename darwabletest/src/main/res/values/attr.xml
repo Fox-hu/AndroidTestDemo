@@ -3,4 +3,9 @@
     <declare-styleable name="MessageStatus" >
         <attr name="state_message_readed" format="boolean" />
     </declare-styleable >
+
+    <declare-styleable name="LoweButton">
+        <!-- 比例=宽/高 -->
+        <attr name="ratio" format="float" />
+    </declare-styleable>
 </resources >
