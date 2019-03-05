@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 27
-    resourcePrefix "common"
+    resourcePrefix "common_"
     defaultConfig {
         minSdkVersion 22
         targetSdkVersion 27
@@ -28,7 +28,7 @@ dependencies {
     //圆形处理框架
     api 'de.hdodenhof:circleimageview:2.2.0'
 
-    //材料设计
+    //md
     api 'com.android.support:design:27.1.0'
 
     // Retrofit库
@@ -48,8 +48,14 @@ dependencies {
     api 'io.reactivex.rxjava2:rxjava:2.1.7'
     api 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
-    //    RxAndroid
-    api 'io.reactivex:rxandroid:1.1.0'
+    // AutoDispose
+    api 'com.uber.autodispose:autodispose:0.7.0'
+    api 'com.uber.autodispose:autodispose-android:0.7.0'
+    api 'com.uber.autodispose:autodispose-android-archcomponents:0.7.0'
+
+    // 简化版 Adapter
+    api 'me.drakeet.multitype:multitype:3.4.0'
+
     //    图片加载框架
     api 'com.github.bumptech.glide:glide:4.7.1'
 

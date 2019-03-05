@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
+
+import com.component.common.utils.Utils;
 
 
 public class CollapsingNormalActivity extends AppCompatActivity {
@@ -18,6 +21,7 @@ public class CollapsingNormalActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private Toolbar toolbar;
     private NestedScrollView nestedScrollView;
+    private RecyclerView recyclerView;
 
     private NestedScrollView.OnScrollChangeListener nestedScrollListener = new NestedScrollView.OnScrollChangeListener() {
         @Override
@@ -44,6 +48,8 @@ public class CollapsingNormalActivity extends AppCompatActivity {
         collapsingToolbarLayout.setTitle("DesignLibrarySample");
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
+        recyclerView = findViewById(R.id.rv_content);
+        Utils.setRv(recyclerView,this);
 
         iv.setImageResource(R.mipmap.ic_bg);
         nestedScrollView.setOnScrollChangeListener(nestedScrollListener);

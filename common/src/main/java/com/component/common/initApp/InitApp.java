@@ -8,6 +8,8 @@ import android.content.Context;
  */
 
 public class InitApp extends Application {
+    private static final String TAG = InitApp.class.getSimpleName();
+
     public static Context sContext;
 
     @Override

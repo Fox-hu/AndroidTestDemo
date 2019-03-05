@@ -23,7 +23,7 @@ public abstract class BaseListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.commonactivity_main);
+        setContentView(R.layout.common_activity_main);
         lv = findViewById(R.id.lv);
 
         initItem();

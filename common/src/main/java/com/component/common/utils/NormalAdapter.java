@@ -48,7 +48,7 @@ public class NormalAdapter extends RecyclerView.Adapter<NormalAdapter.VH> {
 
     @Override
     public NormalAdapter.VH onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.commonitem_card, parent,
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.common_item_card, parent,
                 false);
         return new NormalAdapter.VH(v);
     }

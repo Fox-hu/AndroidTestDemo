@@ -74,7 +74,7 @@
                 android:orientation="vertical"
                 >
 
-                <include layout="@layout/commonitem_card" />
+                <include layout="@layout/common_item_card" />
             </LinearLayout >
         </android.support.v4.widget.NestedScrollView >
 
