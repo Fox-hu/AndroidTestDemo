@@ -27,7 +27,7 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setPresenter(presenter);
+        presenter = initPresenter();
     }
 
     @Nullable

@@ -3,10 +3,12 @@ package com.component.common.mvp.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.component.common.mvp.IPresenter;
+
 /**
  * @author fox.hu
  */
-public abstract class LazyLoadFragment extends BaseFragment {
+public abstract class LazyLoadFragment<T extends IPresenter> extends BaseFragment<T> {
     private static final String TAG = LazyLoadFragment.class.getSimpleName();
 
     protected boolean isViewInitiated;

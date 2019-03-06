@@ -6,7 +6,6 @@ import app.mrobot.cn.mvprxjavaretrofit2.model.entity.Movie;
 import app.mrobot.cn.mvprxjavaretrofit2.model.entity.Response;
 import rx.Observable;
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -31,7 +30,7 @@ public class DoubanRequest extends BaseUrlRequest<DoubanService> {
             public Observable<Movie> call(List<Movie> movies) {
                 return Observable.from(movies);
             }
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
+        }).subscribeOn(Schedulers.io()).subscribe(
                 subscriber);
     }
 }

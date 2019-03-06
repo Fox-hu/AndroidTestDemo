@@ -1,3 +1,5 @@
 <resources >
     <string name="common_App_name" >common</string >
+    <string name="common_loading">加载中</string>
+    <string name="common_no_more_content">暂无更多内容</string>
 </resources >

@@ -19,6 +19,7 @@ package com.example.algorithms;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 
@@ -29,17 +30,13 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
-
-        // Set the listeners for the buttons.
-        findViewById(R.id.goSecond).setOnClickListener(this);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.container, TestFragment, NewsTabLayout.class.getName()).show();
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.goSecond) {
-            // First button's interaction: set a text in a text view.
-            startActivity(new Intent(this, SecondActivity.class));
-        }
+
     }
 
     @Override
