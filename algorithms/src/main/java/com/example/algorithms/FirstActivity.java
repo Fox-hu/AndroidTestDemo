@@ -23,6 +23,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 
+import com.example.algorithms.listfragment.TestFragment;
+
 public class FirstActivity extends FragmentActivity implements View.OnClickListener {
     private static final String TAG = FirstActivity.class.getSimpleName();
 
@@ -31,7 +33,8 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.container, TestFragment, NewsTabLayout.class.getName()).show();
+        final TestFragment testFragment = new TestFragment();
+        ft.add(R.id.fl_container, testFragment, TestFragment.class.getName()).show(testFragment).commit();
     }
 
     @Override

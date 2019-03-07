@@ -8,7 +8,7 @@
     android:orientation="vertical"
     >
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+    <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +22,7 @@
             android:scrollbarFadeDuration="1"
             android:scrollbars="vertical"
             app:layoutManager="LinearLayoutManager" />
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout >
+    </android.support.v4.widget.SwipeRefreshLayout >
 
     <LinearLayout
         android:id="@+id/ll_error"

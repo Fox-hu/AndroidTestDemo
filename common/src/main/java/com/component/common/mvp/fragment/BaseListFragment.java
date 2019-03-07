@@ -1,7 +1,7 @@
 package com.component.common.mvp.fragment;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,9 +16,6 @@ import com.component.common.mvp.fragment.impl.BaseListImpl;
 import com.component.common.recycleview.DiffCallback;
 import com.component.common.recycleview.OnLoadMoreListener;
 import com.component.common.rxjava.RxBus;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.List;
 
@@ -33,12 +30,12 @@ import me.drakeet.multitype.MultiTypeAdapter;
  */
 public abstract class BaseListFragment<T extends BaseListImpl.Presenter<E>, E> extends
         LazyLoadFragment<T> implements BaseListImpl.ListView<T, E>,
-        OnRefreshListener,
+        SwipeRefreshLayout.OnRefreshListener,
         View.OnClickListener {
     private static final String TAG = BaseListFragment.class.getSimpleName();
 
     protected RecyclerView recyclerView;
-    protected SmartRefreshLayout refreshLayout;
+    protected SwipeRefreshLayout refreshLayout;
     protected MultiTypeAdapter adapter;
     protected Items oldItems = new Items();
     protected Observable<Integer> observable;
@@ -146,7 +143,7 @@ public abstract class BaseListFragment<T extends BaseListImpl.Presenter<E>, E> e
         refreshLayout.post(new Runnable() {
             @Override
             public void run() {
-                refreshLayout.autoRefresh();
+                refreshLayout.setRefreshing(true);
             }
         });
     }
@@ -156,7 +153,7 @@ public abstract class BaseListFragment<T extends BaseListImpl.Presenter<E>, E> e
         refreshLayout.post(new Runnable() {
             @Override
             public void run() {
-                refreshLayout.finishRefresh();
+                refreshLayout.setRefreshing(false);
             }
         });
     }
@@ -168,7 +165,7 @@ public abstract class BaseListFragment<T extends BaseListImpl.Presenter<E>, E> e
     }
 
     @Override
-    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+    public void onRefresh() {
         final int firstCompletelyVisibleItemPosition = ((LinearLayoutManager) recyclerView
                 .getLayoutManager()).findFirstCompletelyVisibleItemPosition();
         if (firstCompletelyVisibleItemPosition == 0) {

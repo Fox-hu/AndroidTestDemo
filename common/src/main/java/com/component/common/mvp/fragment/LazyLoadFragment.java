@@ -12,7 +12,7 @@ public abstract class LazyLoadFragment<T extends IPresenter> extends BaseFragmen
     private static final String TAG = LazyLoadFragment.class.getSimpleName();
 
     protected boolean isViewInitiated;
-    protected boolean isVisibleToUser;
+    protected boolean isVisibleToUser = true;
     protected boolean isDataInitiated;
 
     @Override
