@@ -16,5 +16,7 @@ public class MainActivity extends BaseListActivity {
         activityMap.put("JobDemo3Activity", JobDemo3Activity.class);
         activityMap.put("WebViewCollapsingTestActivity", WebViewCollapsingTestActivity.class);
         activityMap.put("WechatActivity", WechatActivity.class);
+        activityMap.put("FocusActivity", FocusActivity.class);
+        activityMap.put("PinnedTitleActivity", PinnedTitleActivity.class);
     }
 }

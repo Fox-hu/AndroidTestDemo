@@ -1,4 +1,4 @@
-package com.example.materialdesigntestdemo;
+package com.example.materialdesigntestdemo.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

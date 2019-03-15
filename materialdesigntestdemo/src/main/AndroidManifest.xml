@@ -3,8 +3,8 @@
           package="com.example.materialdesigntestdemo" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".InitApp"
@@ -14,6 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+        <activity android:name=".FocusActivity" >
+        </activity >
         <activity
             android:name=".WechatActivity"
             android:label="@string/title_activity_wechat"
@@ -59,6 +61,10 @@
         </activity >
         <activity
             android:name=".JobDemo3Activity"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity >
+        <activity
+            android:name=".PinnedTitleActivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity >
         <activity

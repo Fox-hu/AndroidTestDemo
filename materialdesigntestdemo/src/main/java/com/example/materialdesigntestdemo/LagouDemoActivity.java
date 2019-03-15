@@ -14,6 +14,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.materialdesigntestdemo.adapter.BasePagerAdapter;
+import com.example.materialdesigntestdemo.view.TabFragment1;
+
 import java.util.ArrayList;
 import java.util.List;
 

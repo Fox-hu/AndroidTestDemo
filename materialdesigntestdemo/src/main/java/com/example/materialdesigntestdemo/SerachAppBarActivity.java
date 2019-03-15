@@ -11,6 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.example.materialdesigntestdemo.adapter.BasePagerAdapter;
+import com.example.materialdesigntestdemo.view.TabFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
