@@ -7,4 +7,7 @@
     <dimen name="text_margin" >16dp</dimen >
     <dimen name="search_bar_left_margin" >40dp</dimen >
     <dimen name="search_bar_height_in_toolbar" >50dp</dimen >
+    <dimen name="header_divider_height">2dp</dimen>
+    <dimen name="header_height">24dp</dimen>
+    <dimen name="header_textsize">22sp</dimen>
 </resources >
