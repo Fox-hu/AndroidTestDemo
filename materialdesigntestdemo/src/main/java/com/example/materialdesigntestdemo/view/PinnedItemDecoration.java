@@ -83,6 +83,9 @@ public class PinnedItemDecoration extends RecyclerView.ItemDecoration {
 
                 if (i == 0) {
                     int top = parent.getPaddingTop();
+                    //如果是屏幕显示的第一项 则需要判断
+                    //如果在是组条目的最后一项 则Header 跟随组内最后一个 ItemView
+                    // 一起移出屏幕
                     if (groupInfo.isLastViewInGroup()) {
                         int suggestTop = child.getBottom() - headerHeight;
                         if (suggestTop < top) {
