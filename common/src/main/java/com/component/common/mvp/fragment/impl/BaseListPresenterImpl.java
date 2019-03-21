@@ -6,12 +6,12 @@ import java.util.List;
 /**
  * @author fox.hu
  */
-public abstract class PresenterImpl<E> implements BaseListImpl.Presenter<E> {
-    private static final String TAG = PresenterImpl.class.getSimpleName();
+public abstract class BaseListPresenterImpl<E> implements BaseListImpl.Presenter<E> {
+    private static final String TAG = BaseListPresenterImpl.class.getSimpleName();
     protected BaseListImpl.ListView view;
     protected List<E> dataList = new ArrayList<>();
 
-    public PresenterImpl(BaseListImpl.ListView view) {
+    public BaseListPresenterImpl(BaseListImpl.ListView view) {
         this.view = view;
     }
 

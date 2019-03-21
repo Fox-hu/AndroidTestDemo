@@ -8,7 +8,7 @@ import me.drakeet.multitype.ClassLinker;
 import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.MultiTypeAdapter;
 
-public class TestFragment extends BaseListFragment<TestPresenter, MultiNewsArticleDataBean> {
+public class TestFragment extends BaseListFragment<TestListPresenter, MultiNewsArticleDataBean> {
 
     @Override
     protected void registerMultiType(MultiTypeAdapter adapter) {
@@ -36,7 +36,7 @@ public class TestFragment extends BaseListFragment<TestPresenter, MultiNewsArtic
     }
 
     @Override
-    public TestPresenter initPresenter() {
-        return new TestPresenter(this);
+    public TestListPresenter initPresenter() {
+        return new TestListPresenter(this);
     }
 }

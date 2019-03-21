@@ -9,7 +9,7 @@ import com.component.common.mvp.fragment.BaseQuickListFragment;
 import com.component.common.mvp.loadmore.CustomLoadMoreView;
 import com.example.algorithms.R;
 
-public class TestQuickFragment extends BaseQuickListFragment<TestPresenter, MultiNewsArticleDataBean> {
+public class TestQuickFragment extends BaseQuickListFragment<TestListPresenter, MultiNewsArticleDataBean> {
 
     @Override
     protected void initData() {
@@ -17,8 +17,8 @@ public class TestQuickFragment extends BaseQuickListFragment<TestPresenter, Mult
     }
 
     @Override
-    public TestPresenter initPresenter() {
-        return new TestPresenter(this);
+    public TestListPresenter initPresenter() {
+        return new TestListPresenter(this);
     }
 
     @Override

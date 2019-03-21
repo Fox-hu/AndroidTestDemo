@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 import com.component.common.Retrofit.RetrofitFactory;
 import com.component.common.mvp.fragment.impl.BaseListImpl;
-import com.component.common.mvp.fragment.impl.PresenterImpl;
+import com.component.common.mvp.fragment.impl.BaseListPresenterImpl;
 import com.component.common.utils.TimeUtil;
 import com.example.algorithms.InitApp;
 import com.google.gson.Gson;
@@ -21,10 +21,10 @@ import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-public class TestPresenter extends PresenterImpl<MultiNewsArticleDataBean> {
+public class TestListPresenter extends BaseListPresenterImpl<MultiNewsArticleDataBean> {
     private Gson gson = new Gson();
 
-    public TestPresenter(BaseListImpl.ListView view) {
+    public TestListPresenter(BaseListImpl.ListView view) {
         super(view);
     }
 
