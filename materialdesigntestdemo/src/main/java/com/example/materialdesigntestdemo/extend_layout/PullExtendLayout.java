@@ -152,7 +152,9 @@ public class PullExtendLayout extends LinearLayout {
             default:
                 break;
         }
-        Log.e(TAG, " onInterceptTouchEvent action = " + ev.getAction() + " mIsHandledTouchEvent = " + mIsHandledTouchEvent);
+        Log.e(TAG,
+                " onInterceptTouchEvent action = " + ev.getAction() + " mIsHandledTouchEvent = " +
+                mIsHandledTouchEvent);
         return mIsHandledTouchEvent;
     }
 
@@ -181,6 +183,7 @@ public class PullExtendLayout extends LinearLayout {
                 if (mIsHandledTouchEvent) {
                     mIsHandledTouchEvent = false;
                     if (isReadyForPullDown(0)) {
+                        Log.e(TAG,"resetHeaderLayout");
                         resetHeaderLayout();
                     }
                 }
@@ -189,7 +192,8 @@ public class PullExtendLayout extends LinearLayout {
             default:
                 break;
         }
-        Log.e(TAG, " onTouchEvent , action = " + event.getAction() + " handled = " + handled);
+        Log.e(TAG, " onTouchEvent , action = " + event.getAction() + " handled = " + handled +
+                   " mIsHandledTouchEvent = " + mIsHandledTouchEvent);
         return handled;
     }
 
@@ -219,6 +223,7 @@ public class PullExtendLayout extends LinearLayout {
             }
             return;
         }
+        Log.e(TAG, " pullHeaderLayout , scrollBy = " + delta);
         scrollBy(0, -(int) delta);
         final int absScrollY = Math.abs(getScrollY());
         if (headerLayout != null && headerHeight != 0) {
@@ -249,7 +254,7 @@ public class PullExtendLayout extends LinearLayout {
         final int scrollY = getScrollY();
         //如果未滑动到位 继续滑动
         boolean post = (scrollY != newScrollValue);
-        Log.e(TAG,"scrollY = " + scrollY + " newScrollValue = " + newScrollValue);
+        Log.e(TAG, "scrollY = " + scrollY + " newScrollValue = " + newScrollValue);
         if (post) {
             smoothScrollRunnable = new SmoothScrollRunnable(scrollY, newScrollValue, 200);
             post(smoothScrollRunnable);
@@ -320,7 +325,7 @@ public class PullExtendLayout extends LinearLayout {
                         .getInterpolation(normalizedTime / (float) oneSecond));
                 mCurrentY = mScrollFromY - deltaY;
                 scrollTo(0, mCurrentY);
-                Log.e(TAG," scrollTo " + mCurrentY);
+                Log.e(TAG, " scrollTo " + mCurrentY);
                 if (null != headerLayout && 0 != headerHeight) {
                     headerLayout.onPull(Math.abs(mCurrentY));
                     if (mCurrentY == 0) {

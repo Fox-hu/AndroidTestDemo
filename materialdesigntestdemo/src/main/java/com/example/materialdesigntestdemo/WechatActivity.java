@@ -14,10 +14,5 @@ public class WechatActivity extends AppCompatActivity {
         Utils.verifyStoragePermissions(this);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        final Bitmap textImage = Utils.createTextImage(1000, 1000, 12, getString(R.string.text));
-//        Utils.saveBitmapFile(textImage, "01.jpg");
-    }
 }
+

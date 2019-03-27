@@ -45,7 +45,7 @@ public class CollapsingNormalActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);
-        collapsingToolbarLayout.setTitle("DesignLibrarySample");
+        collapsingToolbarLayout.setTitle("Normal");
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
         recyclerView = findViewById(R.id.rv_content);
