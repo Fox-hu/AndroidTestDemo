@@ -84,7 +84,6 @@ public class PinnedItemDecoration extends RecyclerView.ItemDecoration {
                 int left = parent.getPaddingLeft();
                 int right = parent.getWidth() - parent.getPaddingRight();
 
-
                 if (i == 0) {
                     int top = parent.getPaddingTop();
                     //如果是屏幕显示的第一项 则需要判断

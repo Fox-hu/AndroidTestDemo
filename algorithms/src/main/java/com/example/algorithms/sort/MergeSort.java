@@ -23,6 +23,7 @@ public class MergeSort {
     }
 
     private static void merge(Comparable[] a, int lo, int mid, int hi) {
+        //lo = 0; mid = 0; hi =1 ; i = 0;j =1;k=1
         int i = lo, j = mid + 1;
 
         for (int k = lo; k <= hi; k++) {
