@@ -140,6 +140,11 @@ public class BinaryTreeST<K extends Comparable<K>, V> implements SymbolTable<K, 
     }
 
     private Node floor(K key, Node node) {
+        //这个递归太巧妙了
+        //如果key小于根节点，那么小于key的floor(key)必定在根节点左边的子树
+        //并且只有在根节点的右子树中存在小于等于key的节点时，小于等于key的最大键才会在右子树
+        //否则根节点就是小于等于key 的最大键
+        //好好体会！！
         if (node == null) {
             return null;
         }
