@@ -1,2 +1,2 @@
-include ':mvvmrxjavaretrofit2', ':darwabletest', ':mvprxjavaretrofit2', ':toutiaoexample', ':materialdesigntestdemo', ':algorithms', ':soexample', ':annotation', ':annotation-compiler', ':common'
+include ':mvvmrxjavaretrofit2', ':darwabletest', ':mvprxjavaretrofit2', ':toutiaoexample', ':materialdesigntestdemo', ':algorithms', ':soexample', ':annotation', ':annotation-compiler', ':common', ':location'
 
