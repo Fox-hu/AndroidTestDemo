@@ -3,14 +3,14 @@ package com.component.location;
 public class LocationManager {
     private static final String TAG = LocationManager.class.getSimpleName();
 
-    private LocatStrategy strategy;
+    private LocationStrategy strategy;
     private LocationManager() {}
 
     public static LocationManager get() {
         return Holder.INSTANCE;
     }
 
-    public void setStrategy(LocatStrategy strategy) {
+    public void setStrategy(LocationStrategy strategy) {
         this.strategy = strategy;
     }
 

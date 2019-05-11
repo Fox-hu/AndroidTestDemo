@@ -5,7 +5,7 @@ package com.component.location;
  * 定位的执行策略
  * @author fox.hu
  */
-public interface LocatStrategy {
+public interface LocationStrategy {
     /**
      * 是否使能该定位器，确定使用哪些定位器
      * @param locator 定位器
