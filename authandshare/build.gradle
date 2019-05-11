@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
-
+    resourcePrefix "authandshare_"
     defaultConfig {
         minSdkVersion 24
         targetSdkVersion 26
