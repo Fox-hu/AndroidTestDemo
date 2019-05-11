@@ -17,4 +17,6 @@ public class LocationManager {
     private static class Holder {
         static final LocationManager INSTANCE = new LocationManager();
     }
+
+
 }
