@@ -11,6 +11,11 @@ public class AppLocation {
     private double latitude = 0;
     private String address;
 
+    public AppLocation(double longitude, double latitude) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
     public double getLongitude() {
         return longitude;
     }

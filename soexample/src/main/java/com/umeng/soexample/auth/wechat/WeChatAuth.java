@@ -1,4 +1,4 @@
-package com.umeng.soexample.auth.weixin;
+package com.umeng.soexample.auth.wechat;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,7 +9,7 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.soexample.auth.IAuth;
-import com.umeng.soexample.PlatForm;
+import com.umeng.soexample.platform.PlatForm;
 import com.umeng.soexample.auth.AuthListener;
 
 /**
@@ -17,10 +17,10 @@ import com.umeng.soexample.auth.AuthListener;
  * @date 2018/8/17
  */
 
-public class WeiXinAuth implements IAuth {
+public class WeChatAuth implements IAuth {
     private IWXAPI api;
 
-    public WeiXinAuth(@NonNull Activity activity) {
+    public WeChatAuth(@NonNull Activity activity) {
         api = WXAPIFactory.createWXAPI(activity.getApplicationContext(),
                 PlatForm.WEIXIN.getAppId());
         api.registerApp(PlatForm.WEIXIN.getAppId());

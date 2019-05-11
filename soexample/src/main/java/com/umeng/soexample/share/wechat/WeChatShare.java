@@ -1,4 +1,4 @@
-package com.umeng.soexample.share.weixin;
+package com.umeng.soexample.share.wechat;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,7 +15,7 @@ import com.tencent.mm.opensdk.modelmsg.WXTextObject;
 import com.tencent.mm.opensdk.modelmsg.WXVideoObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.umeng.soexample.PlatForm;
+import com.umeng.soexample.platform.PlatForm;
 import com.umeng.soexample.Util;
 import com.umeng.soexample.share.IShare;
 import com.umeng.soexample.share.ShareListener;
@@ -29,8 +29,8 @@ import java.io.File;
  * Created by fox.hu on 2018/9/7.
  */
 
-public class WeixinShare implements IShare {
-    private static final String TAG = WeixinShare.class.getSimpleName();
+public class WeChatShare implements IShare {
+    private static final String TAG = WeChatShare.class.getSimpleName();
     private IWXAPI api;
     private ShareListener listener;
     private int targetScene = SendMessageToWX.Req.WXSceneSession;
@@ -38,7 +38,7 @@ public class WeixinShare implements IShare {
     private Activity activity;
 
 
-    public WeixinShare(Activity activity) {
+    public WeChatShare(Activity activity) {
         this.activity = activity;
         api = WXAPIFactory.createWXAPI(activity.getApplicationContext(),
                 PlatForm.WEIXIN.getAppId());
@@ -52,13 +52,13 @@ public class WeixinShare implements IShare {
 
     @Override
     public ShareParamsHelper getParamsHelper() {
-        return new WeixinShareHelper();
+        return new WeChatShareHelper();
     }
 
     @Override
     public void shareTo(ShareType type, Activity activity, Bundle bundle, ShareListener listener) {
         this.listener = listener;
-        WeixinShareBean bean = bundle.getParcelable(WeixinShareHelper.WEIXIN_BUNDLE);
+        WeChatShareBean bean = bundle.getParcelable(WeChatShareHelper.WE_CHAT_BUNDLE);
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         switch (type) {
             case TEXT:
@@ -81,7 +81,7 @@ public class WeixinShare implements IShare {
         api.sendReq(req);
     }
 
-    private void getVideoObj(SendMessageToWX.Req req, WeixinShareBean bean) {
+    private void getVideoObj(SendMessageToWX.Req req, WeChatShareBean bean) {
         WXVideoObject video = new WXVideoObject();
         video.videoUrl = "http://www.qq.com";
 
@@ -99,7 +99,7 @@ public class WeixinShare implements IShare {
         req.scene = targetScene;
     }
 
-    private void getMp3Obj(SendMessageToWX.Req req, WeixinShareBean bean) {
+    private void getMp3Obj(SendMessageToWX.Req req, WeChatShareBean bean) {
         WXMusicObject music = new WXMusicObject();
         music.musicUrl = bean.getMp3Url();
 
@@ -118,7 +118,7 @@ public class WeixinShare implements IShare {
         req.scene = targetScene;
     }
 
-    private void getImgObj(SendMessageToWX.Req req, WeixinShareBean bean) {
+    private void getImgObj(SendMessageToWX.Req req, WeChatShareBean bean) {
         File file = new File(bean.getImgPath());
         if (!file.exists()) {
             listener.onError("no file");
@@ -141,7 +141,7 @@ public class WeixinShare implements IShare {
         req.scene = targetScene;
     }
 
-    private void getTextObj(SendMessageToWX.Req req, WeixinShareBean bean) {
+    private void getTextObj(SendMessageToWX.Req req, WeChatShareBean bean) {
         WXTextObject textObj = new WXTextObject();
         textObj.text = bean.getText();
 

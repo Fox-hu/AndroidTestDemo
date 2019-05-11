@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.umeng.soexample.auth.AuthManager;
 import com.umeng.soexample.auth.PlatFormInfo;
 import com.umeng.soexample.auth.AuthListener;
+import com.umeng.soexample.platform.PlatForm;
 
 import java.util.List;
 

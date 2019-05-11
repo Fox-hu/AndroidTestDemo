@@ -1,4 +1,4 @@
-package com.umeng.soexample;
+package com.umeng.soexample.platform;
 
 /**
  * Created by fox.hu on 2018/8/16.

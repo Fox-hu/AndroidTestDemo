@@ -2,10 +2,10 @@ package com.umeng.soexample.share;
 
 import android.app.Activity;
 
-import com.umeng.soexample.PlatForm;
+import com.umeng.soexample.platform.PlatForm;
 import com.umeng.soexample.share.qq.QQShare;
 import com.umeng.soexample.share.sina.SinaShare;
-import com.umeng.soexample.share.weixin.WeixinShare;
+import com.umeng.soexample.share.wechat.WeChatShare;
 
 /**
  * Created by fox.hu on 2018/9/3.
@@ -23,7 +23,7 @@ public class ShareFactory {
                 iShare = new SinaShare(activity);
                 break;
             case WEIXIN:
-                iShare = new WeixinShare(activity);
+                iShare = new WeChatShare(activity);
                 break;
             default:
                 break;

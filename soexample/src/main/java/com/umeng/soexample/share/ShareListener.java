@@ -1,6 +1,6 @@
 package com.umeng.soexample.share;
 
-import com.umeng.soexample.PlatForm;
+import com.umeng.soexample.platform.PlatForm;
 
 /**
  * Created by fox.hu on 2018/8/31.

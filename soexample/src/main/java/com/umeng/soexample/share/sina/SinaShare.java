@@ -18,7 +18,7 @@ import com.sina.weibo.sdk.api.WeiboMultiMessage;
 import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.share.WbShareCallback;
 import com.sina.weibo.sdk.share.WbShareHandler;
-import com.umeng.soexample.PlatForm;
+import com.umeng.soexample.platform.PlatForm;
 import com.umeng.soexample.share.IShare;
 import com.umeng.soexample.share.ShareListener;
 import com.umeng.soexample.share.ShareParamsHelper;

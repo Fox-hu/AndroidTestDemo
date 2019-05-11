@@ -1,4 +1,4 @@
-package com.umeng.soexample.share.weixin;
+package com.umeng.soexample.share.wechat;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by fox.hu on 2018/9/7.
  */
 
-public class WeixinShareBean implements Parcelable {
+public class WeChatShareBean implements Parcelable {
     private String text;
     private String imgPath;
     private String mp3Url;
@@ -40,7 +40,7 @@ public class WeixinShareBean implements Parcelable {
         return text;
     }
 
-    public WeixinShareBean(Builder builder) {
+    public WeChatShareBean(Builder builder) {
         this.text = builder.text;
         this.imgPath = builder.imgPath;
         this.mp3Url = builder.mp3Url;
@@ -50,7 +50,7 @@ public class WeixinShareBean implements Parcelable {
         this.videoUrl = builder.videoUrl;
     }
 
-    public WeixinShareBean() {}
+    public WeChatShareBean() {}
 
     public static class Builder {
         private String text;
@@ -96,12 +96,12 @@ public class WeixinShareBean implements Parcelable {
             return this;
         }
 
-        public WeixinShareBean bulid() {
-            return new WeixinShareBean(this);
+        public WeChatShareBean bulid() {
+            return new WeChatShareBean(this);
         }
     }
 
-    protected WeixinShareBean(Parcel in) {
+    protected WeChatShareBean(Parcel in) {
         this.text = in.readString();
         this.imgPath = in.readString();
         this.mp3Url = in.readString();
@@ -125,11 +125,11 @@ public class WeixinShareBean implements Parcelable {
         dest.writeString(this.videoUrl);
     }
 
-    public static final Creator<WeixinShareBean> CREATOR = new Creator<WeixinShareBean>() {
+    public static final Creator<WeChatShareBean> CREATOR = new Creator<WeChatShareBean>() {
         @Override
-        public WeixinShareBean createFromParcel(Parcel source) {return new WeixinShareBean(source);}
+        public WeChatShareBean createFromParcel(Parcel source) {return new WeChatShareBean(source);}
 
         @Override
-        public WeixinShareBean[] newArray(int size) {return new WeixinShareBean[size];}
+        public WeChatShareBean[] newArray(int size) {return new WeChatShareBean[size];}
     };
 }

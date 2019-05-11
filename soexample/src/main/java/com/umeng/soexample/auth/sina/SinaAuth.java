@@ -14,7 +14,7 @@ import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.umeng.soexample.auth.AuthListener;
 import com.umeng.soexample.auth.IAuth;
-import com.umeng.soexample.PlatForm;
+import com.umeng.soexample.platform.PlatForm;
 import com.umeng.soexample.auth.PlatFormInfo;
 import com.umeng.soexample.auth.HttpUtils;
 

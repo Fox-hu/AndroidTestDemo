@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.umeng.soexample.platform.PlatForm;
 import com.umeng.soexample.share.ShareManager;
 
 import java.util.Arrays;

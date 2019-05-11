@@ -1,6 +1,6 @@
 package com.umeng.soexample.auth;
 
-import com.umeng.soexample.PlatForm;
+import com.umeng.soexample.platform.PlatForm;
 
 /**
  * 第三方登录的通用回调

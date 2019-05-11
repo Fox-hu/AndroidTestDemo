@@ -10,7 +10,7 @@ import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
-import com.umeng.soexample.PlatForm;
+import com.umeng.soexample.platform.PlatForm;
 import com.umeng.soexample.share.IShare;
 import com.umeng.soexample.share.ShareListener;
 import com.umeng.soexample.share.ShareParamsHelper;

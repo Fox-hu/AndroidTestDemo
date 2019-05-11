@@ -1,4 +1,4 @@
-package com.umeng.soexample;
+package com.umeng.soexample.platform;
 
 import com.umeng.soexample.auth.sina.Constants;
 

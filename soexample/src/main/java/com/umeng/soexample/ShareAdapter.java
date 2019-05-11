@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.umeng.soexample.platform.PlatForm;
 import com.umeng.soexample.share.ShareListener;
 import com.umeng.soexample.share.ShareManager;
 import com.umeng.soexample.share.ShareParamsHelper;

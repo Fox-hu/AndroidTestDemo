@@ -14,7 +14,7 @@ import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 import com.umeng.soexample.auth.AuthListener;
 import com.umeng.soexample.auth.IAuth;
-import com.umeng.soexample.PlatForm;
+import com.umeng.soexample.platform.PlatForm;
 import com.umeng.soexample.auth.PlatFormInfo;
 
 import org.json.JSONException;

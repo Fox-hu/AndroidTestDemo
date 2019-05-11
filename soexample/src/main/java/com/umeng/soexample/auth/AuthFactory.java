@@ -2,10 +2,10 @@ package com.umeng.soexample.auth;
 
 import android.app.Activity;
 
-import com.umeng.soexample.PlatForm;
+import com.umeng.soexample.platform.PlatForm;
 import com.umeng.soexample.auth.qq.QQAuth;
 import com.umeng.soexample.auth.sina.SinaAuth;
-import com.umeng.soexample.auth.weixin.WeiXinAuth;
+import com.umeng.soexample.auth.wechat.WeChatAuth;
 
 /**
  * @author fox.hu
@@ -21,7 +21,7 @@ public class AuthFactory {
                 iAuth = new QQAuth(activity);
                 break;
             case WEIXIN:
-                iAuth = new WeiXinAuth(activity);
+                iAuth = new WeChatAuth(activity);
                 break;
             case SINA:
                 iAuth = new SinaAuth(activity);

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
-import com.umeng.soexample.PlatForm;
+import com.umeng.soexample.platform.PlatForm;
 
 import java.util.HashMap;
 import java.util.Map;
