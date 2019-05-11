@@ -6,13 +6,13 @@
       <module fileurl="file://$PROJECT_DIR$/algorithms/algorithms.iml" filepath="$PROJECT_DIR$/algorithms/algorithms.iml" />
       <module fileurl="file://$PROJECT_DIR$/annotation/annotation.iml" filepath="$PROJECT_DIR$/annotation/annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/annotation-compiler/annotation-compiler.iml" filepath="$PROJECT_DIR$/annotation-compiler/annotation-compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/authandshare/authandshare.iml" filepath="$PROJECT_DIR$/authandshare/authandshare.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/darwabletest/darwabletest.iml" filepath="$PROJECT_DIR$/darwabletest/darwabletest.iml" />
       <module fileurl="file://$PROJECT_DIR$/location/location.iml" filepath="$PROJECT_DIR$/location/location.iml" />
       <module fileurl="file://$PROJECT_DIR$/materialdesigntestdemo/materialdesigntestdemo.iml" filepath="$PROJECT_DIR$/materialdesigntestdemo/materialdesigntestdemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvprxjavaretrofit2/mvprxjavaretrofit2.iml" filepath="$PROJECT_DIR$/mvprxjavaretrofit2/mvprxjavaretrofit2.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvvmrxjavaretrofit2/mvvmrxjavaretrofit2.iml" filepath="$PROJECT_DIR$/mvvmrxjavaretrofit2/mvvmrxjavaretrofit2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/soexample/soexample.iml" filepath="$PROJECT_DIR$/soexample/soexample.iml" />
       <module fileurl="file://$PROJECT_DIR$/toutiaoexample/toutiaoexample.iml" filepath="$PROJECT_DIR$/toutiaoexample/toutiaoexample.iml" />
     </modules>
   </component>
