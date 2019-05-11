@@ -70,6 +70,11 @@ public class DefaultLocator implements Locator, LocationListener {
     }
 
     @Override
+    public void stopLocation() {
+        locationManager.removeUpdates(this);
+    }
+
+    @Override
     public void onLocationChanged(Location location) {
         double longitude = location.getLongitude();
         double latitude = location.getLatitude();

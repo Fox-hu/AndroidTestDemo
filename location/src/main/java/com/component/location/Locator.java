@@ -15,5 +15,7 @@ public interface Locator<L extends LocationObserver> {
 
     void getLocation(L observer);
 
+    void stopLocation();
+
     void removeObserver(L observer);
 }

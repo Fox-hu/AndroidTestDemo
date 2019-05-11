@@ -1,10 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.component.appLocation" >
 
-    <meta-data
-        android:name="com.baidu.lbsapi.API_KEY"
-        android:value="AK" >
-    </meta-data >
     <!-- 连接Internet权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 这个权限用于进行网络定位-->
@@ -24,10 +21,13 @@
     <!-- 访问网络，网络定位需要上网-->
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application >
+    <application>
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="G8GQysrxSnwlq1CNMElsvZhW2TKEMoSb" />
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" ></service >
+            android:process=":remote" />
     </application >
 </manifest >
