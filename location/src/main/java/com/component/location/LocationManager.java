@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 /**
  * 定位控制器
- * todo 串行与并行的回调的方式还可以细化 目前所有的locator都使用同一个回调，可能会有多次调用的可能
+ * todo 串行与并行的回调的方式还可以细化 目前所有的locator都使用同一个回调，待优化
  */
 public class LocationManager {
     private static final String TAG = LocationManager.class.getSimpleName();
@@ -57,7 +57,7 @@ public class LocationManager {
     }
 
     public void stopLocation() {
-        sLocatorMap.values().forEach(locator -> locator.stopLocation());
+        sLocatorMap.values().forEach(Locator :: stopLocation);
     }
 
     private static class Holder {

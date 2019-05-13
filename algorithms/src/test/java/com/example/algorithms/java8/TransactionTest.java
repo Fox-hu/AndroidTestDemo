@@ -7,10 +7,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TransactionTest {
     private Trader fan;
@@ -95,6 +97,20 @@ public class TransactionTest {
         Optional<Integer> minValue = transactions.stream().map(Transaction :: getValue).reduce(
                 Integer :: min);
         System.out.print("maxValue = " + maxValue.get() + " minValue = " + minValue.get());
+    }
+
+
+    //8.map和flatMap关键字测试
+    @Test
+    public void test8() {
+        String[] arrayOfWords = {"Goodbye", "World"};
+        final List<Stream<String>> collect = Arrays.stream(arrayOfWords).map(word -> word.split(""))
+                .map(Arrays :: stream).distinct().collect(Collectors.toList());
+        collect.forEach(
+                stringStream -> System.out.print(stringStream.collect(Collectors.toList())));
+        final List<String> collect1 = Arrays.stream(arrayOfWords).map(word -> word.split(""))
+                .flatMap(Arrays :: stream).distinct().collect(Collectors.toList());
+        collect1.forEach(System.out :: print);
     }
 
 }

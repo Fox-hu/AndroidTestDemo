@@ -7,11 +7,11 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import static org.junit.Assert.*;
 
 public class DishTest {
     private final List<Dish> menu = new ArrayList();
@@ -93,15 +93,52 @@ public class DishTest {
     @Test
     public void reduceTest() {
         final List<Integer> num1 = Arrays.asList(1, 2, 3, 4, 5, 9);
-        final Optional<Integer> reduce = num1.stream().reduce(Integer :: max);
-        reduce.ifPresent(System.out :: println);
+        final Optional<Integer> max = num1.stream().reduce(Integer :: max);
+        final Optional<Integer> max1 = num1.stream().max(Integer :: compareTo);
+        max.ifPresent(System.out :: println);
+        max1.ifPresent(System.out :: println);
 
-        final Integer sum = num1.stream().reduce(0, (a, b) -> a + b);
-        System.out.println("sum = " + sum);
+
+        final Integer sum1 = num1.stream().reduce(0, (a, b) -> a + b);
+        final int sum2 = num1.stream().mapToInt(Integer :: intValue).sum();
+        System.out.println("sum1 = " + sum1 + " sum2 = " + sum2);
+
 
         //用map和reduce计算一共有多少道菜
         final Integer total = menu.stream().map(dish -> 1).reduce(0, (a, b) -> a + b);
         //final Integer total = menu.stream().count();
         System.out.println("total dish is = " + total);
+    }
+
+    //计算菜单的总热量，打印菜单上所有的菜名
+    @Test
+    public void test1() {
+        final Optional<Dish> max = menu.stream().max(Comparator.comparing(Dish :: getCalories));
+        System.out.println("max getCalorie is = " + max.get());
+
+        final String totalMenuName = menu.stream().map(Dish :: getName).collect(
+                Collectors.joining(","));
+        System.out.println("totalMenuName is = " + totalMenuName);
+    }
+
+    //将菜单分组，放到一个map中
+    @Test
+    public void test2() {
+        //根据type分类
+        final Map<Dish.Type, List<Dish>> map = menu.stream().collect(
+                Collectors.groupingBy(Dish :: getType));
+        System.out.println("map is = " + map.toString());
+
+        final Map<Dish.CaloricLevel, List<Dish>> caloricLevelMap = menu.stream().collect(
+                Collectors.groupingBy(dish -> {
+                    if (dish.getCalories() <= 400) {
+                        return Dish.CaloricLevel.DIET;
+                    } else if (dish.getCalories() <= 700) {
+                        return Dish.CaloricLevel.NORMAL;
+                    } else {
+                        return Dish.CaloricLevel.FAT;
+                    }
+                }));
+        System.out.println("caloricLevelMap is = " + caloricLevelMap.toString());
     }
 }
