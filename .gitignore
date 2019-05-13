@@ -39,5 +39,4 @@ proguard/
 
 *.pro
 
-.idea/gradle.xml
-*.xml
+.idea
