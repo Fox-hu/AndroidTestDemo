@@ -1,5 +1,7 @@
 package com.example.algorithms.java8;
 
+import com.example.algorithms.java8.completableFuture.Discount;
+import com.example.algorithms.java8.completableFuture.Quote;
 import com.example.algorithms.java8.completableFuture.Shop;
 
 import org.junit.Before;
@@ -22,12 +24,11 @@ public class CompletableFutureTest {
                 new Shop("MyFavoriteShop"), new Shop("BuyItAll"));
 
         //使用守护线程来提高CompletableFuture的执行效率
-        executor = Executors.newFixedThreadPool(Math.min(shops.size(), 100),
-                r -> {
-                    Thread t = new Thread(r);
-                    t.setDaemon(true);
-                    return t;
-                });
+        executor = Executors.newFixedThreadPool(Math.min(shops.size(), 100), r -> {
+            Thread t = new Thread(r);
+            t.setDaemon(true);
+            return t;
+        });
     }
 
     //使用stream来顺序查询
@@ -91,5 +92,18 @@ public class CompletableFutureTest {
                 .supplyAsync(() -> shop.getName() + " price is " + shop.getPrice(product),
                         executor)).collect(Collectors.toList());
         return collect.stream().map(CompletableFuture :: join).collect(Collectors.toList());
+    }
+
+    @Test
+    public void test5() {
+        long start = System.nanoTime();
+        System.out.println(getDiscountPrice("myPhone27S"));
+        long duration = (System.nanoTime() - start) / 1_000_000;
+        System.out.println("Done in " + duration + " msecs");
+    }
+
+    private List<String> getDiscountPrice(String product) {
+        return shops.stream().map(shop -> shop.getPriceStr(product)).map(Quote :: parse).map(
+                Discount :: applyDiscount).collect(Collectors.toList());
     }
 }
