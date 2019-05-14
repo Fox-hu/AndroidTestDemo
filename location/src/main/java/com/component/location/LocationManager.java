@@ -26,7 +26,7 @@ public class LocationManager {
         sLocatorMap.put(Vender.BAIDU, new BaiduLocator());
     }
 
-    private LocationStrategy strategy;
+    private LocationStrategy strategy = new LocationStrategy() {};
 
     private LocationManager() {
 
