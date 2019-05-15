@@ -94,6 +94,7 @@ public class CompletableFutureTest {
         return collect.stream().map(CompletableFuture :: join).collect(Collectors.toList());
     }
 
+    //获取价格后再调用shop的折扣服务，两次耗时操作 都是单线程执行 需要8s
     @Test
     public void test5() {
         long start = System.nanoTime();
@@ -106,4 +107,40 @@ public class CompletableFutureTest {
         return shops.stream().map(shop -> shop.getPriceStr(product)).map(Quote :: parse).map(
                 Discount :: applyDiscount).collect(Collectors.toList());
     }
+
+    //开启4个线程依次执行两次耗时操作 需要2s
+    @Test
+    public void test6() {
+        long start = System.nanoTime();
+        System.out.println(getDiscountPriceWithFuture("myPhone27S"));
+        long duration = (System.nanoTime() - start) / 1_000_000;
+        System.out.println("Done in " + duration + " msecs");
+    }
+
+    //注意thenCompose的用法 getPriceStr之后执行Quote.parse方法，
+    //后执行Discount.applyDiscount方法 都是在线程池中执行
+    private List<String> getDiscountPriceWithFuture(String product) {
+        List<CompletableFuture<String>> priceFutures = shops.stream().map(
+                shop -> CompletableFuture.supplyAsync(() -> shop.getPriceStr(product), executor))
+                .map(future -> future.thenApply(Quote :: parse)).map(future -> future.thenCompose(
+                        quote -> CompletableFuture
+                                .supplyAsync(() -> Discount.applyDiscount(quote), executor)))
+                .collect(Collectors.toList());
+        return priceFutures.stream().map(CompletableFuture :: join).collect(Collectors.toList());
+    }
+
+    //同时开启两个异步线程，取得两者的结果后进行操作
+    @Test
+    public void test7() {
+        CompletableFuture.supplyAsync(() -> shops.get(0).getPrice("myPhone27S")).thenCombine(
+                CompletableFuture.supplyAsync(() -> {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    return 0.5;
+                }), (price, rate) -> price * rate);
+    }
+
 }

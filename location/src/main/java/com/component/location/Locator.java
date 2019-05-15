@@ -9,13 +9,13 @@ import android.content.Context;
  *
  * @author fox.hu
  */
-public interface Locator<L extends LocationObserver> {
+public interface Locator {
 
     void init(Context context);
 
-    void getLocation(L observer);
+    <L extends LocationObserver> void getLocation(L observer);
 
     void stopLocation();
 
-    void removeObserver(L observer);
+    <L extends LocationObserver> void removeObserver(L observer);
 }

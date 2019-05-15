@@ -9,7 +9,7 @@ import com.component.location.gps.DefaultLocator;
  *
  * @author fox.hu
  */
-public interface LocationStrategy<T extends Locator> {
+public interface LocationStrategy {
     /**
      * 是否使能该定位器，确定使用哪些定位器
      *
@@ -17,7 +17,7 @@ public interface LocationStrategy<T extends Locator> {
      * @return true为使能，false为不使能
      * 默认都使能
      */
-    default boolean isLocatorEnable(T locator) {
+    default <T extends Locator> boolean isLocatorEnable(T locator) {
         return true;
     }
 
@@ -38,7 +38,7 @@ public interface LocationStrategy<T extends Locator> {
      * @return 优先级
      * 默认优先使用默认定位
      */
-    default int getLocatorPriority(T locator) {
+    default <T extends Locator> int getLocatorPriority(T locator) {
         int priority = 0;
         if (locator instanceof DefaultLocator) {
             priority = 2;
