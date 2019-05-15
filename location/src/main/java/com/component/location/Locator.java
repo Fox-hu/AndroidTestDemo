@@ -13,9 +13,9 @@ public interface Locator {
 
     void init(Context context);
 
-    <L extends LocationObserver> void getLocation(L observer);
+    void getLocation(LocationObserver observer);
 
     void stopLocation();
 
-    <L extends LocationObserver> void removeObserver(L observer);
+    void removeObserver(LocationObserver observer);
 }
