@@ -10,9 +10,13 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CompletableFutureTest {
     private List<Shop> shops;
@@ -120,11 +124,10 @@ public class CompletableFutureTest {
     //注意thenCompose的用法 getPriceStr之后执行Quote.parse方法，
     //后执行Discount.applyDiscount方法 都是在线程池中执行
     private List<String> getDiscountPriceWithFuture(String product) {
-        List<CompletableFuture<String>> priceFutures = shops.stream().map(
-                shop -> CompletableFuture.supplyAsync(() -> shop.getPriceStr(product), executor))
-                .map(future -> future.thenApply(Quote :: parse)).map(future -> future.thenCompose(
-                        quote -> CompletableFuture
-                                .supplyAsync(() -> Discount.applyDiscount(quote), executor)))
+        List<CompletableFuture<String>> priceFutures = shops.stream()
+                .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPriceStr(product), executor))
+                .map(future -> future.thenApply(Quote :: parse))
+                .map(future -> future.thenCompose(quote -> CompletableFuture.supplyAsync(() -> Discount.applyDiscount(quote), executor)))
                 .collect(Collectors.toList());
         return priceFutures.stream().map(CompletableFuture :: join).collect(Collectors.toList());
     }
@@ -132,7 +135,8 @@ public class CompletableFutureTest {
     //同时开启两个异步线程，取得两者的结果后进行操作
     @Test
     public void test7() {
-        CompletableFuture.supplyAsync(() -> shops.get(0).getPrice("myPhone27S")).thenCombine(
+        final CompletableFuture<Double> myPhone27S = CompletableFuture.supplyAsync(
+                () -> shops.get(0).getPrice("myPhone27S")).thenCombine(
                 CompletableFuture.supplyAsync(() -> {
                     try {
                         Thread.sleep(1000);
@@ -141,6 +145,48 @@ public class CompletableFutureTest {
                     }
                     return 0.5;
                 }), (price, rate) -> price * rate);
+        try {
+            System.out.print(myPhone27S.get(2, TimeUnit.SECONDS));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
     }
 
+    //多个线程任务，等待全部返回 关键字allOf
+    @Test
+    public void test8() {
+        long start = System.nanoTime();
+        final CompletableFuture[] myPhone27S = getCompletableFuture("myPhone27S")
+                .map(future -> future.thenAccept(s -> System.out.println(s + " (done in " + ((System.nanoTime() - start) / 1_000_000) + " msecs)")))
+                .toArray(CompletableFuture[] ::new);
+        CompletableFuture.allOf(myPhone27S).join();
+        System.out.println(
+                "All shops have now responded in " + ((System.nanoTime() - start) / 1_000_000) +
+                " msecs");
+    }
+
+    //多个线程任务，第一个返回则返回结果 关键字anyOf
+    @Test
+    public void test9(){
+        long start = System.nanoTime();
+        final CompletableFuture[] myPhone27S = getCompletableFuture("myPhone27S").map(
+                future -> future.thenAccept(s -> System.out.println(
+                        s + " (done in " + ((System.nanoTime() - start) / 1_000_000) + " msecs)")))
+                .toArray(CompletableFuture[] ::new);
+        CompletableFuture.anyOf(myPhone27S).join();
+        System.out.println("first shop have now responded in " + ((System.nanoTime() - start) / 1_000_000) + " msecs");
+    }
+
+    private Stream<CompletableFuture<String>> getCompletableFuture(String product) {
+        return shops.stream()
+                .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPriceStr(product), executor))
+                .map(future -> future.thenApply(Quote :: parse))
+                .map(future -> future.thenCompose(
+                        quote -> CompletableFuture
+                                .supplyAsync(() -> Discount.applyDiscount(quote))));
+    }
 }

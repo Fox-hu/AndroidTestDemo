@@ -29,8 +29,9 @@ public class Shop {
     }
 
     public static void delay() {
+        int delay = 500 + new Random().nextInt(2000);
         try {
-            Thread.sleep(1000);
+            Thread.sleep(delay);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
