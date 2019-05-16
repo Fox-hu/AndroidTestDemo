@@ -14,6 +14,4 @@ public interface SyncLocator {
     void init(Context context);
 
     AppLocation getLocation();
-
-    void stopLocation();
 }

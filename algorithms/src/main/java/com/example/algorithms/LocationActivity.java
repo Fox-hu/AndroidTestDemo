@@ -62,7 +62,7 @@ public class LocationActivity extends AppCompatActivity implements LocationObser
     }
 
     @Override
-    public void onLocationChanged(Vender vender, AppLocation location) {
+    public void onGetLocation(Vender vender, AppLocation location) {
         Log.e("LocationActivity","location = " + location);
     }
 }

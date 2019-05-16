@@ -60,7 +60,7 @@ public class LocationManager implements LocationObserver {
     }
 
     @Override
-    public void onLocationChanged(Vender vender, AppLocation location) {
+    public void onGetLocation(Vender vender, AppLocation location) {
         synchronized (VENDER_LOCATION_MAP) {
             VENDER_LOCATION_MAP.put(vender, location);
         }

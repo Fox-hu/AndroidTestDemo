@@ -51,7 +51,7 @@ public class BaiduLocator extends BDAbstractLocationListener implements Locator 
         //获取经度信息
         double longitude = location.getLongitude();
         if (observer != null) {
-            observer.onLocationChanged(Vender.BAIDU, new AppLocation(longitude, latitude));
+            observer.onGetLocation(Vender.BAIDU, new AppLocation(longitude, latitude));
         }
     }
 
