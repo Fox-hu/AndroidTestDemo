@@ -14,16 +14,18 @@ import java.util.stream.Collectors;
 
 /**
  * 定位控制器
- * todo 串行与并行的回调的方式还可以细化 目前所有的locator都使用同一个回调，待优化
+ * todo 将异步的调用变为同步的调用
  */
-public class LocationManager {
+public class LocationManager implements LocationObserver {
     private static final String TAG = LocationManager.class.getSimpleName();
 
-    private final static Map<Vender, Locator> sLocatorMap = new HashMap<>();
+    private final static Map<Vender, Locator> VENDER_LOCATOR_MAP = new HashMap<>();
+    private final static Map<Vender, AppLocation> VENDER_LOCATION_MAP = new HashMap<>();
+    private LocationObserver observer;
 
     static {
-        sLocatorMap.put(Vender.DEFAULT, new DefaultLocator());
-        sLocatorMap.put(Vender.BAIDU, new BaiduLocator());
+        VENDER_LOCATOR_MAP.put(Vender.DEFAULT, new DefaultLocator());
+        VENDER_LOCATOR_MAP.put(Vender.BAIDU, new BaiduLocator());
     }
 
     private LocationStrategy strategy = new LocationStrategy() {};
@@ -33,7 +35,7 @@ public class LocationManager {
     }
 
     public static void init(Context context) {
-        sLocatorMap.values().forEach(locator -> locator.init(context));
+        VENDER_LOCATOR_MAP.values().forEach(locator -> locator.init(context));
     }
 
     public static LocationManager get() {
@@ -45,19 +47,23 @@ public class LocationManager {
     }
 
     public void getLocation(LocationObserver observer) {
-        if (strategy.isSequence()) {
-            List<Locator> collect = sLocatorMap.values().stream().filter(
-                    locator -> strategy.isLocatorEnable(locator)).sorted(
-                    Comparator.comparing(locator -> strategy.getLocatorPriority(locator))).collect(
-                    Collectors.toList());
-            collect.forEach(locator -> locator.getLocation(observer));
-        } else {
-            sLocatorMap.values().forEach(locator -> locator.getLocation(observer));
-        }
+        this.observer = observer;
+        List<Locator> collect = VENDER_LOCATOR_MAP.values().stream().filter(
+                locator -> strategy.isLocatorEnable(locator)).sorted(
+                Comparator.comparing(locator -> strategy.getLocatorPriority(locator))).collect(
+                Collectors.toList());
+        collect.forEach(locator -> locator.getLocation(this));
     }
 
     public void stopLocation() {
-        sLocatorMap.values().forEach(Locator :: stopLocation);
+        VENDER_LOCATOR_MAP.values().forEach(Locator :: stopLocation);
+    }
+
+    @Override
+    public void onLocationChanged(Vender vender, AppLocation location) {
+        synchronized (VENDER_LOCATION_MAP) {
+            VENDER_LOCATION_MAP.put(vender, location);
+        }
     }
 
     private static class Holder {

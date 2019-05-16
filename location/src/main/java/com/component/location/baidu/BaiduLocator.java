@@ -9,10 +9,12 @@ import com.baidu.location.LocationClientOption;
 import com.component.location.AppLocation;
 import com.component.location.LocationObserver;
 import com.component.location.Locator;
+import com.component.location.vender.Vender;
 
 /**
  * http://lbsyun.baidu.com/index.php?title=android-locsdk
  * 百度定位获取经纬度逻辑
+ *
  * @author fox.hu
  */
 public class BaiduLocator extends BDAbstractLocationListener implements Locator {
@@ -49,7 +51,7 @@ public class BaiduLocator extends BDAbstractLocationListener implements Locator 
         //获取经度信息
         double longitude = location.getLongitude();
         if (observer != null) {
-            observer.onLocationChanged(new AppLocation(longitude, latitude));
+            observer.onLocationChanged(Vender.BAIDU, new AppLocation(longitude, latitude));
         }
     }
 

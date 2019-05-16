@@ -12,6 +12,7 @@ import android.util.Log;
 import com.component.location.AppLocation;
 import com.component.location.LocationObserver;
 import com.component.location.Locator;
+import com.component.location.vender.Vender;
 
 /**
  * 系统默认的locator
@@ -80,7 +81,7 @@ public class DefaultLocator implements Locator, LocationListener {
         double latitude = location.getLatitude();
 
         if (observer != null) {
-            observer.onLocationChanged(new AppLocation(longitude, latitude));
+            observer.onLocationChanged(Vender.DEFAULT, new AppLocation(longitude, latitude));
         }
     }
 

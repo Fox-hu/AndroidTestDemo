@@ -35,7 +35,7 @@ public class CompletableFutureTest {
         });
     }
 
-    //使用stream来顺序查询
+    //使用stream 顺序查询
     @Test
     public void test1() {
         long start = System.nanoTime();
@@ -50,7 +50,7 @@ public class CompletableFutureTest {
                 .collect(Collectors.toList());
     }
 
-    //使用parallelStream来并行请求
+    //使用parallelStream的并行流来进行请求
     @Test
     public void test2() {
         long start = System.nanoTime();
@@ -69,13 +69,14 @@ public class CompletableFutureTest {
     @Test
     public void test3() {
         long start = System.nanoTime();
-        System.out.println(CompletableFutureTest("myPhone27S"));
+        System.out.println(completableFutureTest("myPhone27S"));
         long duration = (System.nanoTime() - start) / 1_000_000;
         System.out.println("Done in " + duration + " msecs");
     }
 
     //这里要分成两个流，否则会因为流的延迟效应，发向不同商家的请求只能以同步、顺序执行的方式才会成功。
-    public List<String> CompletableFutureTest(String product) {
+    //前一个流生成List<CompletableFuture<>>，后一个流负责收集结果 格外要注意！
+    public List<String> completableFutureTest(String product) {
         final List<CompletableFuture<String>> collect = shops.stream().map(shop -> CompletableFuture
                 .supplyAsync(() -> shop.getName() + " price is " + shop.getPrice(product))).collect(
                 Collectors.toList());
@@ -86,19 +87,19 @@ public class CompletableFutureTest {
     @Test
     public void test4() {
         long start = System.nanoTime();
-        System.out.println(CompletableFutureImproveTest("myPhone27S"));
+        System.out.println(completableFutureImproveTest("myPhone27S"));
         long duration = (System.nanoTime() - start) / 1_000_000;
         System.out.println("Done in " + duration + " msecs");
     }
 
-    public List<String> CompletableFutureImproveTest(String product) {
+    public List<String> completableFutureImproveTest(String product) {
         final List<CompletableFuture<String>> collect = shops.stream().map(shop -> CompletableFuture
                 .supplyAsync(() -> shop.getName() + " price is " + shop.getPrice(product),
                         executor)).collect(Collectors.toList());
         return collect.stream().map(CompletableFuture :: join).collect(Collectors.toList());
     }
 
-    //获取价格后再调用shop的折扣服务，两次耗时操作 都是单线程执行 需要8s
+    //假设获取价格后，而后还需要再请求折扣服务，共两次耗时操作 都是单线程执行 需要8s
     @Test
     public void test5() {
         long start = System.nanoTime();

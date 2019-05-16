@@ -22,16 +22,6 @@ public interface LocationStrategy {
     }
 
     /**
-     * 所有使能的定位器的执行方式 是串行还是并行
-     * 如果是并行 则getLocatorPriority无作用
-     *
-     * @return true是串行执行，false是并行执行
-     */
-    default boolean isSequence() {
-        return true;
-    }
-
-    /**
      * 确定该定位器的优先级 级高的优先执行
      *
      * @param locator

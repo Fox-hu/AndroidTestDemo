@@ -13,6 +13,7 @@ public class Shop {
         this.random = new Random();
     }
 
+    //模拟耗时操作
     public double getPrice(String product) {
         return calculatePrice(product);
     }
