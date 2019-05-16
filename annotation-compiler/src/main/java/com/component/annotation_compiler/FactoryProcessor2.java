@@ -34,7 +34,7 @@ import javax.lang.model.util.Types;
  * Created by fox.hu on 2018/10/18.
  */
 @AutoService(Processor.class)
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedAnnotationTypes("com.component.annotation.Factory")
 public class FactoryProcessor2 extends AbstractProcessor {
     private Types typeUtils;

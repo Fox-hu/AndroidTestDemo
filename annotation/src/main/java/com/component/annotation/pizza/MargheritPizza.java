@@ -1,4 +1,4 @@
-package com.example.algorithms.pizza;
+package com.component.annotation.pizza;
 
 
 import com.component.annotation.Factory;
@@ -8,10 +8,10 @@ import com.component.annotation.Meal;
  * Created by fox.hu on 2018/10/18.
  */
 
-@Factory(id = "CalzonePizza", type = Meal.class)
-public class CalzonePizza implements Meal {
+@Factory(id = "MargheritPizza", type = Meal.class)
+public class MargheritPizza implements Meal {
     @Override
     public float getPrice() {
-        return 8.5f;
+        return 6f;
     }
 }
