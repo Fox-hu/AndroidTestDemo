@@ -13,14 +13,14 @@ import android.util.Log;
 import android.view.View;
 
 import com.component.location.AppLocation;
+import com.component.location.LocationManager;
 import com.component.location.LocationObserver;
-import com.component.location.gps.DefaultLocator;
+import com.component.location.LocationStrategy;
 import com.component.location.vender.Vender;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class LocationActivity extends AppCompatActivity implements LocationObserver {
-    DefaultLocator defaultSyncLocator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,13 @@ public class LocationActivity extends AppCompatActivity implements LocationObser
                         "Action", null).show();
             }
         });
-        defaultSyncLocator = new DefaultLocator();
+        LocationManager.get().init(this);
+        LocationManager.get().setStrategy(new LocationStrategy() {
+            @Override
+            public boolean isLocatorEnable(Vender vender) {
+                return vender == Vender.BAIDU;
+            }
+        });
     }
 
     @Override
@@ -47,8 +53,7 @@ public class LocationActivity extends AppCompatActivity implements LocationObser
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         } else {
-            defaultSyncLocator.init(this);
-            defaultSyncLocator.getLocation(this);
+            LocationManager.get().getLocation(this);
         }
     }
 
@@ -56,13 +61,11 @@ public class LocationActivity extends AppCompatActivity implements LocationObser
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
             @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        defaultSyncLocator.init(this);
-        defaultSyncLocator.getLocation(this);
-
+        LocationManager.get().getLocation(this);
     }
 
     @Override
     public void onGetLocation(Vender vender, AppLocation location) {
-        Log.e("LocationActivity","location = " + location);
+        Log.e("LocationActivity", "location = " + location);
     }
 }

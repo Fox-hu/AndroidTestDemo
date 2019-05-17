@@ -34,7 +34,7 @@ public class LocationManager implements LocationObserver {
 
     }
 
-    public static void init(Context context) {
+    public void init(Context context) {
         VENDER_LOCATOR_MAP.values().forEach(locator -> locator.init(context));
     }
 
@@ -48,11 +48,11 @@ public class LocationManager implements LocationObserver {
 
     public void getLocation(LocationObserver observer) {
         this.observer = observer;
-        List<Locator> collect = VENDER_LOCATOR_MAP.values().stream().filter(
-                locator -> strategy.isLocatorEnable(locator)).sorted(
-                Comparator.comparing(locator -> strategy.getLocatorPriority(locator))).collect(
+        List<Vender> collect = VENDER_LOCATOR_MAP.keySet().stream()
+                .filter(vender -> strategy.isLocatorEnable(vender))
+                .sorted(Comparator.comparing(vender -> strategy.getLocatorPriority(vender))).collect(
                 Collectors.toList());
-        collect.forEach(locator -> locator.getLocation(this));
+        collect.forEach(vender -> VENDER_LOCATOR_MAP.get(vender).getLocation(this));
     }
 
     public void stopLocation() {
@@ -63,6 +63,7 @@ public class LocationManager implements LocationObserver {
     public void onGetLocation(Vender vender, AppLocation location) {
         synchronized (VENDER_LOCATION_MAP) {
             VENDER_LOCATION_MAP.put(vender, location);
+            this.observer.onGetLocation(vender, location);
         }
     }
 

@@ -32,7 +32,7 @@ public class DefaultLocator implements Locator {
             locationManager = (LocationManager) context.getApplicationContext().getSystemService(
                     Context.LOCATION_SERVICE);
         } catch (Throwable e) {
-            Log.e(TAG, "locationManager init failed");
+            Log.i(TAG, "locationManager init failed");
         }
     }
 
@@ -46,6 +46,7 @@ public class DefaultLocator implements Locator {
     @Override
     public void getLocation(LocationObserver observer) {
         if (observer == null) {
+            Log.i(TAG, "LocationObserver null");
             return;
         }
 

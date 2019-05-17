@@ -30,7 +30,7 @@ public class DefaultSyncLocator implements SyncLocator {
             locationManager = (LocationManager) context.getApplicationContext().getSystemService(
                     Context.LOCATION_SERVICE);
         } catch (Throwable e) {
-            Log.e(TAG, "locationManager init failed");
+            Log.i(TAG, "locationManager init failed");
         }
     }
 

@@ -64,8 +64,6 @@ public class BaiduSyncLocator extends BDAbstractLocationListener implements Sync
         countDownLatch.countDown();
     }
 
-
-    @Override
     public void stopLocation() {
         locationClient.stop();
     }
