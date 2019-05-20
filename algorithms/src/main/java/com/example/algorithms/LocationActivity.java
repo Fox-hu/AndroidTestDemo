@@ -13,14 +13,17 @@ import android.util.Log;
 import android.view.View;
 
 import com.component.location.AppLocation;
-import com.component.location.LocationManager;
 import com.component.location.LocationObserver;
-import com.component.location.LocationStrategy;
-import com.component.location.vender.Vender;
+import com.component.location.LocationSyncStrategy;
+import com.component.location.SyncLocationManager;
+import com.component.location.vender.Vendor;
+
+import java.util.concurrent.ExecutionException;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class LocationActivity extends AppCompatActivity implements LocationObserver {
+    AppLocation location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +39,11 @@ public class LocationActivity extends AppCompatActivity implements LocationObser
                         "Action", null).show();
             }
         });
-        LocationManager.get().init(this);
-        LocationManager.get().setStrategy(new LocationStrategy() {
+        SyncLocationManager.get().init(this);
+        SyncLocationManager.get().setStrategy(new LocationSyncStrategy() {
             @Override
-            public boolean isLocatorEnable(Vender vender) {
-                return vender == Vender.DEFAULT;
+            public boolean isLocatorEnable(Vendor vendor) {
+                return vendor == Vendor.BAIDU;
             }
         });
     }
@@ -53,7 +56,14 @@ public class LocationActivity extends AppCompatActivity implements LocationObser
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         } else {
-            LocationManager.get().getLocation(this);
+            try {
+                location = SyncLocationManager.get().getLocation();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Log.e("LocationActivity", "location = " + location);
         }
     }
 
@@ -61,11 +71,18 @@ public class LocationActivity extends AppCompatActivity implements LocationObser
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
             @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        LocationManager.get().getLocation(this);
+        try {
+            location = SyncLocationManager.get().getLocation();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.e("LocationActivity", "location = " + location);
     }
 
     @Override
-    public void onGetLocation(Vender vender, AppLocation location) {
+    public void onGetLocation(Vendor vendor, AppLocation location) {
         Log.e("LocationActivity", "location = " + location);
     }
 }

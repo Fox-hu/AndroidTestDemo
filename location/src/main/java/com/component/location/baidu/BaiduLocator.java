@@ -10,7 +10,7 @@ import com.baidu.location.LocationClientOption;
 import com.component.location.AppLocation;
 import com.component.location.LocationObserver;
 import com.component.location.Locator;
-import com.component.location.vender.Vender;
+import com.component.location.vender.Vendor;
 
 /**
  * http://lbsyun.baidu.com/index.php?title=android-locsdk
@@ -53,7 +53,7 @@ public class BaiduLocator extends BDAbstractLocationListener implements Locator 
         double longitude = location.getLongitude();
         Log.i(TAG, "latitude = " + latitude + " longitude = " + longitude);
         if (observer != null) {
-            observer.onGetLocation(Vender.BAIDU, new AppLocation(longitude, latitude));
+            observer.onGetLocation(Vendor.BAIDU, new AppLocation(longitude, latitude));
         }
     }
 

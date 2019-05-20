@@ -9,7 +9,7 @@ import android.util.Log;
 import com.component.location.AppLocation;
 import com.component.location.LocationObserver;
 import com.component.location.Locator;
-import com.component.location.vender.Vender;
+import com.component.location.vender.Vendor;
 
 import java.util.List;
 
@@ -63,10 +63,10 @@ public class DefaultLocator implements Locator {
         }
 
         if (bestLocation != null) {
-            observer.onGetLocation(Vender.DEFAULT,
+            observer.onGetLocation(Vendor.DEFAULT,
                     new AppLocation(bestLocation.getLongitude(), bestLocation.getLatitude()));
         } else {
-            observer.onGetLocation(Vender.DEFAULT, new AppLocation(0, 0));
+            observer.onGetLocation(Vendor.DEFAULT, new AppLocation(0, 0));
         }
     }
 

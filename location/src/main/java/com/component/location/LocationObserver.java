@@ -1,6 +1,6 @@
 package com.component.location;
 
-import com.component.location.vender.Vender;
+import com.component.location.vender.Vendor;
 
 /**
  * 定位回调
@@ -9,8 +9,8 @@ import com.component.location.vender.Vender;
 public interface LocationObserver {
 
     /**
-     * @param vender 哪一个定位器
+     * @param vendor 哪一个定位器
      * @param location 具体地址信息
      */
-    void onGetLocation(Vender vender, AppLocation location);
+    void onGetLocation(Vendor vendor, AppLocation location);
 }

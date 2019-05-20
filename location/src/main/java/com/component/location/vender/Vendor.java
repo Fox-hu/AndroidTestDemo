@@ -1,5 +1,5 @@
 package com.component.location.vender;
 
-public enum  Vender {
+public enum Vendor {
     DEFAULT,BAIDU
 }

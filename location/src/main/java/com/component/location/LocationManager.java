@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.component.location.baidu.BaiduLocator;
 import com.component.location.gps.DefaultLocator;
-import com.component.location.vender.Vender;
+import com.component.location.vender.Vendor;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
 public class LocationManager implements LocationObserver {
     private static final String TAG = LocationManager.class.getSimpleName();
 
-    private final static Map<Vender, Locator> VENDER_LOCATOR_MAP = new HashMap<>();
-    private final static Map<Vender, AppLocation> VENDER_LOCATION_MAP = new HashMap<>();
+    private final static Map<Vendor, Locator> VENDOR_LOCATOR_MAP = new HashMap<>();
+    private final static Map<Vendor, AppLocation> VENDOR_LOCATION_MAP = new HashMap<>();
     private LocationObserver observer;
 
     static {
-        VENDER_LOCATOR_MAP.put(Vender.DEFAULT, new DefaultLocator());
-        VENDER_LOCATOR_MAP.put(Vender.BAIDU, new BaiduLocator());
+        VENDOR_LOCATOR_MAP.put(Vendor.DEFAULT, new DefaultLocator());
+        VENDOR_LOCATOR_MAP.put(Vendor.BAIDU, new BaiduLocator());
     }
 
     private LocationStrategy strategy = new LocationStrategy() {};
@@ -35,7 +35,7 @@ public class LocationManager implements LocationObserver {
     }
 
     public void init(Context context) {
-        VENDER_LOCATOR_MAP.values().forEach(locator -> locator.init(context));
+        VENDOR_LOCATOR_MAP.values().forEach(locator -> locator.init(context));
     }
 
     public static LocationManager get() {
@@ -48,22 +48,22 @@ public class LocationManager implements LocationObserver {
 
     public void getLocation(LocationObserver observer) {
         this.observer = observer;
-        List<Vender> collect = VENDER_LOCATOR_MAP.keySet().stream()
-                .filter(vender -> strategy.isLocatorEnable(vender))
-                .sorted(Comparator.comparing(vender -> strategy.getLocatorPriority(vender))).collect(
+        List<Vendor> collect = VENDOR_LOCATOR_MAP.keySet().stream()
+                .filter(vendor -> strategy.isLocatorEnable(vendor))
+                .sorted(Comparator.comparing(vendor -> strategy.getLocatorPriority(vendor))).collect(
                 Collectors.toList());
-        collect.forEach(vender -> VENDER_LOCATOR_MAP.get(vender).getLocation(this));
+        collect.forEach(vendor -> VENDOR_LOCATOR_MAP.get(vendor).getLocation(this));
     }
 
     public void stopLocation() {
-        VENDER_LOCATOR_MAP.values().forEach(Locator :: stopLocation);
+        VENDOR_LOCATOR_MAP.values().forEach(Locator :: stopLocation);
     }
 
     @Override
-    public void onGetLocation(Vender vender, AppLocation location) {
-        synchronized (VENDER_LOCATION_MAP) {
-            VENDER_LOCATION_MAP.put(vender, location);
-            this.observer.onGetLocation(vender, location);
+    public void onGetLocation(Vendor vendor, AppLocation location) {
+        synchronized (VENDOR_LOCATION_MAP) {
+            VENDOR_LOCATION_MAP.put(vendor, location);
+            this.observer.onGetLocation(vendor, location);
         }
     }
 

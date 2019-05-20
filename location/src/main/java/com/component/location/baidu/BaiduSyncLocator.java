@@ -8,6 +8,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.component.location.AppLocation;
 import com.component.location.SyncLocator;
+import com.component.location.vender.Vendor;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -59,7 +60,7 @@ public class BaiduSyncLocator extends BDAbstractLocationListener implements Sync
     public void onReceiveLocation(BDLocation location) {
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
-        result = new AppLocation(longitude, latitude);
+        result = new AppLocation(longitude, latitude, Vendor.BAIDU);
         countDownLatch.countDown();
     }
 

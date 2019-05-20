@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.component.location.AppLocation;
 import com.component.location.SyncLocator;
+import com.component.location.vender.Vendor;
 
 import java.util.List;
 
@@ -50,9 +51,9 @@ public class DefaultSyncLocator implements SyncLocator {
         }
 
         if (bestLocation != null) {
-            return new AppLocation(bestLocation.getLongitude(), bestLocation.getLatitude());
+            return new AppLocation(bestLocation.getLongitude(), bestLocation.getLatitude(),Vendor.DEFAULT);
         } else {
-            return new AppLocation(0, 0);
+            return new AppLocation(0, 0,Vendor.DEFAULT);
         }
     }
 }

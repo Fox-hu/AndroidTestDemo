@@ -8,7 +8,7 @@ import com.component.location.vender.Vendor;
  *
  * @author fox.hu
  */
-public interface LocationStrategy {
+public interface LocationSyncStrategy {
     /**
      * 是否使能该定位器，确定使用哪些定位器
      *
@@ -20,6 +20,10 @@ public interface LocationStrategy {
         return true;
     }
 
+    default boolean isAnyOf() {
+        return true;
+    }
+
     /**
      * 确定该定位器的优先级 级高的优先执行
      *
@@ -27,7 +31,7 @@ public interface LocationStrategy {
      * @return 优先级
      * 默认优先使用默认定位
      */
-    default int getLocatorPriority(Vendor vendor) {
+    default int getResultPriority(Vendor vendor) {
         int priority = 0;
         switch (vendor) {
             case BAIDU:
@@ -41,4 +45,7 @@ public interface LocationStrategy {
         return priority;
     }
 
+    default long getOverTime(Vendor vendor) {
+        return 3000;
+    }
 }
