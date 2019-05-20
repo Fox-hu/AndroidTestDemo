@@ -34,7 +34,7 @@ public class Utils {
     private static String[] PERMISSIONS_STORAGE = {"android.permission.READ_EXTERNAL_STORAGE",
                                                    "android.permission.WRITE_EXTERNAL_STORAGE"};
 
-    private static final String[] data = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i"};
+    public static final String[] data = new String[]{"a", "b", "c", "d", "e", "f", "g", "h", "i"};
 
     public static void setRv(RecyclerView rv, Context context) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);

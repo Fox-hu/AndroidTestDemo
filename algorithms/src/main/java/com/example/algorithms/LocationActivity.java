@@ -40,7 +40,7 @@ public class LocationActivity extends AppCompatActivity implements LocationObser
         LocationManager.get().setStrategy(new LocationStrategy() {
             @Override
             public boolean isLocatorEnable(Vender vender) {
-                return vender == Vender.BAIDU;
+                return vender == Vender.DEFAULT;
             }
         });
     }

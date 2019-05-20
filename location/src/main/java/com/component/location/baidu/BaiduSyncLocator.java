@@ -7,7 +7,6 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.component.location.AppLocation;
-import com.component.location.LocationObserver;
 import com.component.location.SyncLocator;
 
 import java.util.concurrent.CountDownLatch;
@@ -66,9 +65,5 @@ public class BaiduSyncLocator extends BDAbstractLocationListener implements Sync
 
     public void stopLocation() {
         locationClient.stop();
-    }
-
-    public void removeObserver(LocationObserver observer) {
-        locationClient.unRegisterLocationListener(this);
     }
 }

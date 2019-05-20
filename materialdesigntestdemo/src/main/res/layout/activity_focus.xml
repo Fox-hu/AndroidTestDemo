@@ -35,7 +35,7 @@
                 android:layout_height="30dp"/>
         </LinearLayout>-->
 
-    <com.example.materialdesigntestdemo.view.LinWithinEdLayout
+<!--    <com.example.materialdesigntestdemo.view.LinWithinEdLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#ffffff"
@@ -49,5 +49,11 @@
     <com.example.materialdesigntestdemo.view.LinWithinEdLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#555555" />
+        android:background="#555555" />-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout >

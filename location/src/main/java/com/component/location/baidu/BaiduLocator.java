@@ -73,6 +73,8 @@ public class BaiduLocator extends BDAbstractLocationListener implements Locator 
 
     @Override
     public void removeObserver(LocationObserver observer) {
-        locationClient.unRegisterLocationListener(this);
+        if (this.observer == observer) {
+            this.observer = null;
+        }
     }
 }
