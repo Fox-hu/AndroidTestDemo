@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class LocationManager implements LocationObserver {
     private static final String TAG = LocationManager.class.getSimpleName();
-
+    private boolean init;
     private final static Map<Vendor, Locator> VENDOR_LOCATOR_MAP = new HashMap<>();
     private final static Map<Vendor, AppLocation> VENDOR_LOCATION_MAP = new HashMap<>();
     private LocationObserver observer;
@@ -35,7 +35,10 @@ public class LocationManager implements LocationObserver {
     }
 
     public void init(Context context) {
-        VENDOR_LOCATOR_MAP.values().forEach(locator -> locator.init(context));
+        if (!init) {
+            VENDOR_LOCATOR_MAP.values().forEach(locator -> locator.init(context));
+            init = true;
+        }
     }
 
     public static LocationManager get() {
@@ -48,9 +51,9 @@ public class LocationManager implements LocationObserver {
 
     public void getLocation(LocationObserver observer) {
         this.observer = observer;
-        List<Vendor> collect = VENDOR_LOCATOR_MAP.keySet().stream()
-                .filter(vendor -> strategy.isLocatorEnable(vendor))
-                .sorted(Comparator.comparing(vendor -> strategy.getLocatorPriority(vendor))).collect(
+        List<Vendor> collect = VENDOR_LOCATOR_MAP.keySet().stream().filter(
+                vendor -> strategy.isLocatorEnable(vendor)).sorted(
+                Comparator.comparing(vendor -> strategy.getLocatorPriority(vendor))).collect(
                 Collectors.toList());
         collect.forEach(vendor -> VENDOR_LOCATOR_MAP.get(vendor).getLocation(this));
     }

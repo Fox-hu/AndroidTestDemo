@@ -64,6 +64,7 @@ public class BaiduLocator extends BDAbstractLocationListener implements Locator 
         }
         //开始定位
         locationClient.start();
+        Log.i(TAG, "getLocation");
     }
 
     @Override
