@@ -27,7 +27,7 @@ public class FutureObject implements Function<String, String> {
     }
 
     private void delay() {
-        delay = 500 + new Random().nextInt(3000);
+        delay = 500 + new Random().nextInt(6000);
         try {
             Thread.sleep(delay);
         } catch (InterruptedException e) {
