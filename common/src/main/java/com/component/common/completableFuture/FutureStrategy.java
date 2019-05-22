@@ -9,6 +9,6 @@ public interface FutureStrategy {
     }
 
     default boolean anyof(){
-        return true;
+        return false;
     }
 }

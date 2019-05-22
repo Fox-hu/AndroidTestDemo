@@ -7,6 +7,7 @@ public class FutureObject implements Function<String, String> {
 
     private String name;
     private Random random;
+    private int delay;
 
     public FutureObject(String name) {
         this.name = name;
@@ -16,7 +17,7 @@ public class FutureObject implements Function<String, String> {
     @Override
     public String apply(String s) {
         double price = applyInternal(s);
-        return String.format("%s:%.2f", name, price);
+        return String.format("%s:%.2f:%d", name, price, delay);
     }
 
 
@@ -25,8 +26,8 @@ public class FutureObject implements Function<String, String> {
         return random.nextDouble() * s.charAt(0) + s.charAt(1);
     }
 
-    private static void delay() {
-        int delay = 500 + new Random().nextInt(3000);
+    private void delay() {
+        delay = 500 + new Random().nextInt(3000);
         try {
             Thread.sleep(delay);
         } catch (InterruptedException e) {
