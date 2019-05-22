@@ -15,8 +15,8 @@ import java.util.stream.Stream;
 public class FutureManger<T, R> {
     private List<Function<T, R>> futureList;
     private FutureStrategy futureStrategy = new FutureStrategy() {};
-    private List<R> ret = new CopyOnWriteArrayList<>();
     private ScheduledExecutorService executor;
+    private FutureListener futureListener;
 
     public FutureManger(List<Function<T, R>> futureList) {
         this.futureList = futureList;
@@ -29,9 +29,13 @@ public class FutureManger<T, R> {
                 });
     }
 
-    public void run(T t) {
+    public void setFutureListener(FutureListener futureListener) {
+        this.futureListener = futureListener;
+    }
 
+    public void run(T t) {
         final CompletableFuture[] completableFutures;
+        final List<R> ret = new CopyOnWriteArrayList<>();
         completableFutures = runInternal(t).map(future -> future.thenAccept(ret :: add)).toArray(
                 CompletableFuture[] ::new);
         if (futureStrategy.anyof()) {
@@ -43,13 +47,17 @@ public class FutureManger<T, R> {
         System.out.println("CompletableFuture finish, ret = " + ret);
 
         //todo 获取结果后返回给调用者 要清除ret
-
+        if (this.futureListener != null) {
+            futureListener.onResult(ret);
+        }
     }
 
     private Stream<CompletableFuture<R>> runInternal(T t) {
         return futureList.stream().filter(futureStrategy :: enable).map(
                 future -> CompletableFuture.supplyAsync(() -> future.apply(t), executor)
-                        .applyToEitherAsync(timeoutAfter(3, TimeUnit.SECONDS), r -> r));
+                        .applyToEitherAsync(
+                                timeoutAfter(futureStrategy.getTimeoutSecond(), TimeUnit.SECONDS),
+                                r -> r));
     }
 
 

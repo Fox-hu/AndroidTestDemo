@@ -9,6 +9,10 @@ public interface FutureStrategy {
     }
 
     default boolean anyof(){
-        return false;
+        return true;
+    }
+
+    default int getTimeoutSecond(){
+        return 3;
     }
 }
