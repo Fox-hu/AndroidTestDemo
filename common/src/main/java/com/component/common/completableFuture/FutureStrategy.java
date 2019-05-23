@@ -1,15 +1,13 @@
 package com.component.common.completableFuture;
 
-import java.util.function.Function;
+public interface FutureStrategy<K> {
 
-public interface FutureStrategy {
-
-    default boolean enable(Function future) {
+    default boolean enable(K key) {
         return true;
     }
 
     default boolean anyof(){
-        return true;
+        return false;
     }
 
     default int getTimeoutSecond(){

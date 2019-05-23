@@ -1,34 +1,47 @@
 package com.example.algorithms.future;
 
 import com.component.common.completableFuture.FutureManger;
+import com.component.common.completableFuture.FutureStrategy;
 import com.example.algorithms.java8.futureTest.FutureObject;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.function.Function;
 
 public class FutureTest {
 
-    private final List<Function<String,String>> inputFuture = new ArrayList<>();
-    private FutureManger<String,String> manger;
+    private FutureManger<String, String, String> manger;
+    private HashMap<String, Function<String, String>> hashMap = new HashMap<>();
 
     @Before
     public void before() {
-        inputFuture.add(new FutureObject("green"));
-        inputFuture.add(new FutureObject("yellow"));
-        inputFuture.add(new FutureObject("red"));
-        inputFuture.add(new FutureObject("black"));
-        inputFuture.add(new FutureObject("white"));
-        inputFuture.add(new FutureObject("grey"));
-        inputFuture.add(new FutureObject("orange"));
-        manger = new FutureManger<>(inputFuture);
+        final FutureObject green = new FutureObject("green");
+        final FutureObject yellow = new FutureObject("yellow");
+        final FutureObject red = new FutureObject("red");
+        final FutureObject black = new FutureObject("black");
+        final FutureObject white = new FutureObject("white");
+        final FutureObject grey = new FutureObject("grey");
+        final FutureObject orange = new FutureObject("orange");
+        hashMap.put("orange", orange);
+        hashMap.put("yellow", yellow);
+        hashMap.put("red", red);
+        hashMap.put("black", black);
+        hashMap.put("white", white);
+        hashMap.put("grey", grey);
+        hashMap.put("green", green);
+        manger = new FutureManger<String, String, String>(hashMap);
+        manger.setFutureStrategy(new FutureStrategy<String>() {
+            @Override
+            public boolean enable(String key) {
+                return key.equals("orange") || key.equals("yellow") || key.equals("red") || key.equals("green");
+            }
+        });
     }
 
     @Test
-    public void Test1(){
+    public void Test1() {
         manger.run("hello word");
     }
 }

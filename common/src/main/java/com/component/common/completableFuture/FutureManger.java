@@ -1,5 +1,8 @@
 package com.component.common.completableFuture;
 
+import android.support.annotation.NonNull;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -12,21 +15,29 @@ import java.util.stream.Stream;
 /**
  * @author fox.hu
  */
-public class FutureManger<T, R> {
-    private List<Function<T, R>> futureList;
-    private FutureStrategy futureStrategy = new FutureStrategy() {};
+public class FutureManger<T, R, K> {
+    private HashMap<K, Function<T, R>> futureMap;
+    private FutureStrategy<K> futureStrategy = new FutureStrategy<K>() {};
     private ScheduledExecutorService executor;
     private FutureListener futureListener;
 
-    public FutureManger(List<Function<T, R>> futureList) {
-        this.futureList = futureList;
+    public FutureManger(HashMap<K, Function<T, R>> hashMap) {
+        futureMap = hashMap;
+        executor = getExecutor();
+    }
+
+    public void setFutureStrategy(FutureStrategy<K> futureStrategy) {
+        this.futureStrategy = futureStrategy;
+    }
+
+    @NonNull
+    private ScheduledExecutorService getExecutor() {
         //使用守护线程来提高CompletableFuture的执行效率
-        executor = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors(),
-                r -> {
-                    Thread t = new Thread(r);
-                    t.setDaemon(true);
-                    return t;
-                });
+        return Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors(), r -> {
+            Thread t = new Thread(r);
+            t.setDaemon(true);
+            return t;
+        });
     }
 
     public void setFutureListener(FutureListener futureListener) {
@@ -53,15 +64,15 @@ public class FutureManger<T, R> {
     }
 
     private Stream<CompletableFuture<R>> runInternal(T t) {
-        return futureList.stream().filter(futureStrategy :: enable).map(
-                future -> CompletableFuture.supplyAsync(() -> future.apply(t), executor)
-                        .applyToEitherAsync(
+        return futureMap.entrySet().stream().filter(entry -> futureStrategy.enable(entry.getKey()))
+                .map(entry -> CompletableFuture
+                        .supplyAsync(() -> entry.getValue().apply(t), executor).applyToEitherAsync(
                                 timeoutAfter(futureStrategy.getTimeoutSecond(), TimeUnit.SECONDS),
                                 r -> r));
     }
 
 
-    public CompletableFuture<R> timeoutAfter(long timeout, TimeUnit unit) {
+    private CompletableFuture<R> timeoutAfter(long timeout, TimeUnit unit) {
         CompletableFuture<R> result = new CompletableFuture<>();
         executor.schedule(() -> result.complete(null), timeout, unit);
         return result;
