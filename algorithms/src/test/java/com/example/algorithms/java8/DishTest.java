@@ -141,4 +141,30 @@ public class DishTest {
                 }));
         System.out.println("caloricLevelMap is = " + caloricLevelMap.toString());
     }
+
+    //二级分组
+    @Test
+    public void test3() {
+        //groupingBy的第二个参数值决定了返回map的value类型
+        Map<Dish.Type, Map<Dish.CaloricLevel, List<Dish>>> collect = menu.stream().collect(
+                Collectors.groupingBy(Dish :: getType, Collectors.groupingBy(dish -> {
+                    if (dish.getCalories() <= 400) {
+                        return Dish.CaloricLevel.DIET;
+                    } else if (dish.getCalories() <= 700) {
+                        return Dish.CaloricLevel.NORMAL;
+                    } else {
+                        return Dish.CaloricLevel.FAT;
+                    }
+                })));
+        System.out.println("collect is = " + collect.toString());
+    }
+
+    //分区
+    @Test
+    public void test4(){
+        //分区可以理解是返回两个list partitioningBy的第一参数只能用于返回值为boolean类型
+        Map<Boolean, Map<Dish.Type, List<Dish>>> collect = menu.stream().collect(Collectors
+                .partitioningBy(Dish :: isVegetarian, Collectors.groupingBy(Dish :: getType)));
+        System.out.println("collect is = " + collect.toString());
+    }
 }
