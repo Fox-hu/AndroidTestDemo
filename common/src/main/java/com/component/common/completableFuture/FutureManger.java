@@ -16,6 +16,7 @@ import java.util.stream.Stream;
  * @author fox.hu
  */
 public class FutureManger<T, R, K> {
+    //java8中 hashmap现在有api getOrDefault
     private HashMap<K, Function<T, R>> futureMap;
     private FutureStrategy<K> futureStrategy = new FutureStrategy<K>() {};
     private ScheduledExecutorService executor;
@@ -54,10 +55,9 @@ public class FutureManger<T, R, K> {
         } else {
             CompletableFuture.allOf(completableFutures).join();
         }
-        //        ret = ret.stream().filter(Objects :: nonNull).collect(Collectors.toList());
+
         System.out.println("CompletableFuture finish, ret = " + ret);
 
-        //todo 获取结果后返回给调用者 要清除ret
         if (this.futureListener != null) {
             futureListener.onResult(ret);
         }
@@ -67,14 +67,14 @@ public class FutureManger<T, R, K> {
         return futureMap.entrySet().stream().filter(entry -> futureStrategy.enable(entry.getKey()))
                 .map(entry -> CompletableFuture
                         .supplyAsync(() -> entry.getValue().apply(t), executor).applyToEitherAsync(
-                                timeoutAfter(futureStrategy.getTimeoutSecond(), TimeUnit.SECONDS),
+                                timeoutAfter(futureStrategy.getTimeoutSecond()),
                                 r -> r));
     }
 
 
-    private CompletableFuture<R> timeoutAfter(long timeout, TimeUnit unit) {
+    private CompletableFuture<R> timeoutAfter(long timeout) {
         CompletableFuture<R> result = new CompletableFuture<>();
-        executor.schedule(() -> result.complete(null), timeout, unit);
+        executor.schedule(() -> result.complete(null), timeout, TimeUnit.SECONDS);
         return result;
     }
 
