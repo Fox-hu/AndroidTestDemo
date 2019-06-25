@@ -34,6 +34,7 @@
         <activity android:name=".drawabletest.RvbgActivity" />
         <activity android:name=".drawabletest.IvbgActivity" />
         <activity android:name=".drawabletest.VideoViewBackgroundActivity" />
+        <activity android:name=".drawabletest.ExtraDemoActivity" />
     </application >
 
 </manifest >
