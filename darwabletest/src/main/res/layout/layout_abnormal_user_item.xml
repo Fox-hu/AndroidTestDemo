@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="12px"
+    android:paddingBottom="12px">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12px"
+        android:gravity="center"
+        android:text="李四"
+        android:textSize="14px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16px"
+        android:layout_toEndOf="@+id/name"
+        android:layout_alignBottom="@+id/name"
+        android:gravity="center_vertical"
+        android:text="79岁"
+        android:textSize="12px" />
+
+    <TextView
+        android:id="@+id/diastolic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="12px"
+        android:gravity="center"
+        android:text="70mmHg↓"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14px"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="12px"
+        android:gravity="center"
+        android:layout_toStartOf="@+id/diastolic"
+        android:layout_alignBottom="@+id/diastolic"
+        android:text="舒张压:"
+        android:textSize="14px"/>
+
+    <TextView
+        android:id="@+id/heart_rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="12px"
+        android:layout_marginTop="8px"
+        android:gravity="center"
+        android:layout_below="@+id/name"
+        android:text="心率"
+        android:textSize="14px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/heart_rate_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16px"
+        android:layout_toEndOf="@+id/name"
+        android:layout_alignBottom="@+id/heart_rate"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/holo_red_light"
+        android:text="79bpm↓"
+        android:textSize="12px" />
+
+    <TextView
+        android:id="@+id/systolic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/diastolic"
+        android:layout_marginEnd="12px"
+        android:layout_marginTop="8px"
+        android:gravity="center"
+        android:text="70mmmHg↓"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14px"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12px"
+        android:gravity="center"
+        android:layout_toStartOf="@+id/systolic"
+        android:layout_alignBottom="@+id/systolic"
+        android:text="收缩压:"
+        android:textSize="14px"/>
+
+</RelativeLayout >

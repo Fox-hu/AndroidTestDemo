@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 
-import app.mrobot.cn.rv_bg.ScollLinearLayoutManager;
+import app.mrobot.cn.rv_bg.ScrollLinearLayoutManager;
 import app.mrobot.cn.rv_bg.SplashAdapter;
 import app.mrobot.cn.R;
 
@@ -23,7 +23,7 @@ public class RvbgActivity extends Activity implements View.OnClickListener{
 
         RecyclerView mRecyclerView = (RecyclerView)findViewById(R.id.mRecyclerView);
         mRecyclerView.setAdapter(new SplashAdapter(RvbgActivity.this));
-        mRecyclerView.setLayoutManager(new ScollLinearLayoutManager(RvbgActivity.this));
+        mRecyclerView.setLayoutManager(new ScrollLinearLayoutManager(RvbgActivity.this));
         //smoothScrollToPosition滚动到某个位置（有滚动效果）
         mRecyclerView.smoothScrollToPosition(Integer.MAX_VALUE / 2);
 

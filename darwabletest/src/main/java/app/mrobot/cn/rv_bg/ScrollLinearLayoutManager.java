@@ -11,13 +11,11 @@ import android.util.DisplayMetrics;
 /**
  * 更改RecyclerView滚动的速度
  */
-public class ScollLinearLayoutManager extends LinearLayoutManager {
+public class ScrollLinearLayoutManager extends LinearLayoutManager {
     private float MILLISECONDS_PER_INCH = 25f;  //修改可以改变数据,越大速度越慢
-    private Context contxt;
 
-    public ScollLinearLayoutManager(Context context) {
+    public ScrollLinearLayoutManager(Context context) {
         super(context);
-        this.contxt = context;
     }
 
     @Override
@@ -26,7 +24,7 @@ public class ScollLinearLayoutManager extends LinearLayoutManager {
                 new LinearSmoothScroller(recyclerView.getContext()) {
                     @Override
                     public PointF computeScrollVectorForPosition(int targetPosition) {
-                        return ScollLinearLayoutManager.this
+                        return ScrollLinearLayoutManager.this
                                 .computeScrollVectorForPosition(targetPosition);
                     }
 
