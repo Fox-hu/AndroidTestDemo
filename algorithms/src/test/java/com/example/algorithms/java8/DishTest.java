@@ -163,6 +163,14 @@ public class DishTest {
     @Test
     public void test4(){
         //分区可以理解是返回两个list partitioningBy的第一参数只能用于返回值为boolean类型
+        final Map<Boolean, List<Dish>> collect = menu.stream().collect(
+                Collectors.partitioningBy(Dish :: isVegetarian));
+        System.out.println("collect is = " + collect.toString());
+    }
+
+    @Test
+    public void test5(){
+        //分区可以理解是返回两个list partitioningBy的第一参数只能用于返回值为boolean类型
         Map<Boolean, Map<Dish.Type, List<Dish>>> collect = menu.stream().collect(Collectors
                 .partitioningBy(Dish :: isVegetarian, Collectors.groupingBy(Dish :: getType)));
         System.out.println("collect is = " + collect.toString());

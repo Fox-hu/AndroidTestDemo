@@ -77,5 +77,4 @@ public class FutureManger<T, R, K> {
         executor.schedule(() -> result.complete(null), timeout, TimeUnit.SECONDS);
         return result;
     }
-
 }

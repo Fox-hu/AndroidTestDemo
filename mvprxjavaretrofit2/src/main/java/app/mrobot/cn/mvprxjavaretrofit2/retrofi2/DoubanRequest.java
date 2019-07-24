@@ -30,7 +30,7 @@ public class DoubanRequest extends BaseUrlRequest<DoubanService> {
             public Observable<Movie> call(List<Movie> movies) {
                 return Observable.from(movies);
             }
-        }).subscribeOn(Schedulers.io()).subscribe(
+        }).subscribeOn(Schedulers.io()).observeOn(Schedulers.).subscribe(
                 subscriber);
     }
 }

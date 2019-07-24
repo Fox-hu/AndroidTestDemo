@@ -6,28 +6,20 @@ import java.util.function.Function;
 public class FutureObject implements Function<String, String> {
 
     private String name;
-    private Random random;
     private int delay;
 
     public FutureObject(String name) {
         this.name = name;
-        this.random = new Random();
     }
 
     @Override
     public String apply(String s) {
-        double price = applyInternal(s);
-        return String.format("%s:%.2f:%d", name, price, delay);
-    }
-
-
-    private double applyInternal(String s) {
         delay();
-        return random.nextDouble() * s.charAt(0) + s.charAt(1);
+        return String.format("%s:%d", name, delay);
     }
 
     private void delay() {
-        delay = 500 + new Random().nextInt(6000);
+        delay = 500 + new Random().nextInt(3000);
         try {
             Thread.sleep(delay);
         } catch (InterruptedException e) {

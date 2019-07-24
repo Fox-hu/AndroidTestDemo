@@ -77,7 +77,13 @@ public class AppleTest {
         Consumer<Integer> integerConsumer = j.andThen(k);
 
         integerConsumer.accept(1);
+        final Consumer<Integer> integerConsumer1 = test4(2);
+        integerConsumer1.accept(1);
+
     }
 
+    public Consumer<Integer> test4(Integer t1) {
+        return t -> System.out.println(t1 + t);
+    }
 
 }
