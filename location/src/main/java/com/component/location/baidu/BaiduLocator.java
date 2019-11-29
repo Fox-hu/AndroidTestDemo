@@ -34,13 +34,13 @@ public class BaiduLocator extends BDAbstractLocationListener implements Locator 
         //注册监听函数
         locationClient.registerLocationListener(this);
         //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
-        locationOption.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+        //        locationOption.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
         //可选，默认gcj02，设置返回的定位结果坐标系，如果配合百度地图使用，建议设置为bd09ll;
         locationOption.setCoorType("bd09ll");
         //设置打开自动回调位置模式，该开关打开后，期间只要定位SDK检测到位置变化就会主动回调给开发者，该模式下开发者无需再关心定位间隔是多少，定位SDK本身发现位置变化就会及时回调给开发者
-        locationOption.setOpenAutoNotifyMode();
-        //设置打开自动回调位置模式，该开关打开后，期间只要定位SDK检测到位置变化就会主动回调给开发者
-        locationOption.setOpenAutoNotifyMode(3000, 1, LocationClientOption.LOC_SENSITIVITY_HIGHT);
+        //        locationOption.setOpenAutoNotifyMode();
+        //        //设置打开自动回调位置模式，该开关打开后，期间只要定位SDK检测到位置变化就会主动回调给开发者
+        //        locationOption.setOpenAutoNotifyMode(3000, 1, LocationClientOption.LOC_SENSITIVITY_HIGHT);
         //需将配置好的LocationClientOption对象，通过setLocOption方法传递给LocationClient对象使用
         locationClient.setLocOption(locationOption);
     }
@@ -53,7 +53,8 @@ public class BaiduLocator extends BDAbstractLocationListener implements Locator 
         double longitude = location.getLongitude();
         Log.i(TAG, "latitude = " + latitude + " longitude = " + longitude);
         if (observer != null) {
-            observer.onGetLocation(Vendor.BAIDU, new AppLocation(longitude, latitude));
+            observer.onGetLocation(Vendor.BAIDU,
+                    new AppLocation(longitude, latitude, Vendor.BAIDU));
         }
     }
 

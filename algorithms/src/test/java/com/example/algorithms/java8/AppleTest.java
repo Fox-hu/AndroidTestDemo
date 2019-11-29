@@ -86,4 +86,10 @@ public class AppleTest {
         return t -> System.out.println(t1 + t);
     }
 
+    @Test
+    public void test5(){
+        String test = null;
+        test.trim();
+    }
+
 }
