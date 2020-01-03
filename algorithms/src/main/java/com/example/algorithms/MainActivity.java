@@ -25,6 +25,7 @@ public class MainActivity extends BaseListActivity{
     @Override
     protected void initItem() {
         activityMap.put("WebActivity", WebActivity.class);
+        activityMap.put("AnnotationActivity", AnnotationActivity.class);
         activityMap.put("LocationActivity", LocationActivity.class);
     }
 }
