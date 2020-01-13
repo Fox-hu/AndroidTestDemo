@@ -1,4 +1,4 @@
-package com.component.annotation.pizza;
+package com.example.algorithms.annotations.pizza;
 
 
 import com.component.annotation.Factory;
